@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Message, Role } from "genkit/experimental/ai";
+import { Message } from "genkit/experimental/ai";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,6 +27,13 @@ export function ChatPanel() {
   const [isThinking, setIsThinking] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      message: "",
+    },
+  });
+  
   const scrollToBottom = () => {
     if (scrollAreaRef.current) {
         const viewport = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
