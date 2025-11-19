@@ -27,18 +27,13 @@ export function ChatPanel() {
   const [isThinking, setIsThinking] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      message: "",
-    },
-  });
-
   const scrollToBottom = () => {
     if (scrollAreaRef.current) {
         const viewport = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
         if (viewport) {
-            viewport.scrollTop = viewport.scrollHeight;
+            setTimeout(() => {
+                viewport.scrollTop = viewport.scrollHeight;
+            }, 0);
         }
     }
   };
