@@ -25,6 +25,8 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { Calendar } from "@/components/ui/calendar";
+import React from "react";
 
 const lessons = [
   {
@@ -70,6 +72,7 @@ const chartConfig = {
 }
 
 export default function StudentDashboard() {
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
   return (
     <div className="grid gap-6">
       <h1 className="font-headline text-3xl font-bold tracking-tight">
@@ -113,8 +116,8 @@ export default function StudentDashboard() {
         </Card>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <Card>
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
+        <Card className="xl:col-span-2">
           <CardHeader>
             <CardTitle>Continue Your Quest</CardTitle>
             <CardDescription>Pick up where you left off.</CardDescription>
@@ -142,31 +145,47 @@ export default function StudentDashboard() {
             ))}
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Monthly Progress</CardTitle>
-            <CardDescription>Lessons completed per month.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ChartContainer config={chartConfig} className="h-[250px] w-full">
-              <BarChart accessibilityLayer data={chartData}>
-                <CartesianGrid vertical={false} />
-                <XAxis
-                  dataKey="month"
-                  tickLine={false}
-                  tickMargin={10}
-                  axisLine={false}
-                  tickFormatter={(value) => value.slice(0, 3)}
-                />
-                <ChartTooltip
-                  cursor={false}
-                  content={<ChartTooltipContent indicator="dot" />}
-                />
-                <Bar dataKey="lessons" fill="var(--color-lessons)" radius={8} />
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
+        <div className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Monthly Progress</CardTitle>
+              <CardDescription>Lessons completed per month.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ChartContainer config={chartConfig} className="h-[250px] w-full">
+                <BarChart accessibilityLayer data={chartData}>
+                  <CartesianGrid vertical={false} />
+                  <XAxis
+                    dataKey="month"
+                    tickLine={false}
+                    tickMargin={10}
+                    axisLine={false}
+                    tickFormatter={(value) => value.slice(0, 3)}
+                  />
+                  <ChartTooltip
+                    cursor={false}
+                    content={<ChartTooltipContent indicator="dot" />}
+                  />
+                  <Bar dataKey="lessons" fill="var(--color-lessons)" radius={8} />
+                </BarChart>
+              </ChartContainer>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>My Schedule</CardTitle>
+              <CardDescription>Your upcoming events and deadlines.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                className="rounded-md border"
+              />
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
