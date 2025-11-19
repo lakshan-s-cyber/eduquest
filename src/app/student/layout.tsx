@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  Bell,
   BookOpen,
   LayoutDashboard,
   LogOut,
@@ -34,6 +35,7 @@ export default function StudentLayout({
   const navItems = [
     { href: "/student/dashboard", icon: LayoutDashboard, label: "Dashboard" },
     { href: "/student/lessons", icon: BookOpen, label: "Lessons" },
+    { href: "/student/notifications", icon: Bell, label: "Notifications" },
     { href: "/student/achievements", icon: Trophy, label: "Achievements" },
     { href: "/student/leaderboard", icon: Users, label: "Leaderboard" },
   ];
