@@ -27,6 +27,7 @@ import {
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 import { Calendar } from "@/components/ui/calendar";
 import React from "react";
+import { ChatPanel } from "@/components/chat/chat-panel";
 
 const lessons = [
   {
@@ -146,6 +147,15 @@ export default function StudentDashboard() {
           </CardContent>
         </Card>
         <div className="space-y-6">
+          <Card>
+            <CardHeader>
+                <CardTitle>AI Assistant</CardTitle>
+                <CardDescription>Ask me anything about your lessons!</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <ChatPanel />
+            </CardContent>
+          </Card>
           <Card>
             <CardHeader>
               <CardTitle>Monthly Progress</CardTitle>
