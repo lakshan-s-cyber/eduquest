@@ -9,7 +9,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import {Message, Role} from 'genkit/experimental/ai';
+import {Message} from 'genkit/experimental/ai';
 
 const ChatInputSchema = z.object({
   history: z.array(z.custom<Message>()),
@@ -19,11 +19,9 @@ export type ChatInput = z.infer<typeof ChatInputSchema>;
 
 export type ChatOutput = string;
 
-
 export async function chat(input: ChatInput): Promise<ChatOutput> {
   return chatFlow(input);
 }
-
 
 const chatFlow = ai.defineFlow(
   {
@@ -33,11 +31,9 @@ const chatFlow = ai.defineFlow(
   },
   async ({history, message}) => {
     const response = await ai.generate({
+      model: 'googleai/gemini-2.5-flash',
       prompt: {
-        messages: [
-            ...history,
-            {role: 'user', content: [{text: message}]},
-        ],
+        messages: [...history, {role: 'user', content: [{text: message}]}],
       },
       history: history,
     });
