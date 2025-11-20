@@ -1,17 +1,18 @@
+"use client";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function AssignmentPage({ params }: { params: { assignmentId: string } }) {
+    const router = useRouter();
+
     return (
         <div className="grid gap-6">
             <div className="flex items-center gap-4">
-                 <Button asChild variant="ghost" size="icon" onClick={() => history.back()}>
-                    <Link href="#">
-                        <ArrowLeft className="h-5 w-5" />
-                    </Link>
+                 <Button variant="ghost" size="icon" onClick={() => router.back()}>
+                    <ArrowLeft className="h-5 w-5" />
                 </Button>
                 <div>
                     <h1 className="font-headline text-3xl font-bold tracking-tight">
