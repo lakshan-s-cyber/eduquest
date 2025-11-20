@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "leaderboard-header",
+      "description": "An exciting image representing achievement and competition for the leaderboard header.",
+      "imageUrl": "https://images.unsplash.com/photo-1574108397771-54bac27968ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhY2hpZXZlbWVudCUyMGNvbXBldGl0aW9ufGVufDB8fHx8MTc2MzYzNjQ0Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "achievement competition"
+    },
+    {
+      "id": "leaderboard-1",
+      "description": "Background for the first place student.",
+      "imageUrl": "https://images.unsplash.com/photo-1577558445004-b0bdc90e0439?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjZWxlYnJhdGlvbiUyMGNvbmZldHRpfGVufDB8fHx8MTc2MzYxMzU4NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "celebration confetti"
+    },
+    {
+      "id": "leaderboard-2",
+      "description": "Background for the second place student.",
+      "imageUrl": "https://images.unsplash.com/photo-1672659382440-5a030f208eca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmaXJld29ya3MlMjBza3l8ZW58MHx8fHwxNzYzNjM2NDQ2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fireworks sky"
+    },
+    {
+      "id": "leaderboard-3",
+      "description": "Background for the third place student.",
+      "imageUrl": "https://images.unsplash.com/photo-1504870712357-65ea720d6078?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb3VudGFpbiUyMHBlYWt8ZW58MHx8fHwxNzYzNjMyNzE0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mountain peak"
+    }
+  ]
 }
