@@ -1,3 +1,4 @@
+
 import {
     Card,
     CardContent,
@@ -168,7 +169,7 @@ const rankStyles = {
         gradient: "from-yellow-400/30 via-yellow-400/10 to-card/50",
         hoverGradient: "hover:from-yellow-400/40",
         avatarBorder: "border-yellow-400",
-        nameColor: "text-yellow-200",
+        nameColor: "text-blue-300",
         pointsColor: "text-yellow-400"
     },
     2: { // Silver
@@ -178,7 +179,7 @@ const rankStyles = {
         gradient: "from-gray-300/30 via-gray-300/10 to-card/50",
         hoverGradient: "hover:from-gray-300/40",
         avatarBorder: "border-gray-300",
-        nameColor: "text-gray-100",
+        nameColor: "text-blue-300",
         pointsColor: "text-gray-300"
     },
     3: { // Bronze
@@ -188,7 +189,7 @@ const rankStyles = {
         gradient: "from-orange-400/30 via-orange-400/10 to-card/50",
         hoverGradient: "hover:from-orange-400/40",
         avatarBorder: "border-orange-400",
-        nameColor: "text-orange-200",
+        nameColor: "text-blue-300",
         pointsColor: "text-orange-400"
     }
 };
