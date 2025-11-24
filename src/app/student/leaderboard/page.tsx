@@ -48,13 +48,13 @@ export default function LeaderboardPage() {
 
     return (
         <div className="grid gap-8 text-white pb-24">
-            <div className="relative flex flex-col items-start justify-center rounded-xl bg-card p-8 text-left overflow-hidden border border-primary/20">
+            <div className="relative flex flex-col items-start justify-center rounded-xl bg-card p-8 text-left overflow-hidden border border-primary/20 h-48">
                 {leaderboardHeaderImage && (
                     <Image
                         src={leaderboardHeaderImage.imageUrl}
                         alt={leaderboardHeaderImage.description}
                         fill
-                        className="object-cover opacity-80"
+                        className="object-cover"
                         data-ai-hint={leaderboardHeaderImage.imageHint}
                     />
                 )}
