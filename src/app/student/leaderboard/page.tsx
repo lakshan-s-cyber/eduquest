@@ -1,4 +1,5 @@
 
+
 import {
     Card,
     CardContent,
@@ -101,7 +102,7 @@ export default function LeaderboardPage() {
                                                 <AvatarImage src={student.avatar} alt={student.name} />
                                                 <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
                                             </Avatar>
-                                            <span className="font-medium text-white/90">{student.name}</span>
+                                            <span className="font-medium text-blue-900">{student.name}</span>
                                         </div>
                                     </TableCell>
                                     <TableCell className="text-center">
@@ -130,7 +131,7 @@ export default function LeaderboardPage() {
                                     <AvatarFallback>{currentUser.name.charAt(0)}</AvatarFallback>
                                 </Avatar>
                                 <div>
-                                    <p className="font-bold text-lg">{currentUser.name} (You)</p>
+                                    <p className="font-bold text-lg text-blue-900">{currentUser.name} (You)</p>
                                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                         <ShieldCheck className="h-4 w-4 text-green-400" />
                                         <span>Top 1%</span>
@@ -169,7 +170,7 @@ const rankStyles = {
         gradient: "from-yellow-400/30 via-yellow-400/10 to-card/50",
         hoverGradient: "hover:from-yellow-400/40",
         avatarBorder: "border-yellow-400",
-        nameColor: "text-blue-300",
+        nameColor: "text-blue-900",
         pointsColor: "text-yellow-400"
     },
     2: { // Silver
@@ -179,7 +180,7 @@ const rankStyles = {
         gradient: "from-gray-300/30 via-gray-300/10 to-card/50",
         hoverGradient: "hover:from-gray-300/40",
         avatarBorder: "border-gray-300",
-        nameColor: "text-blue-300",
+        nameColor: "text-blue-900",
         pointsColor: "text-gray-300"
     },
     3: { // Bronze
@@ -189,7 +190,7 @@ const rankStyles = {
         gradient: "from-orange-400/30 via-orange-400/10 to-card/50",
         hoverGradient: "hover:from-orange-400/40",
         avatarBorder: "border-orange-400",
-        nameColor: "text-blue-300",
+        nameColor: "text-blue-900",
         pointsColor: "text-orange-400"
     }
 };
