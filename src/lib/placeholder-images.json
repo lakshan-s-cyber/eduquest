@@ -2,8 +2,8 @@
   "placeholderImages": [
     {
       "id": "leaderboard-header",
-      "description": "A gold trophy and medals on a colorful background.",
-      "imageUrl": "https://images.unsplash.com/photo-1574849642654-29a589e37a28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0cm9waHklMjBtZWRhbHMlMjBhd2FyZHxlbnwwfHx8fDE3MjEwNjIwMjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A gold trophy sits on a table with medals scattered around it.",
+      "imageUrl": "https://images.unsplash.com/photo-1612872895694-8450a18f533a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0cm9waHklMjBtZWRhbHN8ZW58MHx8fHwxNzIxMDYxOTk4fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "trophy medals"
     },
     {
