@@ -52,17 +52,17 @@ export default function LeaderboardPage() {
                         src={leaderboardHeaderImage.imageUrl}
                         alt={leaderboardHeaderImage.description}
                         fill
-                        className="object-cover opacity-10"
+                        className="object-cover opacity-80"
                         data-ai-hint={leaderboardHeaderImage.imageHint}
                     />
                 )}
-                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+                 <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
                 <div className="relative z-10">
-                    <h1 className="font-headline text-5xl font-bold tracking-tight text-primary relative inline-block">
-                        <GraduationCap className="absolute -top-5 -left-4 h-10 w-10 text-primary/80 -rotate-12 transform-gpu transition-transform group-hover:scale-110" />
-                        <span className="animate-pulse">LEADERBOARD</span>
+                    <h1 className="font-headline text-5xl font-black tracking-tighter text-white relative inline-block uppercase" style={{fontFamily: "'Russo One', sans-serif"}}>
+                        <GraduationCap className="absolute -top-5 -left-4 h-10 w-10 text-yellow-300/80 -rotate-12 transform-gpu transition-transform group-hover:scale-110 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
+                        <span className="bg-clip-text text-transparent bg-gradient-to-b from-yellow-200 to-amber-500 drop-shadow-[0_2px_2px_rgba(0,0,0,0.7)]">Leaderboard</span>
                     </h1>
-                    <p className="mt-2 text-lg text-white/70">
+                    <p className="mt-2 text-lg text-white/80 font-medium">
                         See who's dominating the knowledge quest!
                     </p>
                 </div>
@@ -168,6 +168,7 @@ const rankStyles = {
         gradient: "from-yellow-400/30 via-yellow-400/10 to-card/50",
         hoverGradient: "hover:from-yellow-400/40",
         avatarBorder: "border-yellow-400",
+        nameColor: "text-yellow-200",
         pointsColor: "text-yellow-400"
     },
     2: { // Silver
@@ -177,6 +178,7 @@ const rankStyles = {
         gradient: "from-gray-300/30 via-gray-300/10 to-card/50",
         hoverGradient: "hover:from-gray-300/40",
         avatarBorder: "border-gray-300",
+        nameColor: "text-gray-100",
         pointsColor: "text-gray-300"
     },
     3: { // Bronze
@@ -186,6 +188,7 @@ const rankStyles = {
         gradient: "from-orange-400/30 via-orange-400/10 to-card/50",
         hoverGradient: "hover:from-orange-400/40",
         avatarBorder: "border-orange-400",
+        nameColor: "text-orange-200",
         pointsColor: "text-orange-400"
     }
 };
@@ -226,8 +229,8 @@ const PodiumCard = ({ student, rank }: { student: any; rank: number }) => {
                 <AvatarImage src={student.avatar} alt={student.name} />
                 <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
             </Avatar>
-            <p className="mt-2 font-headline text-xl font-bold">{student.name}</p>
-            <p className={cn("text-3xl font-bold", styles.pointsColor)}>{student.points}</p>
+            <p className={cn("mt-2 font-headline text-xl font-bold", styles.nameColor)}>{student.name}</p>
+            <p className={cn("text-3xl font-bold drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]", styles.pointsColor)}>{student.points}</p>
             <p className="text-sm text-white/50">points</p>
             <Progress value={student.progress} className="mt-4 h-1.5 w-3/4 bg-primary/20" indicatorClassName="bg-gradient-to-r from-cyan-400 to-blue-500" />
         </div>
