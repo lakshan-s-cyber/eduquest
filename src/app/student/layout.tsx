@@ -86,7 +86,7 @@ export default function StudentLayout({
           <SidebarTrigger />
           <h1 className="text-xl font-semibold font-headline">Student Dashboard</h1>
         </header>
-        <main className="flex-1 p-4 md:p-6">{children}</main>
+        <main className="flex-1 p-4 md:p-6 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );

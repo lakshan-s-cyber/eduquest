@@ -1,9 +1,6 @@
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
 } from "@/components/ui/card";
 import {
     Table,
@@ -14,9 +11,10 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Medal } from "lucide-react";
+import { Crown, Star } from "lucide-react";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { cn } from "@/lib/utils";
 
 const leaderboardData = [
     { rank: 1, name: "Alex Doe", points: 1250, avatar: "https://picsum.photos/seed/student1/100/100", imageId: "leaderboard-1" },
@@ -31,12 +29,6 @@ const leaderboardData = [
     { rank: 10, name: "Eva Green", points: 800, avatar: "https://picsum.photos/seed/student10/100/100" },
 ];
 
-const getMedalColor = (rank: number) => {
-    if (rank === 1) return "text-yellow-400";
-    if (rank === 2) return "text-gray-400";
-    if (rank === 3) return "text-orange-400";
-    return "text-gray-300";
-};
 
 const leaderboardHeaderImage = PlaceHolderImages.find(img => img.id === 'leaderboard-header');
 const topStudentImages = leaderboardData.slice(0, 3).map(student => {
@@ -47,87 +39,61 @@ const otherStudents = leaderboardData.slice(3);
 
 
 export default function LeaderboardPage() {
+    const [rank1, rank2, rank3] = topStudentImages;
+
     return (
-        <div className="grid gap-6">
-            <Card className="overflow-hidden">
-                <div className="relative h-48 w-full">
-                    {leaderboardHeaderImage && (
-                        <Image
-                            src={leaderboardHeaderImage.imageUrl}
-                            alt={leaderboardHeaderImage.description}
-                            fill
-                            className="object-cover"
-                            data-ai-hint={leaderboardHeaderImage.imageHint}
-                        />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-0 left-0 p-6">
-                        <h1 className="font-headline text-4xl font-bold tracking-tight text-white">
-                            Leaderboard
-                        </h1>
-                        <p className="text-lg text-white/90">
-                            See who's at the top of the knowledge quest!
-                        </p>
-                    </div>
+        <div className="grid gap-8 text-white">
+            <div className="relative flex flex-col items-center justify-center rounded-xl bg-card p-8 text-center overflow-hidden border border-primary/20">
+                {leaderboardHeaderImage && (
+                    <Image
+                        src={leaderboardHeaderImage.imageUrl}
+                        alt={leaderboardHeaderImage.description}
+                        fill
+                        className="object-cover opacity-10"
+                        data-ai-hint={leaderboardHeaderImage.imageHint}
+                    />
+                )}
+                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+                <div className="relative z-10">
+                    <h1 className="font-headline text-5xl font-bold tracking-tight text-primary animate-pulse">
+                        LEADERBOARD
+                    </h1>
+                    <p className="mt-2 text-lg text-white/70">
+                        See who's dominating the knowledge quest!
+                    </p>
                 </div>
-            </Card>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-                {topStudentImages.map(student => (
-                    <Card key={student.rank} className="relative flex flex-col overflow-hidden text-white transition-transform hover:scale-105">
-                        {student.imageData && (
-                             <Image
-                                src={student.imageData.imageUrl}
-                                alt={student.imageData.description}
-                                fill
-                                className="object-cover -z-10"
-                                data-ai-hint={student.imageData.imageHint}
-                            />
-                        )}
-                        <div className="absolute inset-0 bg-black/50 -z-10" />
-
-                        <CardHeader className="flex-row items-center justify-between">
-                            <div className="flex items-center gap-3">
-                                <Avatar className="h-12 w-12 border-2 border-white">
-                                    <AvatarImage src={student.avatar} alt={student.name} />
-                                    <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
-                                </Avatar>
-                                <span className="font-bold text-lg">{student.name}</span>
-                            </div>
-                             <Medal className={`h-10 w-10 drop-shadow-lg ${getMedalColor(student.rank)}`} />
-                        </CardHeader>
-                        <CardContent className="mt-auto p-6">
-                            <p className="text-5xl font-bold">{student.points}</p>
-                            <p className="text-sm text-white/80">points</p>
-                        </CardContent>
-                    </Card>
-                ))}
             </div>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>Ranks 4-10</CardTitle>
-                </CardHeader>
-                <CardContent>
+            <div className="grid grid-cols-1 items-end gap-4 md:grid-cols-[1fr_1.5fr_1fr] md:gap-2">
+                {/* Rank 2 */}
+                <PodiumCard student={rank2} rank={2} />
+                {/* Rank 1 */}
+                <PodiumCard student={rank1} rank={1} />
+                {/* Rank 3 */}
+                <PodiumCard student={rank3} rank={3} />
+            </div>
+
+            <Card className="bg-card/50 backdrop-blur-sm">
+                <CardContent className="p-0">
                     <Table>
                         <TableHeader>
-                            <TableRow>
-                                <TableHead className="w-[80px] text-center">Rank</TableHead>
-                                <TableHead>Student</TableHead>
-                                <TableHead className="text-right">Points</TableHead>
+                            <TableRow className="border-primary/10">
+                                <TableHead className="w-[80px] text-center font-bold text-primary/80">Rank</TableHead>
+                                <TableHead className="font-bold text-primary/80">Student</TableHead>
+                                <TableHead className="text-right font-bold text-primary/80">Points</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {otherStudents.map((student) => (
-                                <TableRow key={student.rank}>
-                                    <TableCell className="text-center font-bold text-lg text-muted-foreground">{student.rank}</TableCell>
+                                <TableRow key={student.rank} className="border-primary/10 transition-colors hover:bg-primary/10">
+                                    <TableCell className="text-center font-bold text-lg text-white/50">{student.rank}</TableCell>
                                     <TableCell>
                                         <div className="flex items-center gap-4">
                                             <Avatar>
                                                 <AvatarImage src={student.avatar} alt={student.name} />
                                                 <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
                                             </Avatar>
-                                            <span className="font-medium">{student.name}</span>
+                                            <span className="font-medium text-white/90">{student.name}</span>
                                         </div>
                                     </TableCell>
                                     <TableCell className="text-right font-bold text-primary text-lg">{student.points}</TableCell>
@@ -139,4 +105,44 @@ export default function LeaderboardPage() {
             </Card>
         </div>
     );
+}
+
+const PodiumCard = ({ student, rank }: { student: any; rank: number }) => {
+    if (!student) return null;
+
+    return (
+        <div className={cn(
+            "relative flex flex-col items-center justify-end rounded-t-xl bg-gradient-to-b from-primary/20 to-card/50 p-6 text-center backdrop-blur-sm transition-all hover:from-primary/30",
+            rank === 1 ? "h-64" : "h-56",
+            rank === 1 && "border-2 border-primary shadow-[0_0_20px_theme(colors.primary)]",
+            rank !== 1 && "border border-primary/20",
+        )}>
+             {student.imageData && (
+                <Image
+                    src={student.imageData.imageUrl}
+                    alt={student.imageData.description}
+                    fill
+                    className="object-cover rounded-t-xl opacity-10 -z-10"
+                    data-ai-hint={student.imageData.imageHint}
+                />
+            )}
+            <div className="absolute top-4">
+                {rank === 1 ? (
+                    <Crown className="h-10 w-10 text-yellow-400 drop-shadow-[0_0_10px_#facc15]" />
+                ) : (
+                    <Star className={`h-8 w-8 ${rank === 2 ? 'text-gray-300' : 'text-orange-400'}`} />
+                )}
+            </div>
+            <Avatar className={cn(
+                "h-20 w-20 border-4",
+                rank === 1 ? "border-primary" : "border-primary/50"
+            )}>
+                <AvatarImage src={student.avatar} alt={student.name} />
+                <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
+            </Avatar>
+            <p className="mt-4 font-headline text-xl font-bold">{student.name}</p>
+            <p className="text-3xl font-bold text-primary">{student.points}</p>
+            <p className="text-sm text-white/50">points</p>
+        </div>
+    )
 }

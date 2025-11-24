@@ -2,27 +2,27 @@
   "placeholderImages": [
     {
       "id": "leaderboard-header",
-      "description": "A person proudly holding a golden trophy, symbolizing victory and achievement.",
+      "description": "Futuristic abstract background with glowing particles and trophies",
       "imageUrl": "https://images.unsplash.com/photo-1593025247959-59b66239f13a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0cm9waHklMjBhd2FyZHxlbnwwfHx8fDE3NjM2NTg0ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "trophy award"
+      "imageHint": "futuristic trophy"
     },
     {
       "id": "leaderboard-1",
-      "description": "A young woman celebrating her victory with a prize.",
+      "description": "A young woman celebrating her victory, with neon lights in the background",
       "imageUrl": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhY2hpZXZlbWVudCUyMHByaXplfGVufDB8fHx8MTc2MzY1ODYxNnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "achievement prize"
+      "imageHint": "celebration neon"
     },
     {
       "id": "leaderboard-2",
-      "description": "A group of friends celebrating an achievement together.",
+      "description": "A young man with a confident look, with abstract digital patterns in the background",
       "imageUrl": "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhY2hpZXZlbWVudCUyMHByaXplfGVufDB8fHx8MTc2MzY1ODYxNnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "friends celebrating"
+      "imageHint": "confident winner digital"
     },
     {
       "id": "leaderboard-3",
-      "description": "A person celebrating with arms raised in victory.",
+      "description": "A person holding a glowing orb, symbolizing achievement and power.",
       "imageUrl": "https://images.unsplash.com/photo-1526402282324-2135c4139407?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhY2hpZXZlbWVudCUyMHByaXplfGVufDB8fHx8MTc2MzY1ODYxNnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "victory celebration"
+      "imageHint": "glowing orb achievement"
     }
   ]
 }
