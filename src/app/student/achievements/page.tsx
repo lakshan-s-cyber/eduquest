@@ -16,13 +16,14 @@ import {
     BarChart,
     Target,
     Trophy,
-    TrendingUp,
     Shield,
     Star,
     Zap,
     BrainCircuit,
     FlaskConical,
-    Lightbulb
+    Lightbulb,
+    PartyPopper,
+    TrendingUp
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
@@ -92,15 +93,36 @@ export default function AchievementsPage() {
                 My Achievements
             </h1>
 
-            <Card className="bg-primary/5 border-primary/20">
-                 <CardContent className="p-4 flex items-center gap-4">
-                    <Lightbulb className="h-6 w-6 text-primary" />
+             <Card className="bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg">
+                <CardContent className="p-4 flex items-center gap-4">
+                    <PartyPopper className="h-8 w-8" />
                     <div>
-                        <p className="font-semibold text-primary">Quote of the Day</p>
-                        <p className="text-sm text-muted-foreground italic">"{quote}"</p>
+                        <CardTitle className="text-lg">New Milestone Unlocked!</CardTitle>
+                        <p className="text-sm">You've reached Level 15: Master Learner!</p>
                     </div>
-                 </CardContent>
+                </CardContent>
             </Card>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="bg-primary/5 border-primary/20">
+                     <CardContent className="p-4 flex items-center gap-4">
+                        <Lightbulb className="h-6 w-6 text-primary" />
+                        <div>
+                            <p className="font-semibold text-primary">Quote of the Day</p>
+                            <p className="text-sm text-muted-foreground italic">"{quote}"</p>
+                        </div>
+                     </CardContent>
+                </Card>
+                <Card className="bg-accent/20 border-accent/40">
+                     <CardContent className="p-4 flex items-center gap-4">
+                        <TrendingUp className="h-6 w-6 text-accent-foreground" />
+                        <div>
+                            <p className="font-semibold text-accent-foreground">Weekly Highlight</p>
+                            <p className="text-sm text-muted-foreground">Congrats! You're in the top 5 this week!</p>
+                        </div>
+                     </CardContent>
+                </Card>
+            </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                  <Card>
@@ -157,9 +179,14 @@ export default function AchievementsPage() {
                                 <Progress value={achievementsData.level.progress} />
                             </div>
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                                {achievementsData.levelBadges.map((badge) => (
+                                {achievementsData.levelBadges.map((badge, index) => (
                                 <div key={badge.name} className="flex flex-col items-center text-center gap-2 p-4 rounded-lg bg-secondary/50">
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                                    <div className={`flex h-12 w-12 items-center justify-center rounded-full ${
+                                        index === 0 ? 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-500' :
+                                        index === 1 ? 'bg-slate-200 dark:bg-slate-700/50 text-slate-500' :
+                                        index === 2 ? 'bg-amber-200 dark:bg-amber-900/50 text-amber-600' :
+                                        'bg-primary/10 text-primary'
+                                    }`}>
                                         {badge.icon}
                                     </div>
                                     <p className="text-xs font-semibold">{badge.name}</p>
@@ -197,7 +224,9 @@ export default function AchievementsPage() {
                         <CardContent className="space-y-4">
                             {achievementsData.competitionBadges.map((badge, index) => (
                                 <div key={index} className="flex items-center gap-4">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-primary">
+                                    <div className={`flex h-10 w-10 items-center justify-center rounded-full ${
+                                        index === 0 ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-500' : 'bg-purple-100 dark:bg-purple-900/50 text-purple-500'
+                                    }`}>
                                         {badge.icon}
                                     </div>
                                     <div>
@@ -212,7 +241,7 @@ export default function AchievementsPage() {
                         <CardHeader>
                             <CardTitle>Best Quiz Scores</CardTitle>
                              <CardDescription>Your top performances.</CardDescription>
-                        </CardHeader>
+                        </Header>
                         <CardContent>
                             <ul className="space-y-3">
                                 {achievementsData.bestQuizzes.map((quiz, index) => (
@@ -231,11 +260,13 @@ export default function AchievementsPage() {
                         <CardHeader>
                             <CardTitle>Special Challenges</CardTitle>
                             <CardDescription>Unique milestones you've reached.</CardDescription>
-                        </CardHeader>
+                        </Header>
                         <CardContent className="space-y-4">
                              {achievementsData.specialChallenges.map((challenge, index) => (
                                 <div key={index} className="flex items-center gap-3">
-                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-300">
+                                    <div className={`flex h-8 w-8 items-center justify-center rounded-full ${
+                                        index === 0 ? 'bg-red-100 dark:bg-red-900/50 text-red-500' : 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-500'
+                                    }`}>
                                       {challenge.icon}
                                     </div>
                                     <p className="font-medium text-sm">{challenge.title}</p>
