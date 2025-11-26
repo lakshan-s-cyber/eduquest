@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "leaderboard-header",
-      "description": "A group of diverse friends celebrating together, holding a trophy in victory.",
-      "imageUrl": "https://images.unsplash.com/photo-1546272989-4b839d33aa2e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxncm91cCUyMHRyb3BoeXxlbnwwfHx8fDE3MjE5MzI4ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "friends trophy"
+      "description": "Silhouette of many hands holding a trophy in victory against a sunset sky.",
+      "imageUrl": "https://images.unsplash.com/photo-1598452943412-299b3a757913?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhY2hpZXZlbWVudCUyMHRyb3BoeXxlbnwwfHx8fDE3MjE5MzI4ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "achievement trophy"
     },
     {
       "id": "leaderboard-1",
