@@ -102,7 +102,7 @@ export default function LeaderboardPage() {
                                                 <AvatarImage src={student.avatar} alt={student.name} />
                                                 <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
                                             </Avatar>
-                                            <span className="font-medium text-blue-900">{student.name}</span>
+                                            <span className="font-medium" style={{ color: '#000080' }}>{student.name}</span>
                                         </div>
                                     </TableCell>
                                     <TableCell className="text-center">
@@ -131,7 +131,7 @@ export default function LeaderboardPage() {
                                     <AvatarFallback>{currentUser.name.charAt(0)}</AvatarFallback>
                                 </Avatar>
                                 <div>
-                                    <p className="font-bold text-lg text-blue-900">{currentUser.name} (You)</p>
+                                    <p className="font-bold text-lg" style={{ color: '#000080' }}>{currentUser.name} (You)</p>
                                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                         <ShieldCheck className="h-4 w-4 text-green-400" />
                                         <span>Top 1%</span>
@@ -231,7 +231,7 @@ const PodiumCard = ({ student, rank }: { student: any; rank: number }) => {
                 <AvatarImage src={student.avatar} alt={student.name} />
                 <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
             </Avatar>
-            <p className={cn("mt-2 font-headline text-xl font-bold", styles.nameColor)}>{student.name}</p>
+            <p className={cn("mt-2 font-headline text-xl font-bold", styles.nameColor)} style={{ color: '#000080' }}>{student.name}</p>
             <p className={cn("text-3xl font-bold drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]", styles.pointsColor)}>{student.points}</p>
             <p className="text-sm text-white/50">points</p>
             <Progress value={student.progress} className="mt-4 h-1.5 w-3/4 bg-primary/20" indicatorClassName="bg-gradient-to-r from-cyan-400 to-blue-500" />
