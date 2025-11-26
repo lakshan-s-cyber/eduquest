@@ -1,4 +1,7 @@
 
+"use client";
+
+import React, { useEffect, useState } from 'react';
 import {
     Card,
     CardContent,
@@ -18,7 +21,8 @@ import {
     Star,
     Zap,
     BrainCircuit,
-    FlaskConical
+    FlaskConical,
+    Lightbulb
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
@@ -62,13 +66,41 @@ const achievementsData = {
     ]
 };
 
+const dailyQuotes = [
+    "Every accomplishment starts with the decision to try.",
+    "The secret to getting ahead is getting started.",
+    "Don't watch the clock; do what it does. Keep going.",
+    "Success is the sum of small efforts, repeated day in and day out.",
+    "The journey of a thousand miles begins with a single step.",
+    "Believe you can and you're halfway there.",
+    "The expert in anything was once a beginner."
+];
+
 
 export default function AchievementsPage() {
+    const [quote, setQuote] = useState('');
+
+    useEffect(() => {
+        const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24));
+        setQuote(dailyQuotes[dayOfYear % dailyQuotes.length]);
+    }, []);
+
+
     return (
         <div className="grid gap-6">
             <h1 className="font-headline text-3xl font-bold tracking-tight">
                 My Achievements
             </h1>
+
+            <Card className="bg-primary/5 border-primary/20">
+                 <CardContent className="p-4 flex items-center gap-4">
+                    <Lightbulb className="h-6 w-6 text-primary" />
+                    <div>
+                        <p className="font-semibold text-primary">Quote of the Day</p>
+                        <p className="text-sm text-muted-foreground italic">"{quote}"</p>
+                    </div>
+                 </CardContent>
+            </Card>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                  <Card>
