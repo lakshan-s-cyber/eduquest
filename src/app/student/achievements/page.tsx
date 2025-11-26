@@ -188,7 +188,7 @@ export default function AchievementsPage() {
                         <CardHeader>
                             <CardTitle>Best Quiz Scores</CardTitle>
                              <CardDescription>Your top performances.</CardDescription>
-                        </Header>
+                        </CardHeader>
                         <CardContent>
                             <ul className="space-y-3">
                                 {achievementsData.bestQuizzes.map((quiz, index) => (
@@ -207,7 +207,7 @@ export default function AchievementsPage() {
                         <CardHeader>
                             <CardTitle>Special Challenges</CardTitle>
                             <CardDescription>Unique milestones you've reached.</CardDescription>
-                        </Header>
+                        </CardHeader>
                         <CardContent className="space-y-4">
                              {achievementsData.specialChallenges.map((challenge, index) => (
                                 <div key={index} className="flex items-center gap-3">
