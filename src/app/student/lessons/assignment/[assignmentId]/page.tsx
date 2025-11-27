@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 export default function AssignmentPage({ params }: { params: { assignmentId: string } }) {
     const router = useRouter();
+    const { assignmentId } = params;
 
     return (
         <div className="grid gap-6">
@@ -22,13 +23,13 @@ export default function AssignmentPage({ params }: { params: { assignmentId: str
             </div>
             <Card>
                 <CardHeader>
-                    <CardTitle>Assignment: {params.assignmentId}</CardTitle>
+                    <CardTitle>Assignment: {assignmentId}</CardTitle>
                     <CardDescription>
                         This is a placeholder page for an assignment. The content for the assignment will be displayed here.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <p>Details for assignment {params.assignmentId} will go here.</p>
+                    <p>Details for assignment {assignmentId} will go here.</p>
                 </CardContent>
             </Card>
         </div>
