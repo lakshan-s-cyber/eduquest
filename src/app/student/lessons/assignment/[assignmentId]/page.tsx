@@ -51,7 +51,7 @@ const CPointersQuiz = () => (
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="b" id="q1-b" />
-                        <Label htmlFor="q2-b">int &amp;ptr;</Label>
+                        <Label htmlFor="q1-b">int &amp;ptr;</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="c" id="q1-c" />
@@ -159,27 +159,26 @@ export default function AssignmentPage({ params }: { params: { assignmentId: str
     const { assignmentId } = params;
 
     const renderContent = () => {
-        if (assignmentId === 'c-intro') {
-            return <CIntroWorksheet />;
+        switch (assignmentId) {
+            case 'c-intro':
+                return <CIntroWorksheet />;
+            case 'c-pointers':
+                return <CPointersQuiz />;
+            default:
+                return (
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Assignment: {assignmentId}</CardTitle>
+                            <CardDescription>
+                                This is a placeholder page for an assignment. The content for the assignment will be displayed here.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <p>Details for assignment {assignmentId} will go here.</p>
+                        </CardContent>
+                    </Card>
+                );
         }
-        
-        if (assignmentId === 'c-pointers') {
-            return <CPointersQuiz />;
-        }
-
-        return (
-             <Card>
-                <CardHeader>
-                    <CardTitle>Assignment: {assignmentId}</CardTitle>
-                    <CardDescription>
-                        This is a placeholder page for an assignment. The content for the assignment will be displayed here.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <p>Details for assignment {assignmentId} will go here.</p>
-                </CardContent>
-            </Card>
-        );
     }
 
     return (
