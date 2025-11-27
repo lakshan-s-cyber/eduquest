@@ -24,6 +24,7 @@ import {
 import { Logo } from "@/components/shared/logo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const navItems = [
   { href: "/staff/dashboard", icon: LayoutDashboard, label: "Timetable" },
@@ -96,6 +97,7 @@ export default function StaffLayout({
                 ))}
             </div>
           </div>
+          <ThemeToggle className="ml-auto" />
         </header>
         <main className="flex-1 p-4 md:p-6">{children}</main>
       </SidebarInset>
