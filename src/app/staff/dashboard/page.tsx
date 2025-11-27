@@ -70,16 +70,6 @@ const staffSchedule: ScheduleItem[] = [
 export default function StaffDashboard() {
   return (
     <div className="grid gap-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="font-headline text-3xl font-bold tracking-tight">
-            Student Progress
-          </h1>
-          <p className="text-muted-foreground">
-            Track the academic progress of students in your classes.
-          </p>
-        </div>
-      </div>
       <div className="grid gap-6">
          <WeeklyTimetable 
             title="My Weekly Timetable"
@@ -88,7 +78,7 @@ export default function StaffDashboard() {
           />
         <Card>
           <CardHeader>
-            <CardTitle>Class Management</CardTitle>
+            <CardTitle>Student Progress</CardTitle>
             <CardDescription>
               Select a class to view student progress.
             </CardDescription>
