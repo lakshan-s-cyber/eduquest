@@ -39,8 +39,8 @@ const staffData: { [key: string]: any } = {
     subject: "Mathematics",
     avatar: "https://picsum.photos/seed/staff3/100/100",
     assignments: [
-      { id: "alg-101", title: "Algebra Basics Quiz", type: "Quiz", status: "Completed", dueDate: "2024-09-10" },
-      { id: "geo-101", title: "Geometry Fundamentals", type: "Assignment", status: "Pending", dueDate: "2024-09-18" },
+      { id: "math-vec-calc", title: "Vector Calculus", type: "Quiz", status: "Pending", dueDate: "2024-09-22" },
+      { id: "math-int-calc", title: "Integral Calculus", type: "Quiz", status: "Due", dueDate: "2024-09-19" },
     ],
   },
   "elenchezhiyan": {
