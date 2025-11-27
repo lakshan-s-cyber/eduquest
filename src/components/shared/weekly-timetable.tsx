@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -41,6 +42,7 @@ const scheduleColors = {
     Literature: "bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300",
     Lunch: "bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-300",
     "Staff Meeting": "bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300",
+    "Free Period": "bg-gray-100/50 dark:bg-gray-800/50 text-gray-500 dark:text-gray-400",
 };
 
 type ScheduleColors = keyof typeof scheduleColors;
