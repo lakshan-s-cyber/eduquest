@@ -23,7 +23,7 @@ import { MessageSquare, PlusCircle } from "lucide-react";
 const forumPosts = [
     {
         id: "POST-001",
-        title: "Struggling with Algebra Problem Set 3",
+        title: "Differential Calculus",
         author: "Madhumitha S",
         authorAvatar: "https://picsum.photos/seed/student2/100/100",
         category: "Mathematics",
@@ -32,7 +32,7 @@ const forumPosts = [
     },
     {
         id: "POST-002",
-        title: "Tips for the upcoming Physics Lab Report?",
+        title: "Pointers",
         author: "Kabin S",
         authorAvatar: "https://picsum.photos/seed/student5/100/100",
         category: "Science",
@@ -41,7 +41,7 @@ const forumPosts = [
     },
     {
         id: "POST-003",
-        title: "Discussion: Themes in 'The Great Gatsby'",
+        title: "Letter Writing Format",
         author: "Keerthana",
         authorAvatar: "https://picsum.photos/seed/student10/100/100",
         category: "Literature",
@@ -50,10 +50,10 @@ const forumPosts = [
     },
     {
         id: "POST-004",
-        title: "Need a study partner for History finals",
+        title: "Sangam Ports",
         author: "Manuvarsha E",
         authorAvatar: "https://picsum.photos/seed/student3/100/100",
-        category: "General",
+        category: "History",
         replies: 3,
         lastActivity: "3 days ago",
     },
@@ -63,6 +63,7 @@ const categoryColors: { [key: string]: string } = {
     Mathematics: "bg-blue-100 text-blue-800 border-blue-200",
     Science: "bg-green-100 text-green-800 border-green-200",
     Literature: "bg-purple-100 text-purple-800 border-purple-200",
+    History: "bg-yellow-100 text-yellow-800 border-yellow-200",
     General: "bg-gray-100 text-gray-800 border-gray-200",
 };
 
