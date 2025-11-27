@@ -20,6 +20,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Calendar } from "@/components/ui/calendar";
 
 const classesData = [
   {
@@ -54,6 +55,7 @@ const classesData = [
 ];
 
 export default function StaffDashboard() {
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
   return (
     <div className="grid gap-6">
       <div className="flex items-center justify-between">
@@ -66,75 +68,92 @@ export default function StaffDashboard() {
           </p>
         </div>
       </div>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Class Management</CardTitle>
-          <CardDescription>
-            Select a class to view student progress.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Tabs defaultValue={classesData[0].id}>
-            <TabsList>
+      <div className="grid gap-6 lg:grid-cols-3">
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <CardTitle>Class Management</CardTitle>
+            <CardDescription>
+              Select a class to view student progress.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Tabs defaultValue={classesData[0].id}>
+              <TabsList>
+                {classesData.map((classInfo) => (
+                  <TabsTrigger key={classInfo.id} value={classInfo.id}>
+                    {classInfo.name}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
               {classesData.map((classInfo) => (
-                <TabsTrigger key={classInfo.id} value={classInfo.id}>
-                  {classInfo.name}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-            {classesData.map((classInfo) => (
-              <TabsContent key={classInfo.id} value={classInfo.id}>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>{classInfo.name} - Student List</CardTitle>
-                    <CardDescription>
-                      Overview of student academic performance.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Table>
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead>Student Name</TableHead>
-                          <TableHead className="w-[40%]">Progress</TableHead>
-                          <TableHead className="text-right">Rate</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {classInfo.students.map((student) => (
-                          <TableRow key={student.name}>
-                            <TableCell>
-                              <div className="flex items-center gap-3">
-                                <Avatar className="h-9 w-9">
-                                  <AvatarImage
-                                    src={student.avatar}
-                                    alt={student.name}
-                                  />
-                                  <AvatarFallback>
-                                    {student.name.charAt(0)}
-                                  </AvatarFallback>
-                                </Avatar>
-                                <span className="font-medium">{student.name}</span>
-                              </div>
-                            </TableCell>
-                            <TableCell>
-                              <Progress value={student.progress} />
-                            </TableCell>
-                            <TableCell className="text-right font-semibold">
-                              {student.progress}%
-                            </TableCell>
+                <TabsContent key={classInfo.id} value={classInfo.id}>
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>{classInfo.name} - Student List</CardTitle>
+                      <CardDescription>
+                        Overview of student academic performance.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Student Name</TableHead>
+                            <TableHead className="w-[40%]">Progress</TableHead>
+                            <TableHead className="text-right">Rate</TableHead>
                           </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            ))}
-          </Tabs>
-        </CardContent>
-      </Card>
+                        </TableHeader>
+                        <TableBody>
+                          {classInfo.students.map((student) => (
+                            <TableRow key={student.name}>
+                              <TableCell>
+                                <div className="flex items-center gap-3">
+                                  <Avatar className="h-9 w-9">
+                                    <AvatarImage
+                                      src={student.avatar}
+                                      alt={student.name}
+                                    />
+                                    <AvatarFallback>
+                                      {student.name.charAt(0)}
+                                    </AvatarFallback>
+                                  </Avatar>
+                                  <span className="font-medium">{student.name}</span>
+                                </div>
+                              </TableCell>
+                              <TableCell>
+                                <Progress value={student.progress} />
+                              </TableCell>
+                              <TableCell className="text-right font-semibold">
+                                {student.progress}%
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              ))}
+            </Tabs>
+          </CardContent>
+        </Card>
+        <div className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>My Schedule</CardTitle>
+              <CardDescription>Your upcoming events and deadlines.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                className="rounded-md border"
+              />
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }
