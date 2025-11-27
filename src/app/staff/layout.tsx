@@ -24,19 +24,29 @@ import {
 import { Logo } from "@/components/shared/logo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
+const navItems = [
+  { href: "/staff/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+  { href: "/staff/content", icon: BookCopy, label: "Content Mgmt" },
+  { href: "/staff/students", icon: Users, label: "Students" },
+  { href: "/staff/settings", icon: Settings, label: "Settings" },
+];
+
+function getHeaderText(pathname: string): string {
+    const item = navItems.find(item => pathname.startsWith(item.href));
+    if (item) {
+        if (item.label === "Dashboard") return "Staff Dashboard";
+        return item.label;
+    }
+    return "Staff Dashboard";
+}
+
 export default function StaffLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-
-  const navItems = [
-    { href: "/staff/dashboard", icon: LayoutDashboard, label: "Dashboard" },
-    { href: "/staff/content", icon: BookCopy, label: "Content Mgmt" },
-    { href: "/staff/students", icon: Users, label: "Students" },
-    { href: "/staff/settings", icon: Settings, label: "Settings" },
-  ];
+  const headerText = getHeaderText(pathname);
 
   return (
     <SidebarProvider>
@@ -82,7 +92,7 @@ export default function StaffLayout({
       <SidebarInset>
         <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-6 backdrop-blur-sm sticky top-0 z-30">
           <SidebarTrigger />
-          <h1 className="text-xl font-semibold font-headline">Staff Dashboard</h1>
+          <h1 className="text-xl font-semibold font-headline">{headerText}</h1>
         </header>
         <main className="flex-1 p-4 md:p-6">{children}</main>
       </SidebarInset>
