@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -20,7 +20,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Calendar } from "@/components/ui/calendar";
+import { WeeklyTimetable, ScheduleItem } from "@/components/shared/weekly-timetable";
 
 const classesData = [
   {
@@ -54,8 +54,20 @@ const classesData = [
   },
 ];
 
+const staffSchedule: ScheduleItem[] = [
+    { day: "Monday", time: "09:00 - 10:00", subject: "Mathematics", class: "10-A" },
+    { day: "Monday", time: "10:00 - 11:00", subject: "Mathematics", class: "10-B" },
+    { day: "Monday", time: "11:00 - 12:00", subject: "Science", class: "10-B" },
+    { day: "Tuesday", time: "10:00 - 11:00", subject: "History", class: "11-A" },
+    { day: "Wednesday", time: "09:00 - 10:00", subject: "Mathematics", class: "10-A" },
+    { day: "Wednesday", time: "11:00 - 12:00", subject: "Science", class: "10-B" },
+    { day: "Wednesday", time: "02:00 - 03:00", subject: "Staff Meeting" },
+    { day: "Thursday", time: "10:00 - 11:00", subject: "History", class: "11-A" },
+    { day: "Thursday", time: "01:00 - 02:00", subject: "Mathematics", class: "10-B" },
+    { day: "Friday", time: "09:00 - 10:00", subject: "Science", class: "10-B" },
+];
+
 export default function StaffDashboard() {
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
   return (
     <div className="grid gap-6">
       <div className="flex items-center justify-between">
@@ -68,8 +80,13 @@ export default function StaffDashboard() {
           </p>
         </div>
       </div>
-      <div className="grid gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
+      <div className="grid gap-6">
+         <WeeklyTimetable 
+            title="My Weekly Timetable"
+            description="Your teaching schedule for the week."
+            scheduleData={staffSchedule}
+          />
+        <Card>
           <CardHeader>
             <CardTitle>Class Management</CardTitle>
             <CardDescription>
@@ -137,22 +154,6 @@ export default function StaffDashboard() {
             </Tabs>
           </CardContent>
         </Card>
-        <div className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>My Schedule</CardTitle>
-              <CardDescription>Your upcoming events and deadlines.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                className="rounded-md border"
-              />
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </div>
   );

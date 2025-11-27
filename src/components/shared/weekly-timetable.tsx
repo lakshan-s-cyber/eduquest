@@ -1,0 +1,104 @@
+"use client";
+
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table";
+import { cn } from "@/lib/utils";
+
+const timeSlots = [
+    "09:00 - 10:00",
+    "10:00 - 11:00",
+    "11:00 - 12:00",
+    "12:00 - 01:00",
+    "01:00 - 02:00",
+    "02:00 - 03:00",
+];
+
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
+const scheduleColors = {
+    Mathematics: "bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300",
+    Science: "bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300",
+    History: "bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300",
+    Literature: "bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300",
+    Lunch: "bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-300",
+    "Staff Meeting": "bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300",
+};
+
+type ScheduleColors = keyof typeof scheduleColors;
+
+export type ScheduleItem = {
+    day: (typeof days)[number];
+    time: (typeof timeSlots)[number];
+    subject: ScheduleColors;
+    class?: string;
+};
+
+interface WeeklyTimetableProps {
+    scheduleData: ScheduleItem[];
+    title: string;
+    description: string;
+}
+
+export function WeeklyTimetable({ scheduleData, title, description }: WeeklyTimetableProps) {
+    const getScheduleForSlot = (time: string, day: string) => {
+        return scheduleData.find(item => item.time === time && item.day === day);
+    };
+
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle>{title}</CardTitle>
+                <CardDescription>{description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Table className="border">
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead className="w-[120px] font-bold">Time</TableHead>
+                            {days.map(day => (
+                                <TableHead key={day} className="font-bold text-center">{day}</TableHead>
+                            ))}
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {timeSlots.map(time => (
+                            <TableRow key={time}>
+                                <TableCell className="font-medium">{time}</TableCell>
+                                {days.map(day => {
+                                    const event = getScheduleForSlot(time, day);
+                                    if (event) {
+                                        return (
+                                            <TableCell key={`${day}-${time}`} className={cn("p-1 text-center", event.time === "12:00 - 01:00" ? "" : "border-l")}>
+                                                <div className={cn("rounded-md p-2 h-full flex flex-col justify-center", scheduleColors[event.subject])}>
+                                                    <p className="font-semibold text-xs">{event.subject}</p>
+                                                    {event.class && <p className="text-xs">{event.class}</p>}
+                                                </div>
+                                            </TableCell>
+                                        );
+                                    }
+                                    if (time === "12:00 - 01:00") {
+                                        return <TableCell key={`${day}-${time}`} className="p-1 text-center border-l"><div className={cn("rounded-md p-2 h-full flex flex-col justify-center", scheduleColors["Lunch"])}><p className="font-semibold text-xs">Lunch</p></div></TableCell>
+                                    }
+                                    return <TableCell key={`${day}-${time}`} className="border-l"></TableCell>;
+                                })}
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </CardContent>
+        </Card>
+    );
+}

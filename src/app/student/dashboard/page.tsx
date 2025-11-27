@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -25,9 +26,8 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
-import { Calendar } from "@/components/ui/calendar";
-import React from "react";
 import { ChatPanel } from "@/components/chat/chat-panel";
+import { WeeklyTimetable, ScheduleItem } from "@/components/shared/weekly-timetable";
 
 const lessons = [
   {
@@ -72,8 +72,18 @@ const chartConfig = {
   },
 }
 
+const studentSchedule: ScheduleItem[] = [
+    { day: "Monday", time: "09:00 - 10:00", subject: "Mathematics" },
+    { day: "Monday", time: "11:00 - 12:00", subject: "Science" },
+    { day: "Tuesday", time: "10:00 - 11:00", subject: "History" },
+    { day: "Wednesday", time: "09:00 - 10:00", subject: "Mathematics" },
+    { day: "Wednesday", time: "11:00 - 12:00", subject: "Literature" },
+    { day: "Thursday", time: "10:00 - 11:00", subject: "History" },
+    { day: "Thursday", time: "01:00 - 02:00", subject: "Science" },
+    { day: "Friday", time: "09:00 - 10:00", subject: "Literature" },
+];
+
 export default function StudentDashboard() {
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
   return (
     <div className="grid gap-6">
       <h1 className="font-headline text-3xl font-bold tracking-tight">
@@ -181,22 +191,13 @@ export default function StudentDashboard() {
               </ChartContainer>
             </CardContent>
           </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>My Schedule</CardTitle>
-              <CardDescription>Your upcoming events and deadlines.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                className="rounded-md border"
-              />
-            </CardContent>
-          </Card>
         </div>
       </div>
+       <WeeklyTimetable 
+            title="My Weekly Timetable"
+            description="Your class schedule for the week."
+            scheduleData={studentSchedule}
+        />
     </div>
   );
 }
