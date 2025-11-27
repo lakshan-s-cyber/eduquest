@@ -26,7 +26,10 @@ const classesData = [
   {
     id: "class-1-be-cse-a",
     name: "I BE CSE A",
-    students: [],
+    students: [
+      { name: "Avanthika", progress: 75, avatar: "https://picsum.photos/seed/student7/100/100" },
+      { name: "Amenda", progress: 80, avatar: "https://picsum.photos/seed/student8/100/100" },
+    ],
   },
   {
     id: "class-1-be-cse-b",
@@ -43,7 +46,10 @@ const classesData = [
   {
     id: "class-1-be-cse-c",
     name: "I BE CSE C",
-    students: [],
+    students: [
+      { name: "Pradhiksha", progress: 78, avatar: "https://picsum.photos/seed/student9/100/100" },
+      { name: "Nakshathra", progress: 81, avatar: "https://picsum.photos/seed/student10/100/100" },
+    ],
   },
   {
     id: "class-1-be-cse-d",
