@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Textarea } from "@/components/ui/textarea";
 
 const CWorksheet = () => (
     <Card>
@@ -13,35 +14,28 @@ const CWorksheet = () => (
             <CardDescription>Subject: Introduction to C Programming</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
                 <p className="font-semibold">1. What is the purpose of the `main()` function in a C program?</p>
-                <div className="pl-4">
-                    <p>The `main()` function is the entry point of every C program. Execution of the program starts from this function.</p>
-                </div>
+                <Textarea placeholder="Your answer here..." />
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
                 <p className="font-semibold">2. What is a variable in C and how do you declare it?</p>
-                <div className="pl-4">
-                    <p>A variable is a name given to a storage area that our programs can manipulate. To declare an integer variable named `age`, you would write: `int age;`</p>
-                </div>
+                <Textarea placeholder="Your answer here..." />
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
                 <p className="font-semibold">3. What is the use of the `printf()` function?</p>
-                <div className="pl-4">
-                    <p>The `printf()` function is used to print output (text, numbers, etc.) to the console.</p>
-                </div>
+                <Textarea placeholder="Your answer here..." />
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
                 <p className="font-semibold">4. What is the difference between `=` and `==` in C?</p>
-                <div className="pl-4">
-                    <p>`=` is the assignment operator, used to assign a value to a variable. `==` is the equality operator, used to compare two values.</p>
-                </div>
+                <Textarea placeholder="Your answer here..." />
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
                 <p className="font-semibold">5. How do you write a single-line comment in C?</p>
-                <div className="pl-4">
-                    <p>A single-line comment starts with `//`. For example: `// This is a comment`.</p>
-                </div>
+                <Textarea placeholder="Your answer here..." />
+            </div>
+             <div className="flex justify-end pt-4">
+                <Button>Submit</Button>
             </div>
         </CardContent>
     </Card>
