@@ -50,7 +50,10 @@ const classesData = [
   {
     id: "class-1-be-cse-d",
     name: "I BE CSE D",
-    students: [],
+    students: [
+      { name: "Yazhini", progress: 80, avatar: "https://picsum.photos/seed/student11/100/100" },
+      { name: "Shwetha", progress: 85, avatar: "https://picsum.photos/seed/student12/100/100" },
+    ],
   },
 ];
 
