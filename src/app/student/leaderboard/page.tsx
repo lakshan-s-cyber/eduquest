@@ -47,7 +47,7 @@ export default function LeaderboardPage() {
     const [rank1, rank2, rank3] = topStudentImages;
 
     return (
-        <div className="grid gap-8 text-white pb-24">
+        <div className="grid gap-8 text-foreground pb-24">
             <div className="relative flex flex-col items-start justify-center rounded-xl bg-card p-8 text-left overflow-hidden border border-primary/20 h-48">
                 {leaderboardHeaderImage && (
                     <Image
@@ -64,7 +64,7 @@ export default function LeaderboardPage() {
                         <GraduationCap className="absolute -top-5 -left-4 h-10 w-10 text-yellow-300/80 -rotate-12 transform-gpu transition-transform group-hover:scale-110 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
                         <span className="bg-clip-text text-transparent bg-gradient-to-b from-yellow-200 to-amber-500 drop-shadow-[0_2px_2px_rgba(0,0,0,0.7)]">Leaderboard</span>
                     </h1>
-                    <p className="mt-2 text-lg text-white/80 font-medium">
+                    <p className="mt-2 text-lg text-foreground/80 font-medium">
                         See who's dominating the knowledge quest!
                     </p>
                 </div>
@@ -90,7 +90,7 @@ export default function LeaderboardPage() {
                         <TableBody>
                             {otherStudents.map((student) => (
                                 <TableRow key={student.rank} className="border-primary/10 transition-colors hover:bg-primary/10 group">
-                                    <TableCell className="text-center font-bold text-lg text-white/50 transition-transform duration-300 group-hover:scale-125 group-hover:text-primary">
+                                    <TableCell className="text-center font-bold text-lg text-foreground/50 transition-transform duration-300 group-hover:scale-125 group-hover:text-primary">
                                         <div className="relative">
                                             {student.rank}
                                             <Star className="absolute -top-1 -right-1 h-3 w-3 text-yellow-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -102,7 +102,7 @@ export default function LeaderboardPage() {
                                                 <AvatarImage src={student.avatar} alt={student.name} />
                                                 <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
                                             </Avatar>
-                                            <span className="font-medium" style={{ color: '#000080' }}>{student.name}</span>
+                                            <span className="font-medium text-card-foreground">{student.name}</span>
                                         </div>
                                     </TableCell>
                                     <TableCell className="text-center">
@@ -131,7 +131,7 @@ export default function LeaderboardPage() {
                                     <AvatarFallback>{currentUser.name.charAt(0)}</AvatarFallback>
                                 </Avatar>
                                 <div>
-                                    <p className="font-bold text-lg" style={{ color: '#000080' }}>{currentUser.name} (You)</p>
+                                    <p className="font-bold text-lg text-card-foreground">{currentUser.name} (You)</p>
                                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                         <ShieldCheck className="h-4 w-4 text-green-400" />
                                         <span>Top 1%</span>
@@ -170,7 +170,7 @@ const rankStyles = {
         gradient: "from-yellow-400/30 via-yellow-400/10 to-card/50",
         hoverGradient: "hover:from-yellow-400/40",
         avatarBorder: "border-yellow-400",
-        nameColor: "text-blue-900",
+        nameColor: "text-card-foreground",
         pointsColor: "text-yellow-400"
     },
     2: { // Silver
@@ -180,7 +180,7 @@ const rankStyles = {
         gradient: "from-gray-300/30 via-gray-300/10 to-card/50",
         hoverGradient: "hover:from-gray-300/40",
         avatarBorder: "border-gray-300",
-        nameColor: "text-blue-900",
+        nameColor: "text-card-foreground",
         pointsColor: "text-gray-300"
     },
     3: { // Bronze
@@ -190,7 +190,7 @@ const rankStyles = {
         gradient: "from-orange-400/30 via-orange-400/10 to-card/50",
         hoverGradient: "hover:from-orange-400/40",
         avatarBorder: "border-orange-400",
-        nameColor: "text-blue-900",
+        nameColor: "text-card-foreground",
         pointsColor: "text-orange-400"
     }
 };
@@ -231,9 +231,9 @@ const PodiumCard = ({ student, rank }: { student: any; rank: number }) => {
                 <AvatarImage src={student.avatar} alt={student.name} />
                 <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
             </Avatar>
-            <p className={cn("mt-2 font-headline text-xl font-bold", styles.nameColor)} style={{ color: '#000080' }}>{student.name}</p>
+            <p className={cn("mt-2 font-headline text-xl font-bold", styles.nameColor)}>{student.name}</p>
             <p className={cn("text-3xl font-bold drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]", styles.pointsColor)}>{student.points}</p>
-            <p className="text-sm text-white/50">points</p>
+            <p className="text-sm text-foreground/50">points</p>
             <Progress value={student.progress} className="mt-4 h-1.5 w-3/4 bg-primary/20" indicatorClassName="bg-gradient-to-r from-cyan-400 to-blue-500" />
         </div>
     )
