@@ -28,8 +28,6 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 const navItems = [
   { href: "/staff/dashboard", icon: LayoutDashboard, label: "Timetable" },
-  { href: "/staff/content", icon: BookCopy, label: "Assessments" },
-  { href: "/staff/settings", icon: Settings, label: "Settings" },
 ];
 
 const staffClasses = [
