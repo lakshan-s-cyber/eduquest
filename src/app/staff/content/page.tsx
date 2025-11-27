@@ -46,8 +46,8 @@ import { useToast } from "@/hooks/use-toast";
 const initialQuizzes = [
   {
     id: "QUIZ001",
-    title: "Algebra Basics",
-    description: "A quiz covering the fundamental concepts of algebra.",
+    title: "Quiz on the topic pointers",
+    description: "A quiz covering the fundamental concepts of pointers in C.",
     questions: 15,
     status: "Draft",
   },
