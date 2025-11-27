@@ -77,9 +77,9 @@ const initialQuizzes = [
 const initialActivities = [
     {
       id: "ACT001",
-      title: "Build a Volcano",
-      description: "A hands-on project to build and erupt a model volcano.",
-      subject: "Science",
+      title: "Worksheet on the topic introduction to C",
+      description: "A worksheet covering the basics of C programming.",
+      subject: "C Programming",
       status: "Published",
     },
     {
