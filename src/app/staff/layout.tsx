@@ -48,8 +48,9 @@ export default function StaffLayout({
   return (
     <SidebarProvider>
       <Sidebar>
-        <SidebarHeader>
+        <SidebarHeader className="flex items-center justify-between">
           <Logo />
+          <ThemeToggle className="mr-2" />
         </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
@@ -97,7 +98,6 @@ export default function StaffLayout({
                 ))}
             </div>
           </div>
-          <ThemeToggle className="ml-auto" />
         </header>
         <main className="flex-1 p-4 md:p-6">{children}</main>
       </SidebarInset>

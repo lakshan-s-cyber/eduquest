@@ -45,8 +45,9 @@ export default function StudentLayout({
   return (
     <SidebarProvider>
       <Sidebar>
-        <SidebarHeader>
+        <SidebarHeader className="flex items-center justify-between">
           <Logo />
+          <ThemeToggle className="mr-2" />
         </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
@@ -87,7 +88,6 @@ export default function StudentLayout({
         <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-6 backdrop-blur-sm sticky top-0 z-30">
           <SidebarTrigger />
           <h1 className="text-xl font-semibold font-headline">Student Dashboard</h1>
-          <ThemeToggle className="ml-auto" />
         </header>
         <main className="flex-1 p-4 md:p-6 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">{children}</main>
       </SidebarInset>
