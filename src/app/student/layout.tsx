@@ -8,6 +8,7 @@ import {
   Calendar,
   LayoutDashboard,
   LogOut,
+  MessageSquare,
   Trophy,
   Users,
 } from "lucide-react";
@@ -40,6 +41,7 @@ export default function StudentLayout({
     { href: "/student/notifications", icon: Bell, label: "Notifications" },
     { href: "/student/achievements", icon: Trophy, label: "Achievements" },
     { href: "/student/leaderboard", icon: Users, label: "Leaderboard" },
+    { href: "/student/forum", icon: MessageSquare, label: "Forum" },
   ];
 
   return (
