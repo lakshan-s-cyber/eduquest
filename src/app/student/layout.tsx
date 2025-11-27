@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import {
   Bell,
   BookOpen,
+  Calendar,
   LayoutDashboard,
   LogOut,
   Trophy,
@@ -33,7 +34,7 @@ export default function StudentLayout({
   const pathname = usePathname();
 
   const navItems = [
-    { href: "/student/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+    { href: "/student/dashboard", icon: LayoutDashboard, label: "Timetable" },
     { href: "/student/lessons", icon: BookOpen, label: "Lessons" },
     { href: "/student/notifications", icon: Bell, label: "Notifications" },
     { href: "/student/achievements", icon: Trophy, label: "Achievements" },

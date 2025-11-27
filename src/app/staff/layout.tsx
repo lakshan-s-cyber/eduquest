@@ -26,7 +26,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 
 const navItems = [
-  { href: "/staff/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+  { href: "/staff/dashboard", icon: LayoutDashboard, label: "Timetable" },
   { href: "/staff/content", icon: BookCopy, label: "Assessments" },
   { href: "/staff/settings", icon: Settings, label: "Settings" },
 ];
