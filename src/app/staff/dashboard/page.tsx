@@ -24,42 +24,47 @@ import { WeeklyTimetable, ScheduleItem } from "@/components/shared/weekly-timeta
 
 const classesData = [
   {
-    id: "class-10a",
-    name: "Class 10 - Section A",
+    id: "class-1-be-cse-a",
+    name: "I BE CSE A",
     students: [
       { name: "Lakshan S", progress: 85, avatar: "https://picsum.photos/seed/student1/100/100" },
       { name: "Madhumitha S", progress: 92, avatar: "https://picsum.photos/seed/student2/100/100" },
     ],
   },
   {
-    id: "class-10b",
-    name: "Class 10 - Section B",
+    id: "class-1-be-cse-b",
+    name: "I BE CSE B",
     students: [
       { name: "Manuvarsha E", progress: 88, avatar: "https://picsum.photos/seed/student3/100/100" },
       { name: "Mahadhi K", progress: 82, avatar: "https://picsum.photos/seed/student4/100/100" },
     ],
   },
   {
-    id: "class-11a",
-    name: "Class 11 - Section A",
+    id: "class-1-be-cse-c",
+    name: "I BE CSE C",
     students: [
       { name: "Kabin S", progress: 94, avatar: "https://picsum.photos/seed/student5/100/100" },
       { name: "Jeeva S", progress: 89, avatar: "https://picsum.photos/seed/student6/100/100" },
     ],
   },
+  {
+    id: "class-1-be-cse-d",
+    name: "I BE CSE D",
+    students: [],
+  },
 ];
 
 const staffSchedule: ScheduleItem[] = [
-    { day: "Monday", time: "09:00 - 10:00", subject: "C Programming", class: "10-A" },
-    { day: "Monday", time: "10:00 - 11:00", subject: "Calculus", class: "10-B" },
-    { day: "Monday", time: "11:00 - 12:00", subject: "BEEE", class: "10-B" },
-    { day: "Tuesday", time: "10:00 - 11:00", subject: "Design Thinking", class: "11-A" },
-    { day: "Wednesday", time: "09:00 - 10:00", subject: "C Programming", class: "10-A" },
-    { day: "Wednesday", time: "11:00 - 12:00", subject: "BEEE", class: "10-B" },
+    { day: "Monday", time: "09:00 - 10:00", subject: "C Programming", class: "I BE CSE A" },
+    { day: "Monday", time: "10:00 - 11:00", subject: "Calculus", class: "I BE CSE B" },
+    { day: "Monday", time: "11:00 - 12:00", subject: "BEEE", class: "I BE CSE B" },
+    { day: "Tuesday", time: "10:00 - 11:00", subject: "Design Thinking", class: "I BE CSE C" },
+    { day: "Wednesday", time: "09:00 - 10:00", subject: "C Programming", class: "I BE CSE A" },
+    { day: "Wednesday", time: "11:00 - 12:00", subject: "BEEE", class: "I BE CSE B" },
     { day: "Wednesday", time: "02:00 - 03:00", subject: "Staff Meeting" },
-    { day: "Thursday", time: "10:00 - 11:00", subject: "English", class: "11-A" },
-    { day: "Thursday", time: "01:00 - 02:00", subject: "Calculus", class: "10-B" },
-    { day: "Friday", time: "09:00 - 10:00", subject: "Tamil", class: "10-B" },
+    { day: "Thursday", time: "10:00 - 11:00", subject: "English", class: "I BE CSE C" },
+    { day: "Thursday", time: "01:00 - 02:00", subject: "Calculus", class: "I BE CSE B" },
+    { day: "Friday", time: "09:00 - 10:00", subject: "Tamil", class: "I BE CSE B" },
 ];
 
 export default function StaffDashboard() {
@@ -106,30 +111,38 @@ export default function StaffDashboard() {
                           </TableRow>
                         </TableHeader>
                         <TableBody>
-                          {classInfo.students.map((student) => (
-                            <TableRow key={student.name}>
-                              <TableCell>
-                                <div className="flex items-center gap-3">
-                                  <Avatar className="h-9 w-9">
-                                    <AvatarImage
-                                      src={student.avatar}
-                                      alt={student.name}
-                                    />
-                                    <AvatarFallback>
-                                      {student.name.charAt(0)}
-                                    </AvatarFallback>
-                                  </Avatar>
-                                  <span className="font-medium">{student.name}</span>
-                                </div>
-                              </TableCell>
-                              <TableCell>
-                                <Progress value={student.progress} />
-                              </TableCell>
-                              <TableCell className="text-right font-semibold">
-                                {student.progress}%
+                          {classInfo.students.length > 0 ? (
+                            classInfo.students.map((student) => (
+                              <TableRow key={student.name}>
+                                <TableCell>
+                                  <div className="flex items-center gap-3">
+                                    <Avatar className="h-9 w-9">
+                                      <AvatarImage
+                                        src={student.avatar}
+                                        alt={student.name}
+                                      />
+                                      <AvatarFallback>
+                                        {student.name.charAt(0)}
+                                      </AvatarFallback>
+                                    </Avatar>
+                                    <span className="font-medium">{student.name}</span>
+                                  </div>
+                                </TableCell>
+                                <TableCell>
+                                  <Progress value={student.progress} />
+                                </TableCell>
+                                <TableCell className="text-right font-semibold">
+                                  {student.progress}%
+                                </TableCell>
+                              </TableRow>
+                            ))
+                          ) : (
+                            <TableRow>
+                              <TableCell colSpan={3} className="text-center text-muted-foreground">
+                                No students in this class yet.
                               </TableCell>
                             </TableRow>
-                          ))}
+                          )}
                         </TableBody>
                       </Table>
                     </CardContent>

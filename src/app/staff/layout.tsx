@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -33,9 +34,9 @@ const navItems = [
 ];
 
 const staffClasses = [
-    { name: "Class 10 - Section A", subject: "Mathematics" },
-    { name: "Class 10 - Section B", subject: "Science" },
-    { name: "Class 11 - Section A", subject: "History" },
+    { name: "I BE CSE A", subject: "C Programming" },
+    { name: "I BE CSE B", subject: "BEEE" },
+    { name: "I BE CSE C", subject: "Design Thinking" },
 ];
 
 export default function StaffLayout({

@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from "react";
@@ -90,7 +91,7 @@ const initialActivities = [
     },
 ];
 
-const classes = ["Class 10 - Section A", "Class 10 - Section B", "Class 11 - Section A"];
+const classes = ["I BE CSE A", "I BE CSE B", "I BE CSE C", "I BE CSE D"];
 
 type Quiz = typeof initialQuizzes[0];
 type Activity = typeof initialActivities[0];
