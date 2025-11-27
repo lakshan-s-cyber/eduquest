@@ -26,26 +26,24 @@ const classesData = [
   {
     id: "class-1-be-cse-a",
     name: "I BE CSE A",
-    students: [
-      { name: "Lakshan S", progress: 85, avatar: "https://picsum.photos/seed/student1/100/100" },
-      { name: "Madhumitha S", progress: 92, avatar: "https://picsum.photos/seed/student2/100/100" },
-    ],
+    students: [],
   },
   {
     id: "class-1-be-cse-b",
     name: "I BE CSE B",
     students: [
+      { name: "Lakshan S", progress: 85, avatar: "https://picsum.photos/seed/student1/100/100" },
+      { name: "Madhumitha S", progress: 92, avatar: "https://picsum.photos/seed/student2/100/100" },
       { name: "Manuvarsha E", progress: 88, avatar: "https://picsum.photos/seed/student3/100/100" },
       { name: "Mahadhi K", progress: 82, avatar: "https://picsum.photos/seed/student4/100/100" },
+      { name: "Kabin S", progress: 94, avatar: "https://picsum.photos/seed/student5/100/100" },
+      { name: "Jeeva S", progress: 89, avatar: "https://picsum.photos/seed/student6/100/100" },
     ],
   },
   {
     id: "class-1-be-cse-c",
     name: "I BE CSE C",
-    students: [
-      { name: "Kabin S", progress: 94, avatar: "https://picsum.photos/seed/student5/100/100" },
-      { name: "Jeeva S", progress: 89, avatar: "https://picsum.photos/seed/student6/100/100" },
-    ],
+    students: [],
   },
   {
     id: "class-1-be-cse-d",
