@@ -7,7 +7,8 @@ import {
   LayoutDashboard,
   LogOut,
   Users,
-  Settings
+  Settings,
+  Book,
 } from "lucide-react";
 import {
   Sidebar,
@@ -23,6 +24,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Logo } from "@/components/shared/logo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 
 const navItems = [
   { href: "/staff/dashboard", icon: LayoutDashboard, label: "Dashboard" },
@@ -31,14 +33,11 @@ const navItems = [
   { href: "/staff/settings", icon: Settings, label: "Settings" },
 ];
 
-function getHeaderText(pathname: string): string {
-    const item = navItems.find(item => pathname.startsWith(item.href));
-    if (item) {
-        if (item.label === "Dashboard") return "Staff Dashboard";
-        return item.label;
-    }
-    return "Staff Dashboard";
-}
+const staffClasses = [
+    { name: "Class 10 - Section A", subject: "Mathematics" },
+    { name: "Class 10 - Section B", subject: "Science" },
+    { name: "Class 11 - Section A", subject: "History" },
+];
 
 export default function StaffLayout({
   children,
@@ -46,7 +45,6 @@ export default function StaffLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const headerText = getHeaderText(pathname);
 
   return (
     <SidebarProvider>
@@ -92,7 +90,14 @@ export default function StaffLayout({
       <SidebarInset>
         <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-6 backdrop-blur-sm sticky top-0 z-30">
           <SidebarTrigger />
-          <h1 className="text-xl font-semibold font-headline">{headerText}</h1>
+          <div className="flex items-center gap-2">
+            <Book className="h-5 w-5 text-muted-foreground" />
+            <div className="flex items-center gap-2 flex-wrap">
+                {staffClasses.map(c => (
+                    <Badge key={c.name} variant="secondary" className="font-normal">{c.name} - {c.subject}</Badge>
+                ))}
+            </div>
+          </div>
         </header>
         <main className="flex-1 p-4 md:p-6">{children}</main>
       </SidebarInset>
