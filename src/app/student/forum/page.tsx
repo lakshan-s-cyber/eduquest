@@ -26,7 +26,7 @@ const forumPosts = [
         title: "Differential Calculus",
         author: "Madhumitha S",
         authorAvatar: "https://picsum.photos/seed/student2/100/100",
-        category: "Mathematics",
+        category: "Calculus",
         replies: 5,
         lastActivity: "2 hours ago",
     },
@@ -35,7 +35,7 @@ const forumPosts = [
         title: "Pointers",
         author: "Kabin S",
         authorAvatar: "https://picsum.photos/seed/student5/100/100",
-        category: "Science",
+        category: "C Programming",
         replies: 12,
         lastActivity: "5 hours ago",
     },
@@ -44,7 +44,7 @@ const forumPosts = [
         title: "Letter Writing Format",
         author: "Keerthana",
         authorAvatar: "https://picsum.photos/seed/student10/100/100",
-        category: "Literature",
+        category: "English",
         replies: 8,
         lastActivity: "1 day ago",
     },
@@ -53,18 +53,18 @@ const forumPosts = [
         title: "Sangam Ports",
         author: "Manuvarsha E",
         authorAvatar: "https://picsum.photos/seed/student3/100/100",
-        category: "History",
+        category: "Tamil",
         replies: 3,
         lastActivity: "3 days ago",
     },
 ];
 
 const categoryColors: { [key: string]: string } = {
-    Mathematics: "bg-blue-100 text-blue-800 border-blue-200",
-    Science: "bg-green-100 text-green-800 border-green-200",
-    Literature: "bg-purple-100 text-purple-800 border-purple-200",
-    History: "bg-yellow-100 text-yellow-800 border-yellow-200",
-    General: "bg-gray-100 text-gray-800 border-gray-200",
+    "Calculus": "bg-blue-100 text-blue-800 border-blue-200",
+    "C Programming": "bg-sky-100 text-sky-800 border-sky-200",
+    "English": "bg-purple-100 text-purple-800 border-purple-200",
+    "Tamil": "bg-pink-100 text-pink-800 border-pink-200",
+    "General": "bg-gray-100 text-gray-800 border-gray-200",
 };
 
 
