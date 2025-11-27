@@ -54,9 +54,9 @@ const achievementsData = {
         { title: "Vocabulary", points: 180 },
     ],
     bestQuizzes: [
-        { title: "Algebra Basics", score: "98%" },
-        { title: "Periodic Table", score: "95%" },
-        { title: "Roman Empire", score: "92%" },
+        { title: "Array& Pointers", score: "98%" },
+        { title: "DC Circuits", score: "95%" },
+        { title: "Intergral Calculus", score: "92%" },
     ],
     specialChallenges: [
         { title: "30-Day Learning Streak", icon: <Zap className="h-5 w-5" /> },
