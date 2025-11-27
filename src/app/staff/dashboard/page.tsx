@@ -50,16 +50,16 @@ const classesData = [
 ];
 
 const staffSchedule: ScheduleItem[] = [
-    { day: "Monday", time: "09:00 - 10:00", subject: "Mathematics", class: "10-A" },
-    { day: "Monday", time: "10:00 - 11:00", subject: "Mathematics", class: "10-B" },
-    { day: "Monday", time: "11:00 - 12:00", subject: "Science", class: "10-B" },
-    { day: "Tuesday", time: "10:00 - 11:00", subject: "History", class: "11-A" },
-    { day: "Wednesday", time: "09:00 - 10:00", subject: "Mathematics", class: "10-A" },
-    { day: "Wednesday", time: "11:00 - 12:00", subject: "Science", class: "10-B" },
+    { day: "Monday", time: "09:00 - 10:00", subject: "C Programming", class: "10-A" },
+    { day: "Monday", time: "10:00 - 11:00", subject: "Calculus", class: "10-B" },
+    { day: "Monday", time: "11:00 - 12:00", subject: "BEEE", class: "10-B" },
+    { day: "Tuesday", time: "10:00 - 11:00", subject: "Design Thinking", class: "11-A" },
+    { day: "Wednesday", time: "09:00 - 10:00", subject: "C Programming", class: "10-A" },
+    { day: "Wednesday", time: "11:00 - 12:00", subject: "BEEE", class: "10-B" },
     { day: "Wednesday", time: "02:00 - 03:00", subject: "Staff Meeting" },
-    { day: "Thursday", time: "10:00 - 11:00", subject: "History", class: "11-A" },
-    { day: "Thursday", time: "01:00 - 02:00", subject: "Mathematics", class: "10-B" },
-    { day: "Friday", time: "09:00 - 10:00", subject: "Science", class: "10-B" },
+    { day: "Thursday", time: "10:00 - 11:00", subject: "English", class: "11-A" },
+    { day: "Thursday", time: "01:00 - 02:00", subject: "Calculus", class: "10-B" },
+    { day: "Friday", time: "09:00 - 10:00", subject: "Tamil", class: "10-B" },
 ];
 
 export default function StaffDashboard() {

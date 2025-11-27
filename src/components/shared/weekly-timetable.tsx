@@ -29,6 +29,12 @@ const timeSlots = [
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
 const scheduleColors = {
+    "C Programming": "bg-sky-100 dark:bg-sky-900/50 text-sky-800 dark:text-sky-300",
+    Calculus: "bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300",
+    BEEE: "bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-300",
+    "Design Thinking": "bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300",
+    Tamil: "bg-pink-100 dark:bg-pink-900/50 text-pink-800 dark:text-pink-300",
+    English: "bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300",
     Mathematics: "bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300",
     Science: "bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300",
     History: "bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300",
