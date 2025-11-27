@@ -76,11 +76,11 @@ export default function StudentLayout({
           <div className="flex items-center gap-3 p-2">
             <Avatar>
               <AvatarImage src="https://picsum.photos/seed/student/100/100" />
-              <AvatarFallback>S</AvatarFallback>
+              <AvatarFallback>L</AvatarFallback>
             </Avatar>
             <div className="flex-1 overflow-hidden">
-                <p className="truncate font-medium">Alex Doe</p>
-                <p className="truncate text-sm text-muted-foreground">alex@example.com</p>
+                <p className="truncate font-medium">Lakshan S</p>
+                <p className="truncate text-sm text-muted-foreground">lakshan@example.com</p>
             </div>
             <Link href="/login">
               <SidebarMenuButton tooltip="Logout" className="ml-auto" size="icon">

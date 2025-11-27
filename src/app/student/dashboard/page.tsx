@@ -87,7 +87,7 @@ export default function StudentDashboard() {
   return (
     <div className="grid gap-6">
       <h1 className="font-headline text-3xl font-bold tracking-tight">
-        Welcome back, Alex!
+        Welcome back, Lakshan!
       </h1>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <Card>

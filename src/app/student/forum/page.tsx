@@ -24,7 +24,7 @@ const forumPosts = [
     {
         id: "POST-001",
         title: "Struggling with Algebra Problem Set 3",
-        author: "Jane Smith",
+        author: "Madhumitha S",
         authorAvatar: "https://picsum.photos/seed/student2/100/100",
         category: "Mathematics",
         replies: 5,
@@ -33,7 +33,7 @@ const forumPosts = [
     {
         id: "POST-002",
         title: "Tips for the upcoming Physics Lab Report?",
-        author: "Sam Wilson",
+        author: "Kabin S",
         authorAvatar: "https://picsum.photos/seed/student5/100/100",
         category: "Science",
         replies: 12,
@@ -42,7 +42,7 @@ const forumPosts = [
     {
         id: "POST-003",
         title: "Discussion: Themes in 'The Great Gatsby'",
-        author: "Eva Green",
+        author: "Keerthana",
         authorAvatar: "https://picsum.photos/seed/student10/100/100",
         category: "Literature",
         replies: 8,
@@ -51,7 +51,7 @@ const forumPosts = [
     {
         id: "POST-004",
         title: "Need a study partner for History finals",
-        author: "Peter Jones",
+        author: "Manuvarsha E",
         authorAvatar: "https://picsum.photos/seed/student3/100/100",
         category: "General",
         replies: 3,
