@@ -48,10 +48,10 @@ const achievementsData = {
         { name: "Math Olympiad", icon: <BarChart className="h-5 w-5" />, description: "Top 10 Finalist" },
     ],
     completedLessons: [
-        { title: "Introduction to Algebra", points: 150 },
-        { title: "The Solar System", points: 200 },
-        { title: "World War II History", points: 250 },
-        { title: "Shakespeare's Sonnets", points: 180 },
+        { title: "Vector Calculus", points: 150 },
+        { title: "Operational Amplifiers", points: 200 },
+        { title: "Structures and Files", points: 250 },
+        { title: "Vocabulary", points: 180 },
     ],
     bestQuizzes: [
         { title: "Algebra Basics", score: "98%" },
