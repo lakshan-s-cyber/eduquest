@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import {
   Bell,
   BookOpen,
@@ -27,6 +28,8 @@ import {
 import { Logo } from "@/components/shared/logo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
+
 
 export default function StudentLayout({
   children,
@@ -34,6 +37,7 @@ export default function StudentLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const background = PlaceHolderImages.find(p => p.id === 'student-background');
 
   const navItems = [
     { href: "/student/dashboard", icon: LayoutDashboard, label: "Timetable" },
@@ -91,7 +95,19 @@ export default function StudentLayout({
           <SidebarTrigger />
           <h1 className="text-xl font-semibold font-headline">Student Dashboard</h1>
         </header>
-        <main className="flex-1 p-4 md:p-6 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">{children}</main>
+        <main className="relative flex-1 p-4 md:p-6 overflow-hidden">
+          {background && (
+             <Image
+              src={background.imageUrl}
+              alt={background.description}
+              fill
+              className="object-cover -z-10 opacity-20"
+              data-ai-hint={background.imageHint}
+            />
+          )}
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
+          {children}
+        </main>
       </SidebarInset>
     </SidebarProvider>
   );
