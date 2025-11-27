@@ -27,29 +27,24 @@ const classesData = [
     id: "class-10a",
     name: "Class 10 - Section A",
     students: [
-      { name: "Liam Johnson", progress: 85, avatar: "https://picsum.photos/seed/student11/100/100" },
-      { name: "Olivia Williams", progress: 92, avatar: "https://picsum.photos/seed/student12/100/100" },
-      { name: "Noah Brown", progress: 78, avatar: "https://picsum.photos/seed/student13/100/100" },
-      { name: "Emma Jones", progress: 95, avatar: "https://picsum.photos/seed/student14/100/100" },
+      { name: "Lakshan S", progress: 85, avatar: "https://picsum.photos/seed/student1/100/100" },
+      { name: "Madhumitha S", progress: 92, avatar: "https://picsum.photos/seed/student2/100/100" },
     ],
   },
   {
     id: "class-10b",
     name: "Class 10 - Section B",
     students: [
-      { name: "Ava Miller", progress: 88, avatar: "https://picsum.photos/seed/student15/100/100" },
-      { name: "William Davis", progress: 82, avatar: "https://picsum.photos/seed/student16/100/100" },
-      { name: "Sophia Garcia", progress: 91, avatar: "https://picsum.photos/seed/student17/100/100" },
-      { name: "James Rodriguez", progress: 76, avatar: "https://picsum.photos/seed/student18/100/100" },
+      { name: "Manuvarsha E", progress: 88, avatar: "https://picsum.photos/seed/student3/100/100" },
+      { name: "Mahadhi K", progress: 82, avatar: "https://picsum.photos/seed/student4/100/100" },
     ],
   },
   {
     id: "class-11a",
     name: "Class 11 - Section A",
     students: [
-      { name: "Isabella Martinez", progress: 94, avatar: "https://picsum.photos/seed/student19/100/100" },
-      { name: "Mason Hernandez", progress: 89, avatar: "https://picsum.photos/seed/student20/100/100" },
-      { name: "Charlotte Lopez", progress: 93, avatar: "https://picsum.photos/seed/student21/100/100" },
+      { name: "Kabin S", progress: 94, avatar: "https://picsum.photos/seed/student5/100/100" },
+      { name: "Jeeva S", progress: 89, avatar: "https://picsum.photos/seed/student6/100/100" },
     ],
   },
 ];
