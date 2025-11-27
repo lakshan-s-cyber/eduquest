@@ -28,7 +28,7 @@ const staffData: { [key: string]: any } = {
     subject: "English",
     avatar: "https://picsum.photos/seed/staff2/100/100",
     assignments: [
-        { id: "eng-essay", title: "Essay on Modernism", type: "Assignment", status: "Completed", dueDate: "2024-09-11" },
+        { id: "eng-essay", title: "Compare and Contrast Essay", type: "Assignment", status: "Completed", dueDate: "2024-09-11" },
         { id: "eng-grammar", title: "Advanced Grammar Quiz", type: "Quiz", status: "Pending", dueDate: "2024-09-20" },
         { id: "eng-poetry", title: "Poetry Analysis", type: "Assignment", status: "Due", dueDate: "2024-09-16" },
         { id: "eng-overdue", title: "Book Report", type: "Assignment", status: "Overdue", dueDate: "2024-09-12" },
