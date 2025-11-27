@@ -13,46 +13,45 @@ import { ArrowLeft, BookCheck, FileText, Type } from "lucide-react";
 import Link from "next/link";
 
 const staffData: { [key: string]: any } = {
-  "evelyn-reed": {
-    name: "Dr. Evelyn Reed",
-    subject: "Mathematics",
+  "sathya-balaji": {
+    name: "Dr. Sathya Balaji",
+    subject: "C programming",
     avatar: "https://picsum.photos/seed/staff1/100/100",
+    assignments: [
+      { id: "c-intro", title: "Introduction to C", type: "Assignment", status: "Completed", dueDate: "2024-09-10" },
+      { id: "c-pointers", title: "Pointers in C", type: "Quiz", status: "Pending", dueDate: "2024-09-18" },
+      { id: "c-structs", title: "Structs and Unions", type: "Assignment", status: "Due", dueDate: "2024-09-15" },
+    ],
+  },
+  "sathesh-kumar": {
+    name: "Dr. Sathesh Kumar",
+    subject: "English",
+    avatar: "https://picsum.photos/seed/staff2/100/100",
+    assignments: [
+        { id: "eng-essay", title: "Essay on Modernism", type: "Assignment", status: "Completed", dueDate: "2024-09-11" },
+        { id: "eng-grammar", title: "Advanced Grammar Quiz", type: "Quiz", status: "Pending", dueDate: "2024-09-20" },
+        { id: "eng-poetry", title: "Poetry Analysis", type: "Assignment", status: "Due", dueDate: "2024-09-16" },
+        { id: "eng-overdue", title: "Book Report", type: "Assignment", status: "Overdue", dueDate: "2024-09-12" },
+    ],
+  },
+  "sankara-subramaniam": {
+    name: "Dr. R. Sankara Subramaniam",
+    subject: "Mathematics",
+    avatar: "https://picsum.photos/seed/staff3/100/100",
     assignments: [
       { id: "alg-101", title: "Algebra Basics Quiz", type: "Quiz", status: "Completed", dueDate: "2024-09-10" },
       { id: "geo-101", title: "Geometry Fundamentals", type: "Assignment", status: "Pending", dueDate: "2024-09-18" },
-      { id: "calc-pre", title: "Pre-Calculus Worksheet", type: "Assignment", status: "Due", dueDate: "2024-09-15" },
     ],
   },
-  "marcus-thorne": {
-    name: "Mr. Marcus Thorne",
-    subject: "Science",
-    avatar: "https://picsum.photos/seed/staff2/100/100",
-    assignments: [
-        { id: "bio-101", title: "Cell Structure", type: "Assignment", status: "Completed", dueDate: "2024-09-11" },
-        { id: "chem-quiz", title: "Periodic Table Quiz", type: "Quiz", status: "Pending", dueDate: "2024-09-20" },
-        { id: "phy-lab", title: "Physics Lab Report", type: "Assignment", status: "Pending", dueDate: "2024-09-22" },
-        { id: "eco-proj", title: "Ecosystem Project", type: "Assignment", status: "Due", dueDate: "2024-09-16" },
-        { id: "sci-fair", title: "Science Fair Proposal", type: "Assignment", status: "Overdue", dueDate: "2024-09-12" },
-    ],
-  },
-  "isabella-cruz": {
-    name: "Ms. Isabella Cruz",
-    subject: "History",
-    avatar: "https://picsum.photos/seed/staff3/100/100",
-    assignments: [
-        { id: "wwii-essay", title: "World War II Essay", type: "Assignment", status: "Completed", dueDate: "2024-09-08" },
-        { id: "rome-quiz", title: "Ancient Rome Quiz", type: "Quiz", status: "Pending", dueDate: "2024-09-21" },
-    ],
-  },
-  "julian-greene": {
-    name: "Mr. Julian Greene",
-    subject: "Literature",
+  "elenchezhiyan": {
+    name: "Dr. Elenchezhiyan",
+    subject: "Basics of Electrical and Electronic Engineering",
     avatar: "https://picsum.photos/seed/staff4/100/100",
     assignments: [
-        { id: "shake-1", title: "Shakespeare Sonnet Analysis", type: "Assignment", status: "Completed", dueDate: "2024-09-05" },
-        { id: "gatsby-quiz", title: "The Great Gatsby Quiz", type: "Quiz", status: "Completed", dueDate: "2024-09-12" },
-        { id: "poe-essay", title: "Edgar Allan Poe Essay", type: "Assignment", status: "Due", dueDate: "2024-09-17" },
-        { id: "mockingbird", title: "To Kill a Mockingbird Reading", type: "Assignment", status: "Pending", dueDate: "2024-09-25" },
+        { id: "eee-basics", title: "Circuit Theory Basics", type: "Assignment", status: "Completed", dueDate: "2024-09-05" },
+        { id: "eee-ohms-law", title: "Ohm's Law Quiz", type: "Quiz", status: "Completed", dueDate: "2024-09-12" },
+        { id: "eee-lab", title: "Lab Report 1", type: "Assignment", status: "Due", dueDate: "2024-09-17" },
+        { id: "eee-semiconductors", title: "Semiconductors Intro", type: "Assignment", status: "Pending", dueDate: "2024-09-25" },
     ],
   },
 };
