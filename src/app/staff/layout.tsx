@@ -6,7 +6,6 @@ import {
   BookCopy,
   LayoutDashboard,
   LogOut,
-  Users,
   Settings,
   Book,
 } from "lucide-react";
@@ -29,7 +28,6 @@ import { Badge } from "@/components/ui/badge";
 const navItems = [
   { href: "/staff/dashboard", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/staff/content", icon: BookCopy, label: "Assessments" },
-  { href: "/staff/students", icon: Users, label: "Students" },
   { href: "/staff/settings", icon: Settings, label: "Settings" },
 ];
 
