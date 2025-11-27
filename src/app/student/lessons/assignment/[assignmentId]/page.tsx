@@ -16,26 +16,18 @@ const CWorksheet = () => (
         <CardContent className="space-y-6">
             <div className="space-y-2">
                 <p className="font-semibold">1. What is the purpose of the `main()` function in a C program?</p>
-                <Textarea placeholder="Your answer here..." />
             </div>
             <div className="space-y-2">
                 <p className="font-semibold">2. What is a variable in C and how do you declare it?</p>
-                <Textarea placeholder="Your answer here..." />
             </div>
             <div className="space-y-2">
                 <p className="font-semibold">3. What is the use of the `printf()` function?</p>
-                <Textarea placeholder="Your answer here..." />
             </div>
             <div className="space-y-2">
                 <p className="font-semibold">4. What is the difference between `=` and `==` in C?</p>
-                <Textarea placeholder="Your answer here..." />
             </div>
             <div className="space-y-2">
                 <p className="font-semibold">5. How do you write a single-line comment in C?</p>
-                <Textarea placeholder="Your answer here..." />
-            </div>
-             <div className="flex justify-end pt-4">
-                <Button>Submit</Button>
             </div>
         </CardContent>
     </Card>
