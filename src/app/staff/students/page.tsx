@@ -24,19 +24,38 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const students = [
-    { name: "Liam Johnson", class: "Class 10 - Section A", avatar: "https://picsum.photos/seed/student11/100/100" },
-    { name: "Olivia Williams", class: "Class 10 - Section A", avatar: "https://picsum.photos/seed/student12/100/100" },
-    { name: "Noah Brown", class: "Class 10 - Section A", avatar: "https://picsum.photos/seed/student13/100/100" },
-    { name: "Emma Jones", class: "Class 10 - Section A", avatar: "https://picsum.photos/seed/student14/100/100" },
-    { name: "Ava Miller", class: "Class 10 - Section B", avatar: "https://picsum.photos/seed/student15/100/100" },
-    { name: "William Davis", class: "Class 10 - Section B", avatar: "https://picsum.photos/seed/student16/100/100" },
-    { name: "Sophia Garcia", class: "Class 10 - Section B", avatar: "https://picsum.photos/seed/student17/100/100" },
-    { name: "James Rodriguez", class: "Class 10 - Section B", avatar: "https://picsum.photos/seed/student18/100/100" },
-    { name: "Isabella Martinez", class: "Class 11 - Section A", avatar: "https://picsum.photos/seed/student19/100/100" },
-    { name: "Mason Hernandez", class: "Class 11 - Section A", avatar: "https://picsum.photos/seed/student20/100/100" },
-    { name: "Charlotte Lopez", class: "Class 11 - Section A", avatar: "https://picsum.photos/seed/student21/100/100" },
+const studentsByClass = [
+  {
+    id: "class-10a",
+    name: "Class 10 - Section A",
+    students: [
+        { name: "Liam Johnson", avatar: "https://picsum.photos/seed/student11/100/100" },
+        { name: "Olivia Williams", avatar: "https://picsum.photos/seed/student12/100/100" },
+        { name: "Noah Brown", avatar: "https://picsum.photos/seed/student13/100/100" },
+        { name: "Emma Jones", avatar: "https://picsum.photos/seed/student14/100/100" },
+    ],
+  },
+  {
+    id: "class-10b",
+    name: "Class 10 - Section B",
+    students: [
+        { name: "Ava Miller", avatar: "https://picsum.photos/seed/student15/100/100" },
+        { name: "William Davis", avatar: "https://picsum.photos/seed/student16/100/100" },
+        { name: "Sophia Garcia", avatar: "https://picsum.photos/seed/student17/100/100" },
+        { name: "James Rodriguez", avatar: "https://picsum.photos/seed/student18/100/100" },
+    ],
+  },
+  {
+    id: "class-11a",
+    name: "Class 11 - Section A",
+    students: [
+        { name: "Isabella Martinez", avatar: "https://picsum.photos/seed/student19/100/100" },
+        { name: "Mason Hernandez", avatar: "https://picsum.photos/seed/student20/100/100" },
+        { name: "Charlotte Lopez", avatar: "https://picsum.photos/seed/student21/100/100" },
+    ],
+  },
 ];
 
 
@@ -53,61 +72,70 @@ export default function StudentsPage() {
         </div>
       <Card>
         <CardHeader>
-          <CardTitle>All Students</CardTitle>
+          <CardTitle>Students by Class</CardTitle>
           <CardDescription>
-            A list of all students enrolled in your classes.
+            Select a class to view the enrolled students.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Student Name</TableHead>
-                <TableHead>Class</TableHead>
-                <TableHead>
-                    <span className="sr-only">Actions</span>
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {students.map((student) => (
-                <TableRow key={student.name}>
-                  <TableCell>
-                    <div className="flex items-center gap-3">
-                      <Avatar className="h-9 w-9">
-                        <AvatarImage
-                          src={student.avatar}
-                          alt={student.name}
-                        />
-                        <AvatarFallback>
-                          {student.name.charAt(0)}
-                        </AvatarFallback>
-                      </Avatar>
-                      <span className="font-medium">{student.name}</span>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    {student.class}
-                  </TableCell>
-                  <TableCell>
-                    <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button aria-haspopup="true" size="icon" variant="ghost">
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuItem>View Profile</DropdownMenuItem>
-                        <DropdownMenuItem>Message</DropdownMenuItem>
-                        <DropdownMenuItem className="text-red-600">Remove from Class</DropdownMenuItem>
-                    </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <Tabs defaultValue={studentsByClass[0].id}>
+            <TabsList>
+                {studentsByClass.map((classInfo) => (
+                    <TabsTrigger key={classInfo.id} value={classInfo.id}>
+                        {classInfo.name}
+                    </TabsTrigger>
+                ))}
+            </TabsList>
+             {studentsByClass.map((classInfo) => (
+              <TabsContent key={classInfo.id} value={classInfo.id}>
+                <Table>
+                    <TableHeader>
+                    <TableRow>
+                        <TableHead>Student Name</TableHead>
+                        <TableHead>
+                            <span className="sr-only">Actions</span>
+                        </TableHead>
+                    </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                    {classInfo.students.map((student) => (
+                        <TableRow key={student.name}>
+                        <TableCell>
+                            <div className="flex items-center gap-3">
+                            <Avatar className="h-9 w-9">
+                                <AvatarImage
+                                src={student.avatar}
+                                alt={student.name}
+                                />
+                                <AvatarFallback>
+                                {student.name.charAt(0)}
+                                </AvatarFallback>
+                            </Avatar>
+                            <span className="font-medium">{student.name}</span>
+                            </div>
+                        </TableCell>
+                        <TableCell className="text-right">
+                            <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button aria-haspopup="true" size="icon" variant="ghost">
+                                <MoreHorizontal className="h-4 w-4" />
+                                <span className="sr-only">Toggle menu</span>
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                <DropdownMenuItem>View Profile</DropdownMenuItem>
+                                <DropdownMenuItem>Message</DropdownMenuItem>
+                                <DropdownMenuItem className="text-red-600">Remove from Class</DropdownMenuItem>
+                            </DropdownMenuContent>
+                            </DropdownMenu>
+                        </TableCell>
+                        </TableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+               </TabsContent>
+            ))}
+          </Tabs>
         </CardContent>
       </Card>
     </div>
