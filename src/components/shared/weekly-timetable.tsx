@@ -61,8 +61,8 @@ interface WeeklyTimetableProps {
 }
 
 export function WeeklyTimetable({ scheduleData, title, description }: WeeklyTimetableProps) {
-    const getScheduleForSlot = (time: string, day: string) => {
-        return scheduleData.find(item => item.time === time && item.day === day);
+    const getScheduleForSlot = (day: string, time: string) => {
+        return scheduleData.find(item => item.day === day && item.time === time);
     };
 
     return (
@@ -75,30 +75,30 @@ export function WeeklyTimetable({ scheduleData, title, description }: WeeklyTime
                 <Table className="border">
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[120px] font-bold">Time</TableHead>
-                            {days.map(day => (
-                                <TableHead key={day} className="font-bold text-center">{day}</TableHead>
+                            <TableHead className="w-[120px] font-bold">Day</TableHead>
+                            {timeSlots.map(time => (
+                                <TableHead key={time} className="font-bold text-center">{time}</TableHead>
                             ))}
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {timeSlots.map(time => (
-                            <TableRow key={time}>
-                                <TableCell className="font-medium">{time}</TableCell>
-                                {days.map(day => {
-                                    const event = getScheduleForSlot(time, day);
+                        {days.map(day => (
+                            <TableRow key={day}>
+                                <TableCell className="font-medium">{day}</TableCell>
+                                {timeSlots.map(time => {
+                                    const event = getScheduleForSlot(day, time);
+                                    if (time === "12:00 - 01:00") {
+                                        return <TableCell key={`${day}-${time}`} className="p-1 text-center border-l"><div className={cn("rounded-md p-2 h-full flex flex-col justify-center", scheduleColors["Lunch"])}><p className="font-semibold text-xs">Lunch</p></div></TableCell>
+                                    }
                                     if (event) {
                                         return (
-                                            <TableCell key={`${day}-${time}`} className={cn("p-1 text-center", event.time === "12:00 - 01:00" ? "" : "border-l")}>
+                                            <TableCell key={`${day}-${time}`} className={cn("p-1 text-center border-l")}>
                                                 <div className={cn("rounded-md p-2 h-full flex flex-col justify-center", scheduleColors[event.subject])}>
                                                     <p className="font-semibold text-xs">{event.subject}</p>
                                                     {event.class && <p className="text-xs">{event.class}</p>}
                                                 </div>
                                             </TableCell>
                                         );
-                                    }
-                                    if (time === "12:00 - 01:00") {
-                                        return <TableCell key={`${day}-${time}`} className="p-1 text-center border-l"><div className={cn("rounded-md p-2 h-full flex flex-col justify-center", scheduleColors["Lunch"])}><p className="font-semibold text-xs">Lunch</p></div></TableCell>
                                     }
                                     return <TableCell key={`${day}-${time}`} className="border-l"></TableCell>;
                                 })}
