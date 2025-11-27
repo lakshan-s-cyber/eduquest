@@ -48,7 +48,7 @@ const initialQuizzes = [
     id: "QUIZ001",
     title: "Quiz on the topic pointers",
     description: "A quiz covering the fundamental concepts of pointers in C.",
-    questions: 15,
+    questions: 5,
     status: "Draft",
   },
   {
