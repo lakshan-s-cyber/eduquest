@@ -27,36 +27,36 @@ const classesData = [
     id: "class-1-be-cse-a",
     name: "I BE CSE A",
     students: [
-      { name: "Avanthika", progress: 75, avatar: "https://picsum.photos/seed/student7/100/100" },
-      { name: "Amenda", progress: 80, avatar: "https://picsum.photos/seed/student8/100/100" },
+      { name: "Avanthika", progress: 75, avatar: "" },
+      { name: "Amenda", progress: 80, avatar: "" },
     ],
   },
   {
     id: "class-1-be-cse-b",
     name: "I BE CSE B",
     students: [
-      { name: "Lakshan S", progress: 85, avatar: "https://picsum.photos/seed/student1/100/100" },
-      { name: "Madhumitha S", progress: 92, avatar: "https://picsum.photos/seed/student2/100/100" },
-      { name: "Manuvarsha E", progress: 88, avatar: "https://picsum.photos/seed/student3/100/100" },
-      { name: "Mahadhi K", progress: 82, avatar: "https://picsum.photos/seed/student4/100/100" },
-      { name: "Kabin S", progress: 94, avatar: "https://picsum.photos/seed/student5/100/100" },
-      { name: "Jeeva S", progress: 89, avatar: "https://picsum.photos/seed/student6/100/100" },
+      { name: "Lakshan S", progress: 85, avatar: "" },
+      { name: "Madhumitha S", progress: 92, avatar: "" },
+      { name: "Manuvarsha E", progress: 88, avatar: "" },
+      { name: "Mahadhi K", progress: 82, avatar: "" },
+      { name: "Kabin S", progress: 94, avatar: "" },
+      { name: "Jeeva S", progress: 89, avatar: "" },
     ],
   },
   {
     id: "class-1-be-cse-c",
     name: "I BE CSE C",
     students: [
-      { name: "Pradhiksha", progress: 78, avatar: "https://picsum.photos/seed/student9/100/100" },
-      { name: "Nakshathra", progress: 81, avatar: "https://picsum.photos/seed/student10/100/100" },
+      { name: "Pradhiksha", progress: 78, avatar: "" },
+      { name: "Nakshathra", progress: 81, avatar: "" },
     ],
   },
   {
     id: "class-1-be-cse-d",
     name: "I BE CSE D",
     students: [
-      { name: "Yazhini", progress: 80, avatar: "https://picsum.photos/seed/student11/100/100" },
-      { name: "Shwetha", progress: 85, avatar: "https://picsum.photos/seed/student12/100/100" },
+      { name: "Yazhini", progress: 80, avatar: "" },
+      { name: "Shwetha", progress: 85, avatar: "" },
     ],
   },
 ];

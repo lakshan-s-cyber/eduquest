@@ -21,16 +21,16 @@ import { Progress } from "@/components/ui/progress";
 
 
 const leaderboardData = [
-    { rank: 1, name: "Lakshan S", points: 1250, avatar: "https://picsum.photos/seed/student1/100/100", imageId: "leaderboard-1", progress: 85 },
-    { rank: 2, name: "Madhumitha S", points: 1180, avatar: "https://picsum.photos/seed/student2/100/100", imageId: "leaderboard-2", progress: 70 },
-    { rank: 3, name: "Manuvarsha E", points: 1120, avatar: "https://picsum.photos/seed/student3/100/100", imageId: "leaderboard-3", progress: 60 },
-    { rank: 4, name: "Mahadhi K", points: 1050, avatar: "https://picsum.photos/seed/student4/100/100", progress: 50 },
-    { rank: 5, name: "Kabin S", points: 980, avatar: "https://picsum.photos/seed/student5/100/100", progress: 45 },
-    { rank: 6, name: "Jeeva S", points: 950, avatar: "https://picsum.photos/seed/student6/100/100", progress: 40 },
-    { rank: 7, name: "Madhukavin", points: 920, avatar: "https://picsum.photos/seed/student7/100/100", progress: 35 },
-    { rank: 8, name: "Meenakshi", points: 880, avatar: "https://picsum.photos/seed/student8/100/100", progress: 30 },
-    { rank: 9, name: "Loshini", points: 840, avatar: "https://picsum.photos/seed/student9/100/100", progress: 25 },
-    { rank: 10, name: "Keerthana", points: 800, avatar: "https://picsum.photos/seed/student10/100/100", progress: 20 },
+    { rank: 1, name: "Lakshan S", points: 1250, avatar: "", imageId: "leaderboard-1", progress: 85 },
+    { rank: 2, name: "Madhumitha S", points: 1180, avatar: "", imageId: "leaderboard-2", progress: 70 },
+    { rank: 3, name: "Manuvarsha E", points: 1120, avatar: "", imageId: "leaderboard-3", progress: 60 },
+    { rank: 4, name: "Mahadhi K", points: 1050, avatar: "", progress: 50 },
+    { rank: 5, name: "Kabin S", points: 980, avatar: "", progress: 45 },
+    { rank: 6, name: "Jeeva S", points: 950, avatar: "", progress: 40 },
+    { rank: 7, name: "Madhukavin", points: 920, avatar: "", progress: 35 },
+    { rank: 8, name: "Meenakshi", points: 880, avatar: "", progress: 30 },
+    { rank: 9, name: "Loshini", points: 840, avatar: "", progress: 25 },
+    { rank: 10, name: "Keerthana", points: 800, avatar: "", progress: 20 },
 ];
 
 const currentUser = leaderboardData[0]; // Assuming Lakshan S is the current user

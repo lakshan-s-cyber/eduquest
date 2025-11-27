@@ -73,7 +73,7 @@ export default function StaffLayout({
         <SidebarFooter className="border-t">
           <div className="flex items-center gap-3 p-2">
             <Avatar>
-              <AvatarImage src="https://picsum.photos/seed/staff/100/100" />
+              <AvatarImage src="" />
               <AvatarFallback>A</AvatarFallback>
             </Avatar>
             <div className="flex-1 overflow-hidden">

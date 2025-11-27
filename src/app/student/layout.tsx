@@ -75,7 +75,7 @@ export default function StudentLayout({
         <SidebarFooter className="border-t">
           <div className="flex items-center gap-3 p-2">
             <Avatar>
-              <AvatarImage src="https://picsum.photos/seed/student/100/100" />
+              <AvatarImage src="" />
               <AvatarFallback>L</AvatarFallback>
             </Avatar>
             <div className="flex-1 overflow-hidden">

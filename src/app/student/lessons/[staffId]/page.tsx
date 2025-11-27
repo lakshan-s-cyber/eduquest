@@ -16,7 +16,7 @@ const staffData: { [key: string]: any } = {
   "sathya-balaji": {
     name: "Dr. Sathya Balaji",
     subject: "C programming",
-    avatar: "https://picsum.photos/seed/staff1/100/100",
+    avatar: "",
     assignments: [
       { id: "c-intro", title: "Introduction to C", type: "Assignment", status: "Completed", dueDate: "2024-09-10" },
       { id: "c-pointers", title: "Pointers in C", type: "Quiz", status: "Pending", dueDate: "2024-09-18" },
@@ -26,7 +26,7 @@ const staffData: { [key: string]: any } = {
   "sathesh-kumar": {
     name: "Dr. Sathesh Kumar",
     subject: "English",
-    avatar: "https://picsum.photos/seed/staff2/100/100",
+    avatar: "",
     assignments: [
         { id: "eng-essay", title: "Compare and Contrast Essay", type: "Assignment", status: "Completed", dueDate: "2024-09-11" },
         { id: "eng-grammar", title: "Advanced Grammar Quiz", type: "Quiz", status: "Pending", dueDate: "2024-09-20" },
@@ -36,7 +36,7 @@ const staffData: { [key: string]: any } = {
   "sankara-subramaniam": {
     name: "Dr. R. Sankara Subramaniam",
     subject: "Mathematics",
-    avatar: "https://picsum.photos/seed/staff3/100/100",
+    avatar: "",
     assignments: [
       { id: "math-vec-calc", title: "Vector Calculus", type: "Quiz", status: "Pending", dueDate: "2024-09-22" },
       { id: "math-int-calc", title: "Integral Calculus", type: "Quiz", status: "Due", dueDate: "2024-09-19" },
@@ -45,7 +45,7 @@ const staffData: { [key: string]: any } = {
   "elenchezhiyan": {
     name: "Dr. Elenchezhiyan",
     subject: "Basics of Electrical and Electronic Engineering",
-    avatar: "https://picsum.photos/seed/staff4/100/100",
+    avatar: "",
     assignments: [
         { id: "eee-basics", title: "Circuit Theory Basics", type: "Assignment", status: "Completed", dueDate: "2024-09-05" },
         { id: "eee-ohms-law", title: "Ohm's Law Quiz", type: "Quiz", status: "Completed", dueDate: "2024-09-12" },
