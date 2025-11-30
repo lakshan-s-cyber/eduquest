@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview AI flows for generating advanced learning materials.
@@ -16,15 +17,14 @@ const QuizQuestionSchema = z.object({
   options: z.array(z.string()).describe('A list of 4 multiple-choice options.'),
   correctAnswer: z.string().describe('The correct answer from the options.'),
 });
-type QuizQuestion = z.infer<typeof QuizQuestionSchema>;
 
 // Input and Output Schemas for the main flow
-export const LearningQuestInputSchema = z.object({
+const LearningQuestInputSchema = z.object({
   lessonTitle: z.string().describe('The title of the lesson to generate content for.'),
 });
 export type LearningQuestInput = z.infer<typeof LearningQuestInputSchema>;
 
-export const LearningQuestOutputSchema = z.object({
+const LearningQuestOutputSchema = z.object({
   topics: z
     .array(z.string())
     .describe('A list of 3-5 advanced topics that go beyond the standard syllabus for the given lesson.'),
