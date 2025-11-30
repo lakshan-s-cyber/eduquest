@@ -1,3 +1,4 @@
+
 'use client';
 
 import { generateLearningQuest, LearningQuestOutput } from '@/ai/flows/learning-quest-flow';
@@ -8,6 +9,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { ArrowLeft, CheckCircle, Lightbulb, Video, XCircle } from 'lucide-react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
@@ -123,18 +125,14 @@ export default function LearningQuestPage({ params }: { params: { lessonId: stri
             </CardHeader>
             <CardContent>
               {loading ? (
-                <Skeleton className="w-full aspect-video rounded-lg" />
+                <Skeleton className="h-10 w-48 rounded-lg" />
               ) : (
-                <div className="aspect-video">
-                  <iframe
-                    className="w-full h-full rounded-lg"
-                    src={`https://www.youtube.com/embed/${details.videoId}`}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
+                <Button asChild>
+                  <a href={`https://www.youtube.com/watch?v=${details.videoId}`} target="_blank" rel="noopener noreferrer">
+                    <Video className="mr-2 h-4 w-4" />
+                    Watch Reference Video
+                  </a>
+                </Button>
               )}
             </CardContent>
           </Card>
