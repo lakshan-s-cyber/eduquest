@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -275,3 +276,5 @@ export default function AchievementsPage() {
         </motion.div>
     );
 }
+
+    
