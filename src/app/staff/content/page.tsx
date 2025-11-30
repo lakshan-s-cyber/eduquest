@@ -37,7 +37,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { MoreHorizontal, PlusCircle } from "lucide-react";
+import { MoreHorizontal, PlusCircle, BookHeart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -91,16 +91,27 @@ const initialActivities = [
     },
 ];
 
+const initialLearningQuests = [
+    {
+        id: "c-programming",
+        title: "Advanced C Programming Quest",
+        status: "Published",
+    },
+];
+
 const classes = ["I BE CSE A", "I BE CSE B", "I BE CSE C", "I BE CSE D"];
 
 type Quiz = typeof initialQuizzes[0];
 type Activity = typeof initialActivities[0];
+type LearningQuest = typeof initialLearningQuests[0];
 
 export default function ContentManagementPage() {
   const [quizzes, setQuizzes] = useState(initialQuizzes);
   const [activities, setActivities] = useState(initialActivities);
+  const [learningQuests, setLearningQuests] = useState(initialLearningQuests);
   const [isQuizDialogOpen, setIsQuizDialogOpen] = useState(false);
   const [isActivityDialogOpen, setIsActivityDialogOpen] = useState(false);
+  const [isQuestDialogOpen, setIsQuestDialogOpen] = useState(false);
   const [isAssignDialogOpen, setIsAssignDialogOpen] = useState(false);
   const [selectedQuiz, setSelectedQuiz] = useState<Quiz | null>(null);
   const { toast } = useToast();
@@ -117,6 +128,7 @@ export default function ContentManagementPage() {
     };
     setQuizzes(prevQuizzes => [newQuiz, ...prevQuizzes]);
     setIsQuizDialogOpen(false);
+    toast({ title: "Quiz Created!", description: `"${newQuiz.title}" has been added.` });
   };
   
   const handleCreateActivity = (event: React.FormEvent<HTMLFormElement>) => {
@@ -131,6 +143,21 @@ export default function ContentManagementPage() {
     };
     setActivities(prevActivities => [newActivity, ...prevActivities]);
     setIsActivityDialogOpen(false);
+    toast({ title: "Activity Created!", description: `"${newActivity.title}" has been added.` });
+  };
+
+  const handleCreateQuest = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const title = formData.get('title') as string;
+    const newQuest = {
+        id: title.toLowerCase().replace(/\s+/g, '-'),
+        title: title,
+        status: "Published" as "Published",
+    };
+    setLearningQuests(prevQuests => [newQuest, ...prevQuests]);
+    setIsQuestDialogOpen(false);
+    toast({ title: "Learning Quest Created!", description: `"${newQuest.title}" is now available to students.` });
   };
 
   const handleAssignQuiz = (event: React.FormEvent<HTMLFormElement>) => {
@@ -171,6 +198,7 @@ export default function ContentManagementPage() {
             <TabsList>
                 <TabsTrigger value="quizzes">Quizzes</TabsTrigger>
                 <TabsTrigger value="activities">Activities</TabsTrigger>
+                <TabsTrigger value="quests">Learning Quests</TabsTrigger>
             </TabsList>
              <Dialog>
                 <DialogTrigger asChild>
@@ -189,6 +217,7 @@ export default function ContentManagementPage() {
                     <div className="flex justify-around pt-4">
                          <Button onClick={() => { setIsQuizDialogOpen(true); }}>New Quiz</Button>
                          <Button onClick={() => { setIsActivityDialogOpen(true); }}>New Activity</Button>
+                         <Button variant="outline" onClick={() => { setIsQuestDialogOpen(true); }}>New Learning Quest</Button>
                     </div>
                 </DialogContent>
             </Dialog>
@@ -308,6 +337,55 @@ export default function ContentManagementPage() {
                 </CardContent>
             </Card>
         </TabsContent>
+         <TabsContent value="quests">
+            <Card>
+                <CardHeader>
+                    <CardTitle>Learning Quests</CardTitle>
+                    <CardDescription>Manage AI-powered, beyond-syllabus content for students.</CardDescription>
+                </CardHeader>
+                 <CardContent>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead className="w-[80%]">Title</TableHead>
+                                <TableHead className="text-center">Status</TableHead>
+                                <TableHead>
+                                <span className="sr-only">Actions</span>
+                                </TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                             {learningQuests.map((quest) => (
+                                <TableRow key={quest.id}>
+                                    <TableCell className="font-medium">{quest.title}</TableCell>
+                                    <TableCell className="text-center">
+                                        <Badge variant={quest.status === 'Published' ? 'default' : 'secondary'}
+                                            className={quest.status === 'Published' ? 'bg-green-100 text-green-800' : ''}
+                                        >
+                                            {quest.status}
+                                        </Badge>
+                                    </TableCell>
+                                    <TableCell>
+                                        <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button aria-haspopup="true" size="icon" variant="ghost">
+                                            <MoreHorizontal className="h-4 w-4" />
+                                            <span className="sr-only">Toggle menu</span>
+                                            </Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="end">
+                                            <DropdownMenuItem>Archive</DropdownMenuItem>
+                                            <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </CardContent>
+            </Card>
+        </TabsContent>
       </Tabs>
 
 
@@ -372,6 +450,31 @@ export default function ContentManagementPage() {
                           <Button type="button" variant="secondary">Cancel</Button>
                       </DialogClose>
                       <Button type="submit">Create Activity</Button>
+                  </DialogFooter>
+              </form>
+          </DialogContent>
+      </Dialog>
+
+      <Dialog open={isQuestDialogOpen} onOpenChange={setIsQuestDialogOpen}>
+          <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                  <DialogTitle>Create New Learning Quest</DialogTitle>
+                  <DialogDescription>
+                      Enter a topic to generate an AI-powered learning quest for students.
+                  </DialogDescription>
+              </DialogHeader>
+              <form onSubmit={handleCreateQuest}>
+                  <div className="grid gap-4 py-4">
+                      <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="title" className="text-right">Topic / Title</Label>
+                          <Input id="title" name="title" className="col-span-3" placeholder="e.g., Quantum Computing Basics" required />
+                      </div>
+                  </div>
+                  <DialogFooter>
+                      <DialogClose asChild>
+                          <Button type="button" variant="secondary">Cancel</Button>
+                      </DialogClose>
+                      <Button type="submit">Create Quest</Button>
                   </DialogFooter>
               </form>
           </DialogContent>

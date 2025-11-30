@@ -9,26 +9,31 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { ArrowLeft, CheckCircle, Lightbulb, XCircle } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
-const lessonDetails: { [key: string]: { title: string } } = {
+// A mock mapping for existing lessons if they are static
+const staticLessonDetails: { [key: string]: { title: string } } = {
   'c-programming': {
     title: 'Introduction to C Programming',
   },
-  calculus: {
+  'calculus': {
     title: 'Introduction to Calculus',
   },
-  beee: {
+  'beee': {
     title: 'Basics of BEEE',
   },
 };
 
 export default function LearningQuestPage({ params }: { params: { lessonId: string } }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { toast } = useToast();
   const { lessonId } = params;
-  const details = lessonDetails[lessonId];
+
+  // For dynamically created quests, the title is passed via search param
+  const dynamicTitle = searchParams.get('title');
+  const details = staticLessonDetails[lessonId] || (dynamicTitle ? { title: dynamicTitle } : null);
 
   const [questData, setQuestData] = useState<LearningQuestOutput | null>(null);
   const [loading, setLoading] = useState(true);
@@ -38,7 +43,7 @@ export default function LearningQuestPage({ params }: { params: { lessonId: stri
 
   useEffect(() => {
     if (!details) {
-      setError('Invalid lesson ID.');
+      setError('Invalid lesson ID or title.');
       setLoading(false);
       return;
     }
