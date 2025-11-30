@@ -14,7 +14,7 @@ import { Progress } from "@/components/ui/progress";
 import {
   BookOpenCheck,
   BrainCircuit,
-  Calculator,
+  FileText,
   FlaskConical,
   Rocket,
   Trophy,
@@ -31,29 +31,33 @@ import { WeeklyTimetable, ScheduleItem } from "@/components/shared/weekly-timeta
 import { useSearchParams } from "next/navigation";
 import React from "react";
 
-const lessons = [
+const assignedWork = [
   {
-    id: "c-programming",
-    title: "Introduction to C Programming",
+    id: "c-pointers",
+    title: "Pointers in C",
     category: "C Programming",
-    points: 150,
-    icon: <Calculator className="h-8 w-8 text-primary" />,
-  },
-  {
-    id: "calculus",
-    title: "Introduction to Calculus",
-    category: "Calculus",
     points: 200,
-    icon: <Rocket className="h-8 w-8 text-primary" />,
+    icon: <FileText className="h-8 w-8 text-primary" />,
+    status: "Pending",
   },
   {
-    id: "beee",
-    title: "Basics of BEEE",
+    id: "math-int-calc",
+    title: "Integral Calculus",
+    category: "Mathematics",
+    points: 250,
+    icon: <Rocket className="h-8 w-8 text-primary" />,
+    status: "Due",
+  },
+  {
+    id: "eee-lab",
+    title: "Lab Report 1",
     category: "BEEE",
     points: 180,
     icon: <FlaskConical className="h-8 w-8 text-primary" />,
+    status: "Due",
   },
 ];
+
 
 const achievements = [
   { name: "First Steps", icon: <BookOpenCheck className="h-6 w-6" /> },
@@ -161,26 +165,26 @@ function StudentDashboardInternal() {
         <Card className="xl:col-span-2">
           <CardHeader>
             <CardTitle>Continue Your Quest</CardTitle>
-            <CardDescription>Pick up where you left off.</CardDescription>
+            <CardDescription>Pick up where you left off. Here are your pending assignments.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {lessons.map((lesson) => (
+            {assignedWork.map((work) => (
               <div
-                key={lesson.title}
+                key={work.title}
                 className="flex items-center gap-4 rounded-lg border p-4 transition-all hover:bg-accent/50"
               >
                 <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-secondary">
-                  {lesson.icon}
+                  {work.icon}
                 </div>
                 <div className="flex-1">
-                  <p className="font-semibold">{lesson.title}</p>
+                  <p className="font-semibold">{work.title}</p>
                   <p className="text-sm text-muted-foreground">
-                    {lesson.category}
+                    {work.category}
                   </p>
                 </div>
-                <Badge variant="outline" className="text-primary border-primary">{lesson.points} pts</Badge>
+                <Badge variant="outline" className="text-primary border-primary">{work.points} pts</Badge>
                 <Button asChild size="sm">
-                  <Link href={`/student/learning-quest/${lesson.id}`}>Start</Link>
+                  <Link href={`/student/lessons/assignment/${work.id}`}>Start</Link>
                 </Button>
               </div>
             ))}
