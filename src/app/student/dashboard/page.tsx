@@ -26,7 +26,6 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
-import { ChatPanel } from "@/components/chat/chat-panel";
 import { WeeklyTimetable, ScheduleItem } from "@/components/shared/weekly-timetable";
 import { useSearchParams } from "next/navigation";
 import React from "react";
@@ -191,15 +190,6 @@ function StudentDashboardInternal() {
           </CardContent>
         </Card>
         <div className="space-y-6">
-          <Card>
-            <CardHeader>
-                <CardTitle>AI Assistant</CardTitle>
-                <CardDescription>Ask me anything about your lessons!</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <ChatPanel />
-            </CardContent>
-          </Card>
           <Card>
             <CardHeader>
               <CardTitle>Monthly Progress</CardTitle>
