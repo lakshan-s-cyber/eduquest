@@ -200,7 +200,7 @@ export default function AchievementsPage() {
                                     <motion.div 
                                         key={badge.name} 
                                         variants={itemVariants}
-                                        whileHover={{ scale: 1.05, y: -5 }}
+                                        whileHover={{ scale: 1.05, y: -5, boxShadow: "0px 0px 15px 3px rgba(250, 204, 21, 0.7)" }}
                                         whileTap={{ scale: 0.95 }}
                                         className="flex flex-col items-center text-center gap-2 p-4 rounded-lg bg-secondary/50 cursor-pointer">
                                         <div className={`flex h-12 w-12 items-center justify-center rounded-full ${
