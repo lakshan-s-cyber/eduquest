@@ -1,8 +1,8 @@
 
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
     Card,
     CardContent,
@@ -24,6 +24,7 @@ import {
     FlaskConical
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import { cn } from '@/lib/utils';
 
 
 const achievementsData = {
@@ -65,6 +66,30 @@ const achievementsData = {
     ]
 };
 
+const summaryCards = [
+    {
+        id: "rank",
+        title: "Leaderboard Rank",
+        value: `#${achievementsData.summary.leaderboardPosition}`,
+        description: `Best Rank: #${achievementsData.summary.bestRank}`,
+        icon: <Trophy className="h-4 w-4 text-muted-foreground" />,
+    },
+    {
+        id: "points",
+        title: "Total Points",
+        value: achievementsData.summary.totalPoints,
+        description: "Keep up the great work!",
+        icon: <Star className="h-4 w-4 text-muted-foreground" />,
+    },
+    {
+        id: "lessons",
+        title: "Lessons Completed",
+        value: achievementsData.completedLessons.length,
+        description: "Total lessons finished",
+        icon: <BookOpenCheck className="h-4 w-4 text-muted-foreground" />,
+    }
+]
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -89,6 +114,13 @@ const itemVariants = {
 
 
 export default function AchievementsPage() {
+    const [animatingCardId, setAnimatingCardId] = useState<string | null>(null);
+
+    const handleCardClick = (id: string) => {
+        setAnimatingCardId(id);
+        setTimeout(() => setAnimatingCardId(null), 1500); // Animation duration
+    };
+
     return (
         <motion.div 
             className="grid gap-6"
@@ -101,48 +133,51 @@ export default function AchievementsPage() {
             </motion.h1>
 
             <motion.div variants={containerVariants} className="grid grid-cols-1 gap-6 md:grid-cols-3">
-                 <motion.div variants={itemVariants}>
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-sm font-medium">Leaderboard Rank</CardTitle>
-                            <Trophy className="h-4 w-4 text-muted-foreground" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">#{achievementsData.summary.leaderboardPosition}</div>
-                            <p className="text-xs text-muted-foreground">
-                                Best Rank: #{achievementsData.summary.bestRank}
-                            </p>
-                        </CardContent>
-                    </Card>
-                 </motion.div>
-                 <motion.div variants={itemVariants}>
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-sm font-medium">Total Points</CardTitle>
-                            <Star className="h-4 w-4 text-muted-foreground" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">{achievementsData.summary.totalPoints}</div>
-                            <p className="text-xs text-muted-foreground">
-                                Keep up the great work!
-                            </p>
-                        </CardContent>
-                    </Card>
-                 </motion.div>
-                <motion.div variants={itemVariants}>
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-sm font-medium">Lessons Completed</CardTitle>
-                            <BookOpenCheck className="h-4 w-4 text-muted-foreground" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold">{achievementsData.completedLessons.length}</div>
-                            <p className="text-xs text-muted-foreground">
-                                Total lessons finished
-                            </p>
-                        </CardContent>
-                    </Card>
-                </motion.div>
+                {summaryCards.map(card => (
+                     <motion.div
+                        key={card.id}
+                        variants={itemVariants}
+                        className="relative"
+                        onClick={() => handleCardClick(card.id)}
+                    >
+                        <Card className="h-full cursor-pointer transition-all duration-300 hover:shadow-primary/20 hover:shadow-xl hover:bg-card/90">
+                            <CardHeader className="flex flex-row items-center justify-between pb-2">
+                                <CardTitle className="text-sm font-medium">{card.title}</CardTitle>
+                                {card.icon}
+                            </CardHeader>
+                            <CardContent>
+                                <div className="text-2xl font-bold">{card.value}</div>
+                                <p className="text-xs text-muted-foreground">
+                                    {card.description}
+                                </p>
+                            </CardContent>
+                        </Card>
+                        <AnimatePresence>
+                        {animatingCardId === card.id && (
+                            <motion.div
+                                className="absolute -top-3 -left-3"
+                                style={{ transform: "translateZ(0)" }}
+                                initial={{ opacity: 0, scale: 0.5 }}
+                                animate={{
+                                    opacity: [0.5, 1, 1, 0],
+                                    scale: 1,
+                                    rotate: 360,
+                                    x: ['-1.5rem', '100%', '100%', '-1.5rem', '-1.5rem'],
+                                    y: ['-1.5rem', '-1.5rem', '110%', '110%', '-1.5rem'],
+                                }}
+                                transition={{
+                                    duration: 1.5,
+                                    ease: "linear",
+                                    times: [0, 0.25, 0.5, 0.75, 1],
+                                }}
+                                exit={{ opacity: 0 }}
+                            >
+                                <Star className="h-6 w-6 text-yellow-400 fill-yellow-400" />
+                            </motion.div>
+                        )}
+                        </AnimatePresence>
+                    </motion.div>
+                ))}
             </motion.div>
 
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -275,6 +310,5 @@ export default function AchievementsPage() {
             </div>
         </motion.div>
     );
-}
 
     
