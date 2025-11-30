@@ -117,15 +117,19 @@ const itemVariants = {
 };
 
 const SummaryCard = ({ card }: { card: typeof summaryCards[0] }) => {
-    const [isHovered, setIsHovered] = React.useState(false);
+    const [isClicked, setIsClicked] = React.useState(false);
+
+    const handleClick = () => {
+        setIsClicked(true);
+        setTimeout(() => setIsClicked(false), 1000); // Reset after animation duration
+    };
 
     return (
         <motion.div
             key={card.id}
             variants={itemVariants}
             className="relative"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            onClick={handleClick}
         >
             <Card className="h-full cursor-pointer transition-all duration-300 hover:shadow-primary/20 hover:shadow-xl hover:bg-card/90">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -140,25 +144,13 @@ const SummaryCard = ({ card }: { card: typeof summaryCards[0] }) => {
                 </CardContent>
             </Card>
             <AnimatePresence>
-            {isHovered && (
+            {isClicked && (
                 <motion.div
-                    className="absolute -top-3 -left-3"
-                    style={{ transform: "translateZ(0)" }}
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{
-                        opacity: [0.5, 1, 1, 0],
-                        scale: 1,
-                        rotate: 360,
-                        x: ['-1.5rem', '100%', '100%', '-1.5rem', '-1.5rem'],
-                        y: ['-1.5rem', '-1.5rem', '110%', '110%', '-1.5rem'],
-                    }}
-                    transition={{
-                        duration: 1.5,
-                        ease: "linear",
-                        times: [0, 0.25, 0.5, 0.75, 1],
-                        repeat: Infinity,
-                    }}
+                    className="absolute top-0 left-1/2 -translate-x-1/2"
+                    initial={{ y: -30, opacity: 0, scale: 0.5 }}
+                    animate={{ y: 20, opacity: [1, 0], scale: 1 }}
                     exit={{ opacity: 0 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
                 >
                     <Star className="h-6 w-6 text-yellow-400 fill-yellow-400" />
                 </motion.div>
@@ -340,15 +332,5 @@ export default function AchievementsPage() {
         </motion.div>
     );
 }
-
-    
-
-    
-
-    
-
-    
-
-    
 
     
