@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview A simple AI chatbot flow.
@@ -35,7 +36,6 @@ const chatFlow = ai.defineFlow(
       prompt: {
         messages: [...history, {role: 'user', content: [{text: message}]}],
       },
-      history: history,
     });
 
     return response.text;
