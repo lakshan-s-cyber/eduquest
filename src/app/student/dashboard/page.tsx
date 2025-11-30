@@ -33,18 +33,21 @@ import React from "react";
 
 const lessons = [
   {
+    id: "c-programming",
     title: "Introduction to C Programming",
     category: "C Programming",
     points: 150,
     icon: <Calculator className="h-8 w-8 text-primary" />,
   },
   {
+    id: "calculus",
     title: "Introduction to Calculus",
     category: "Calculus",
     points: 200,
     icon: <Rocket className="h-8 w-8 text-primary" />,
   },
   {
+    id: "beee",
     title: "Basics of BEEE",
     category: "BEEE",
     points: 180,
@@ -78,26 +81,31 @@ const studentSchedule: ScheduleItem[] = [
     { day: "Monday", time: "09:00 - 10:00", subject: "C Programming" },
     { day: "Monday", time: "10:00 - 11:00", subject: "Calculus" },
     { day: "Monday", time: "11:00 - 12:00", subject: "BEEE" },
+    { day: "Monday", time: "12:00 - 01:00", subject: "Lunch" },
     { day: "Monday", time: "01:00 - 02:00", subject: "Free Period" },
     { day: "Monday", time: "02:00 - 03:00", subject: "Free Period" },
     { day: "Tuesday", time: "09:00 - 10:00", subject: "Free Period" },
     { day: "Tuesday", time: "10:00 - 11:00", subject: "Design Thinking" },
     { day: "Tuesday", time: "11:00 - 12:00", subject: "C Programming" },
+    { day: "Tuesday", time: "12:00 - 01:00", subject: "Lunch" },
     { day: "Tuesday", time: "01:00 - 02:00", subject: "Calculus" },
     { day: "Tuesday", time: "02:00 - 03:00", subject: "Free Period" },
     { day: "Wednesday", time: "09:00 - 10:00", subject: "C Programming" },
     { day: "Wednesday", time: "10:00 - 11:00", subject: "Free Period" },
     { day: "Wednesday", time: "11:00 - 12:00", subject: "BEEE" },
+    { day: "Wednesday", time: "12:00 - 01:00", subject: "Lunch" },
     { day: "Wednesday", time: "01:00 - 02:00", subject: "Free Period" },
     { day: "Wednesday", time: "02:00 - 03:00", subject: "Free Period" },
     { day: "Thursday", time: "09:00 - 10:00", subject: "Free Period" },
     { day: "Thursday", time: "10:00 - 11:00", subject: "English" },
     { day: "Thursday", time: "11:00 - 12:00", subject: "Free Period" },
+    { day: "Thursday", time: "12:00 - 01:00", subject: "Lunch" },
     { day: "Thursday", time: "01:00 - 02:00", subject: "Calculus" },
     { day: "Thursday", time: "02:00 - 03:00", subject: "Free Period" },
     { day: "Friday", time: "09:00 - 10:00", subject: "Tamil" },
     { day: "Friday", time: "10:00 - 11:00", subject: "Free Period" },
     { day: "Friday", time: "11:00 - 12:00", subject: "English" },
+    { day: "Friday", time: "12:00 - 01:00", subject: "Lunch" },
     { day: "Friday", time: "01:00 - 02:00", subject: "Free Period" },
     { day: "Friday", time: "02:00 - 03:00", subject: "Free Period" },
 ];
@@ -172,7 +180,7 @@ function StudentDashboardInternal() {
                 </div>
                 <Badge variant="outline" className="text-primary border-primary">{lesson.points} pts</Badge>
                 <Button asChild size="sm">
-                  <Link href="#">Start</Link>
+                  <Link href={`/student/learning-quest/${lesson.id}`}>Start</Link>
                 </Button>
               </div>
             ))}
