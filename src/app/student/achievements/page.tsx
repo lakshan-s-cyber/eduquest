@@ -118,12 +118,7 @@ const itemVariants = {
 
 
 export default function AchievementsPage() {
-    const [animatingCardId, setAnimatingCardId] = useState<string | null>(null);
-
-    const handleCardClick = (id: string) => {
-        setAnimatingCardId(id);
-        setTimeout(() => setAnimatingCardId(null), 1500); // Animation duration
-    };
+    const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
 
     return (
         <motion.div 
@@ -142,7 +137,8 @@ export default function AchievementsPage() {
                         key={card.id}
                         variants={itemVariants}
                         className="relative"
-                        onClick={() => handleCardClick(card.id)}
+                        onMouseEnter={() => setHoveredCardId(card.id)}
+                        onMouseLeave={() => setHoveredCardId(null)}
                     >
                         <Card className="h-full cursor-pointer transition-all duration-300 hover:shadow-primary/20 hover:shadow-xl hover:bg-card/90">
                             <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -157,7 +153,7 @@ export default function AchievementsPage() {
                             </CardContent>
                         </Card>
                         <AnimatePresence>
-                        {animatingCardId === card.id && (
+                        {hoveredCardId === card.id && (
                             <motion.div
                                 className="absolute -top-3 -left-3"
                                 style={{ transform: "translateZ(0)" }}
@@ -173,6 +169,7 @@ export default function AchievementsPage() {
                                     duration: 1.5,
                                     ease: "linear",
                                     times: [0, 0.25, 0.5, 0.75, 1],
+                                    repeat: Infinity,
                                 }}
                                 exit={{ opacity: 0 }}
                             >
@@ -337,5 +334,7 @@ export default function AchievementsPage() {
         </motion.div>
     );
 }
+
+    
 
     
