@@ -80,7 +80,7 @@ export default function StaffLayout({
                 <p className="truncate font-medium">Admin User</p>
                 <p className="truncate text-sm text-muted-foreground">admin@eduquest.com</p>
             </div>
-            <Link href="/login">
+            <Link href="/student/dashboard">
               <SidebarMenuButton tooltip="Logout" className="ml-auto" size="icon">
                 <LogOut />
               </SidebarMenuButton>

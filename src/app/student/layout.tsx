@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -82,7 +83,7 @@ export default function StudentLayout({
                 <p className="truncate font-medium">Lakshan S</p>
                 <p className="truncate text-sm text-muted-foreground">lakshan@example.com</p>
             </div>
-            <Link href="/login">
+            <Link href="/staff/dashboard">
               <SidebarMenuButton tooltip="Logout" className="ml-auto" size="icon">
                 <LogOut />
               </SidebarMenuButton>
