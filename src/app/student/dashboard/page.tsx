@@ -28,6 +28,8 @@ import {
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 import { ChatPanel } from "@/components/chat/chat-panel";
 import { WeeklyTimetable, ScheduleItem } from "@/components/shared/weekly-timetable";
+import { useSearchParams } from "next/navigation";
+import React from "react";
 
 const lessons = [
   {
@@ -100,11 +102,14 @@ const studentSchedule: ScheduleItem[] = [
     { day: "Friday", time: "02:00 - 03:00", subject: "Free Period" },
 ];
 
-export default function StudentDashboard() {
+function StudentDashboardInternal() {
+  const searchParams = useSearchParams();
+  const username = searchParams.get('username') || 'Lakshan';
+
   return (
     <div className="grid gap-6">
       <h1 className="font-headline text-3xl font-bold tracking-tight">
-        Welcome back, Lakshan!
+        Welcome back, {username}!
       </h1>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <Card>
@@ -217,4 +222,12 @@ export default function StudentDashboard() {
         />
     </div>
   );
+}
+
+export default function StudentDashboard() {
+    return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+            <StudentDashboardInternal />
+        </React.Suspense>
+    );
 }

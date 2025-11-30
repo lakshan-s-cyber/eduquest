@@ -11,8 +11,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { useSearchParams } from "next/navigation";
+import React from "react";
 
-export default function SettingsPage() {
+function SettingsPageInternal() {
+  const searchParams = useSearchParams();
+  const username = searchParams.get('username') || "Admin User";
+  const useremail = `${username.toLowerCase().replace(' ', '.')}@eduquest.com`;
+
   return (
     <div className="grid gap-6">
        <div>
@@ -31,11 +37,11 @@ export default function SettingsPage() {
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
-            <Input id="name" defaultValue="Admin User" />
+            <Input id="name" defaultValue={username} />
           </div>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" defaultValue="admin@eduquest.com" />
+            <Input id="email" type="email" defaultValue={useremail} />
           </div>
           <Button>Save Changes</Button>
         </CardContent>
@@ -66,4 +72,12 @@ export default function SettingsPage() {
       </Card>
     </div>
   );
+}
+
+export default function SettingsPage() {
+    return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+            <SettingsPageInternal />
+        </React.Suspense>
+    )
 }

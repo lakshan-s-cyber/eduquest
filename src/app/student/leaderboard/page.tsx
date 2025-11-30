@@ -1,5 +1,6 @@
 
 
+'use client';
 import {
     Card,
     CardContent,
@@ -18,6 +19,8 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { cn } from "@/lib/utils";
 import { Progress } from "@/components/ui/progress";
+import { useSearchParams } from "next/navigation";
+import React from "react";
 
 
 const leaderboardData = [
@@ -33,8 +36,6 @@ const leaderboardData = [
     { rank: 10, name: "Keerthana", points: 800, avatar: "", progress: 20 },
 ];
 
-const currentUser = leaderboardData[0]; // Assuming Lakshan S is the current user
-
 const leaderboardHeaderImage = PlaceHolderImages.find(img => img.id === 'leaderboard-header');
 const topStudentImages = leaderboardData.slice(0, 3).map(student => {
     const imageData = PlaceHolderImages.find(img => img.id === student.imageId);
@@ -43,7 +44,13 @@ const topStudentImages = leaderboardData.slice(0, 3).map(student => {
 const otherStudents = leaderboardData.slice(3);
 
 
-export default function LeaderboardPage() {
+function LeaderboardPageInternal() {
+    const searchParams = useSearchParams();
+    const username = searchParams.get('username') || "Lakshan S";
+
+    // Find the current user in the leaderboard, or default to the first entry if not found.
+    const currentUser = leaderboardData.find(u => u.name === username) || leaderboardData.find(u => u.name === "Lakshan S") || leaderboardData[0];
+
     const [rank1, rank2, rank3] = topStudentImages;
 
     return (
@@ -89,7 +96,7 @@ export default function LeaderboardPage() {
                         </TableHeader>
                         <TableBody>
                             {otherStudents.map((student) => (
-                                <TableRow key={student.rank} className="border-primary/10 transition-colors hover:bg-primary/10 group">
+                                <TableRow key={student.rank} className={cn("border-primary/10 transition-colors hover:bg-primary/10 group", student.name === currentUser.name && "bg-primary/10")}>
                                     <TableCell className="text-center font-bold text-lg text-foreground/50 transition-transform duration-300 group-hover:scale-125 group-hover:text-primary">
                                         <div className="relative">
                                             {student.rank}
@@ -161,6 +168,15 @@ export default function LeaderboardPage() {
         </div>
     );
 }
+
+export default function LeaderboardPage() {
+    return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+            <LeaderboardPageInternal />
+        </React.Suspense>
+    );
+}
+
 
 const rankStyles = {
     1: { // Gold

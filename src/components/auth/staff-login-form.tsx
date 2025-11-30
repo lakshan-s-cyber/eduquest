@@ -24,10 +24,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Lock, Mail } from "lucide-react";
+import { Lock, Mail, User } from "lucide-react";
 import { Separator } from "../ui/separator";
 
 const formSchema = z.object({
+  username: z.string().min(3, "Username must be at least 3 characters."),
   email: z.string().email("Please enter a valid email address."),
   password: z.string().min(6, "Password must be at least 6 characters."),
 });
@@ -37,6 +38,7 @@ export function StaffLoginForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      username: "",
       email: "",
       password: "",
     },
@@ -45,12 +47,12 @@ export function StaffLoginForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     // Here you would typically handle authentication
-    router.push("/staff/dashboard");
+    router.push(`/staff/dashboard?username=${encodeURIComponent(values.username)}`);
   }
 
     function onGoogleLogin() {
     console.log("Logging in with Google");
-    router.push("/staff/dashboard");
+    router.push("/staff/dashboard?username=GoogleAdmin");
   }
 
   return (
@@ -62,6 +64,22 @@ export function StaffLoginForm() {
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+             <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                     <div className="relative">
+                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input placeholder="admin_user" {...field} className="pl-10" />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="email"

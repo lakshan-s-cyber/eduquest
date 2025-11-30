@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import {
   BookCopy,
   LayoutDashboard,
@@ -26,6 +26,7 @@ import { Logo } from "@/components/shared/logo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
+import React from "react";
 
 const navItems = [
   { href: "/staff/dashboard", icon: LayoutDashboard, label: "Timetable" },
@@ -39,12 +40,16 @@ const staffClasses = [
     { name: "I BE CSE C", subject: "Design Thinking" },
 ];
 
-export default function StaffLayout({
+
+function StaffLayoutInternal({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const username = searchParams.get('username') || "Admin User";
+  const useremail = `${username.toLowerCase().replace(' ', '.')}@eduquest.com`;
 
   return (
     <SidebarProvider>
@@ -74,13 +79,13 @@ export default function StaffLayout({
           <div className="flex items-center gap-3 p-2">
             <Avatar>
               <AvatarImage src="" />
-              <AvatarFallback>A</AvatarFallback>
+              <AvatarFallback>{username.charAt(0)}</AvatarFallback>
             </Avatar>
             <div className="flex-1 overflow-hidden">
-                <p className="truncate font-medium">Admin User</p>
-                <p className="truncate text-sm text-muted-foreground">admin@eduquest.com</p>
+                <p className="truncate font-medium">{username}</p>
+                <p className="truncate text-sm text-muted-foreground">{useremail}</p>
             </div>
-            <Link href="/student/dashboard">
+            <Link href="/login">
               <SidebarMenuButton tooltip="Logout" className="ml-auto" size="icon">
                 <LogOut />
               </SidebarMenuButton>
@@ -104,4 +109,16 @@ export default function StaffLayout({
       </SidebarInset>
     </SidebarProvider>
   );
+}
+
+export default function StaffLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+    return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+            <StaffLayoutInternal>{children}</StaffLayoutInternal>
+        </React.Suspense>
+    )
 }

@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import {
   Bell,
@@ -30,14 +30,19 @@ import { Logo } from "@/components/shared/logo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import React from "react";
 
 
-export default function StudentLayout({
+function StudentLayoutInternal({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const username = searchParams.get('username') || "Lakshan S";
+  const useremail = `${username.toLowerCase().replace(' ', '.')}@example.com`
+
   const background = PlaceHolderImages.find(p => p.id === 'student-background');
 
   const navItems = [
@@ -77,13 +82,13 @@ export default function StudentLayout({
           <div className="flex items-center gap-3 p-2">
             <Avatar>
               <AvatarImage src="" />
-              <AvatarFallback>L</AvatarFallback>
+              <AvatarFallback>{username.charAt(0)}</AvatarFallback>
             </Avatar>
             <div className="flex-1 overflow-hidden">
-                <p className="truncate font-medium">Lakshan S</p>
-                <p className="truncate text-sm text-muted-foreground">lakshan@example.com</p>
+                <p className="truncate font-medium">{username}</p>
+                <p className="truncate text-sm text-muted-foreground">{useremail}</p>
             </div>
-            <Link href="/staff/dashboard">
+            <Link href="/login">
               <SidebarMenuButton tooltip="Logout" className="ml-auto" size="icon">
                 <LogOut />
               </SidebarMenuButton>
@@ -112,4 +117,16 @@ export default function StudentLayout({
       </SidebarInset>
     </SidebarProvider>
   );
+}
+
+export default function StudentLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+            <StudentLayoutInternal>{children}</StudentLayoutInternal>
+        </React.Suspense>
+    )
 }
