@@ -8,23 +8,19 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowLeft, CheckCircle, Lightbulb, Video, XCircle } from 'lucide-react';
-import Link from 'next/link';
+import { ArrowLeft, CheckCircle, Lightbulb, XCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
-const lessonDetails: { [key: string]: { title: string; videoId: string } } = {
+const lessonDetails: { [key: string]: { title: string } } = {
   'c-programming': {
     title: 'Introduction to C Programming',
-    videoId: 'KJgsSFOSQv0', // C Programming Tutorial for Beginners
   },
   calculus: {
     title: 'Introduction to Calculus',
-    videoId: 'HfACrKJ_Y2w', // Calculus 1 - Full College Course
   },
   beee: {
     title: 'Basics of BEEE',
-    videoId: 'm4jzgqg-p-o', // Basic Electrical Engineering | Introduction to Basic Electrical Engineering
   },
 };
 
@@ -117,43 +113,30 @@ export default function LearningQuestPage({ params }: { params: { lessonId: stri
         <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle className='flex items-center gap-2'>
-                <Video />
-                Reference Video
-              </CardTitle>
-              <CardDescription>Watch this video to learn about advanced topics.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              {loading ? (
-                <Skeleton className="h-10 w-48 rounded-lg" />
-              ) : (
-                <Button asChild>
-                  <a href={`https://www.youtube.com/watch?v=${details.videoId}`} target="_blank" rel="noopener noreferrer">
-                    <Video className="mr-2 h-4 w-4" />
-                    Watch Reference Video
-                  </a>
-                </Button>
-              )}
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
                 <CardTitle className='flex items-center gap-2'><Lightbulb /> Beyond the Syllabus</CardTitle>
                 <CardDescription>Explore these advanced topics to expand your knowledge.</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="prose dark:prose-invert max-w-none">
                 {loading ? (
-                    <div className='space-y-3'>
+                    <div className='space-y-4'>
                         <Skeleton className="h-6 w-3/4" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-2/3" />
+                        <br/>
                         <Skeleton className="h-6 w-1/2" />
-                        <Skeleton className="h-6 w-2/3" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-5/6" />
                     </div>
                 ) : (
-                    <ul className='space-y-3 list-disc list-inside'>
-                        {questData?.topics.map((topic, index) => (
-                            <li key={index} className='font-medium'>{topic}</li>
-                        ))}
-                    </ul>
+                    <>
+                        <ul className='space-y-2'>
+                            {questData?.advancedTopics.map((topic, index) => (
+                                <li key={index} className='font-semibold'>{topic}</li>
+                            ))}
+                        </ul>
+                        <div dangerouslySetInnerHTML={{ __html: questData?.extraContent.replace(/\n/g, '<br />') || "" }} />
+                    </>
                 )}
             </CardContent>
           </Card>

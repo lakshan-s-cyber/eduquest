@@ -25,10 +25,13 @@ const LearningQuestInputSchema = z.object({
 export type LearningQuestInput = z.infer<typeof LearningQuestInputSchema>;
 
 const LearningQuestOutputSchema = z.object({
-  topics: z
+  advancedTopics: z
     .array(z.string())
     .describe('A list of 3-5 advanced topics that go beyond the standard syllabus for the given lesson.'),
-  quiz: z.array(QuizQuestionSchema).describe('A list of 3-5 quiz questions based on the reference content provided.'),
+  extraContent: z
+    .string()
+    .describe('Detailed educational content explaining the advanced topics. This should be comprehensive and well-structured, possibly using markdown for formatting.'),
+  quiz: z.array(QuizQuestionSchema).describe('A list of 3-5 quiz questions based on the generated extraContent.'),
 });
 export type LearningQuestOutput = z.infer<typeof LearningQuestOutputSchema>;
 
@@ -47,11 +50,10 @@ const learningQuestPrompt = ai.definePrompt({
     Your task is to generate advanced learning materials for a given lesson topic.
     The lesson is titled: '{{lessonTitle}}'.
 
-    The reference content for these materials is a video with the title: 'Advanced Topics in {{lessonTitle}}'.
-
     Based on the lesson title, do the following:
     1.  Generate a list of 3 to 5 advanced topics that are related to '{{lessonTitle}}' but go beyond the typical introductory syllabus. These topics should be challenging and encourage further exploration.
-    2.  Create a multiple-choice quiz with 3 to 5 questions. The quiz should be based on concepts you would expect to be covered in a video about advanced '{{lessonTitle}}' topics. Each question must have exactly 4 options and a clearly identified correct answer.
+    2.  Write a detailed, comprehensive educational content (extraContent) that explains these advanced topics. Structure the content logically. You can use markdown for headings and lists.
+    3.  Create a multiple-choice quiz with 3 to 5 questions. The quiz MUST be based on the 'extraContent' you just generated. Each question must have exactly 4 options and a clearly identified correct answer.
   `,
 });
 
