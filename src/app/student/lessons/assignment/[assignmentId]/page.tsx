@@ -51,7 +51,7 @@ const CPointersQuiz = () => (
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="b" id="q1-b" />
-                        <Label htmlFor="q1-b">int &amp;ptr;</Label>
+                        <Label htmlFor="q1-b">int &ptr;</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="c" id="q1-c" />
@@ -72,7 +72,7 @@ const CPointersQuiz = () => (
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="b" id="q2-b" />
-                        <Label htmlFor="q2-b">&amp;</Label>
+                        <Label htmlFor="q2-b">&</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="c" id="q2-c" />
@@ -80,7 +80,7 @@ const CPointersQuiz = () => (
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="d" id="q2-d" />
-                        <Label htmlFor="q2-d">-&gt;</Label>
+                        <Label htmlFor="q2-d">-></Label>
                     </div>
                 </RadioGroup>
             </div>
@@ -135,11 +135,11 @@ const CPointersQuiz = () => (
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="b" id="q5-b" />
-                        <Label htmlFor="q5-b">&amp; (Address-of operator)</Label>
+                        <Label htmlFor="q5-b">& (Address-of operator)</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="c" id="q5-c" />
-                        <Label htmlFor="q5-c">&amp;&amp; (Logical AND)</Label>
+                        <Label htmlFor="q5-c">&& (Logical AND)</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="d" id="q5-d" />

@@ -75,21 +75,21 @@ export function WeeklyTimetable({ scheduleData, title, description }: WeeklyTime
                 <Table className="border">
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[120px] font-bold">Day</TableHead>
-                            {timeSlots.map(time => (
-                                <TableHead key={time} className="font-bold text-center">{time}</TableHead>
+                            <TableHead className="w-[120px] font-bold">Time</TableHead>
+                            {days.map(day => (
+                                <TableHead key={day} className="font-bold text-center">{day}</TableHead>
                             ))}
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {days.map(day => (
-                            <TableRow key={day}>
-                                <TableCell className="font-medium">{day}</TableCell>
-                                {timeSlots.map(time => {
-                                    const event = getScheduleForSlot(day, time);
+                        {timeSlots.map(time => (
+                            <TableRow key={time}>
+                                <TableCell className="font-medium">{time}</TableCell>
+                                {days.map(day => {
                                     if (time === "12:00 - 01:00") {
                                         return <TableCell key={`${day}-${time}`} className="p-1 text-center border-l"><div className={cn("rounded-md p-2 h-full flex flex-col justify-center", scheduleColors["Lunch"])}><p className="font-semibold text-xs">Lunch</p></div></TableCell>
                                     }
+                                    const event = getScheduleForSlot(day, time);
                                     if (event) {
                                         return (
                                             <TableCell key={`${day}-${time}`} className={cn("p-1 text-center border-l")}>
