@@ -21,10 +21,13 @@ import {
     Star,
     Zap,
     BrainCircuit,
-    FlaskConical
+    FlaskConical,
+    ChevronRight,
+    BookHeart
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 
 const achievementsData = {
@@ -61,8 +64,9 @@ const achievementsData = {
         { title: "Intergral Calculus", score: "92%" },
     ],
     specialChallenges: [
-        { title: "30-Day Learning Streak", icon: <Zap className="h-5 w-5" /> },
-        { title: "Mind Marathon: 5 Extra-Credit Puzzles", icon: <BrainCircuit className="h-5 w-5" /> },
+        { title: "30-Day Learning Streak", icon: <Zap className="h-5 w-5" />, type: "badge" },
+        { title: "Mind Marathon: 5 Extra-Credit Puzzles", icon: <BrainCircuit className="h-5 w-5" />, type: "badge" },
+        { title: "Advanced C Programming Quest", icon: <BookHeart className="h-5 w-5" />, type: "link", href: "/student/learning-quest/c-programming" },
     ]
 };
 
@@ -290,19 +294,41 @@ export default function AchievementsPage() {
                         <Card>
                             <CardHeader>
                                 <CardTitle>Special Challenges</CardTitle>
-                                <CardDescription>Unique milestones you've reached.</CardDescription>
+                                <CardDescription>Unique milestones and quests.</CardDescription>
                             </CardHeader>
-                            <CardContent className="space-y-4">
-                                {achievementsData.specialChallenges.map((challenge, index) => (
-                                    <motion.div variants={itemVariants} key={index} className="flex items-center gap-3">
-                                        <div className={`flex h-8 w-8 items-center justify-center rounded-full ${
-                                            index === 0 ? 'bg-red-100 dark:bg-red-900/50 text-red-500' : 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-500'
-                                        }`}>
-                                        {challenge.icon}
+                            <CardContent className="space-y-1">
+                                {achievementsData.specialChallenges.map((challenge, index) => {
+                                    const challengeIconColor = 
+                                        index === 0 ? 'bg-red-100 dark:bg-red-900/50 text-red-500' : 
+                                        index === 1 ? 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-500' :
+                                        'bg-teal-100 dark:bg-teal-900/50 text-teal-500';
+
+                                    const content = (
+                                        <div className="flex items-center gap-3">
+                                            <div className={`flex h-8 w-8 items-center justify-center rounded-full ${challengeIconColor}`}>
+                                                {challenge.icon}
+                                            </div>
+                                            <p className="font-medium text-sm flex-1">{challenge.title}</p>
+                                            {challenge.type === 'link' && <ChevronRight className="h-5 w-5 text-muted-foreground" />}
                                         </div>
-                                        <p className="font-medium text-sm">{challenge.title}</p>
-                                    </motion.div>
-                                ))}
+                                    );
+
+                                    if (challenge.type === 'link' && challenge.href) {
+                                        return (
+                                            <Link href={challenge.href} key={index} className="block rounded-lg -m-2 p-2 transition-colors hover:bg-muted/50">
+                                                 <motion.div variants={itemVariants}>
+                                                    {content}
+                                                 </motion.div>
+                                            </Link>
+                                        )
+                                    }
+
+                                    return (
+                                         <motion.div variants={itemVariants} key={index} className="p-2">
+                                            {content}
+                                        </motion.div>
+                                    )
+                                })}
                             </CardContent>
                         </Card>
                     </motion.div>
@@ -310,5 +336,6 @@ export default function AchievementsPage() {
             </div>
         </motion.div>
     );
+}
 
     
