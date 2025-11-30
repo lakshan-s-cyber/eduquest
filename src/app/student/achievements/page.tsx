@@ -227,7 +227,13 @@ export default function AchievementsPage() {
                             <CardContent>
                                 <motion.div variants={containerVariants} className="space-y-3">
                                     {achievementsData.completedLessons.map((lesson, index) => (
-                                        <motion.div variants={itemVariants} key={index} className="flex items-center justify-between rounded-lg border p-3">
+                                        <motion.div 
+                                            variants={itemVariants} 
+                                            key={index} 
+                                            className="flex items-center justify-between rounded-lg border p-3 cursor-pointer"
+                                            whileHover={{ scale: 1.02, boxShadow: "0px 0px 12px 2px rgba(236, 72, 153, 0.5)" }}
+                                            whileTap={{ scale: 0.98 }}
+                                        >
                                             <div className="flex items-center gap-3">
                                                 <BookOpenCheck className="h-5 w-5 text-green-500"/>
                                                 <p className="font-medium">{lesson.title}</p>
@@ -332,5 +338,7 @@ export default function AchievementsPage() {
         </motion.div>
     );
 }
+
+    
 
     
