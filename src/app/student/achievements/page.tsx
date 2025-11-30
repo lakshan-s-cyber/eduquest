@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Card,
@@ -105,7 +105,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { y: -20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -116,10 +116,60 @@ const itemVariants = {
   }
 };
 
+const SummaryCard = ({ card }: { card: typeof summaryCards[0] }) => {
+    const [isHovered, setIsHovered] = React.useState(false);
+
+    return (
+        <motion.div
+            key={card.id}
+            variants={itemVariants}
+            className="relative"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <Card className="h-full cursor-pointer transition-all duration-300 hover:shadow-primary/20 hover:shadow-xl hover:bg-card/90">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                    <CardTitle className="text-sm font-medium">{card.title}</CardTitle>
+                    {card.icon}
+                </CardHeader>
+                <CardContent>
+                    <div className="text-2xl font-bold">{card.value}</div>
+                    <p className="text-xs text-muted-foreground">
+                        {card.description}
+                    </p>
+                </CardContent>
+            </Card>
+            <AnimatePresence>
+            {isHovered && (
+                <motion.div
+                    className="absolute -top-3 -left-3"
+                    style={{ transform: "translateZ(0)" }}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{
+                        opacity: [0.5, 1, 1, 0],
+                        scale: 1,
+                        rotate: 360,
+                        x: ['-1.5rem', '100%', '100%', '-1.5rem', '-1.5rem'],
+                        y: ['-1.5rem', '-1.5rem', '110%', '110%', '-1.5rem'],
+                    }}
+                    transition={{
+                        duration: 1.5,
+                        ease: "linear",
+                        times: [0, 0.25, 0.5, 0.75, 1],
+                        repeat: Infinity,
+                    }}
+                    exit={{ opacity: 0 }}
+                >
+                    <Star className="h-6 w-6 text-yellow-400 fill-yellow-400" />
+                </motion.div>
+            )}
+            </AnimatePresence>
+        </motion.div>
+    );
+};
+
 
 export default function AchievementsPage() {
-    const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
-
     return (
         <motion.div 
             className="grid gap-6"
@@ -133,51 +183,7 @@ export default function AchievementsPage() {
 
             <motion.div variants={containerVariants} className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 {summaryCards.map(card => (
-                     <motion.div
-                        key={card.id}
-                        variants={itemVariants}
-                        className="relative"
-                        onMouseEnter={() => setHoveredCardId(card.id)}
-                        onMouseLeave={() => setHoveredCardId(null)}
-                    >
-                        <Card className="h-full cursor-pointer transition-all duration-300 hover:shadow-primary/20 hover:shadow-xl hover:bg-card/90">
-                            <CardHeader className="flex flex-row items-center justify-between pb-2">
-                                <CardTitle className="text-sm font-medium">{card.title}</CardTitle>
-                                {card.icon}
-                            </CardHeader>
-                            <CardContent>
-                                <div className="text-2xl font-bold">{card.value}</div>
-                                <p className="text-xs text-muted-foreground">
-                                    {card.description}
-                                </p>
-                            </CardContent>
-                        </Card>
-                        <AnimatePresence>
-                        {hoveredCardId === card.id && (
-                            <motion.div
-                                className="absolute -top-3 -left-3"
-                                style={{ transform: "translateZ(0)" }}
-                                initial={{ opacity: 0, scale: 0.5 }}
-                                animate={{
-                                    opacity: [0.5, 1, 1, 0],
-                                    scale: 1,
-                                    rotate: 360,
-                                    x: ['-1.5rem', '100%', '100%', '-1.5rem', '-1.5rem'],
-                                    y: ['-1.5rem', '-1.5rem', '110%', '110%', '-1.5rem'],
-                                }}
-                                transition={{
-                                    duration: 1.5,
-                                    ease: "linear",
-                                    times: [0, 0.25, 0.5, 0.75, 1],
-                                    repeat: Infinity,
-                                }}
-                                exit={{ opacity: 0 }}
-                            >
-                                <Star className="h-6 w-6 text-yellow-400 fill-yellow-400" />
-                            </motion.div>
-                        )}
-                        </AnimatePresence>
-                    </motion.div>
+                    <SummaryCard key={card.id} card={card} />
                 ))}
             </motion.div>
 
@@ -334,6 +340,10 @@ export default function AchievementsPage() {
         </motion.div>
     );
 }
+
+    
+
+    
 
     
 
