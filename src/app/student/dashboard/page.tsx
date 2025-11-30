@@ -115,7 +115,7 @@ const studentSchedule: ScheduleItem[] = [
 
 function StudentDashboardInternal() {
   const searchParams = useSearchParams();
-  const username = searchParams.get('username') || 'Lakshan';
+  const username = searchParams.get('username') || 'Student';
 
   return (
     <div className="grid gap-6">

@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -16,7 +17,7 @@ import React from "react";
 
 function SettingsPageInternal() {
   const searchParams = useSearchParams();
-  const username = searchParams.get('username') || "Admin User";
+  const username = searchParams.get('username') || "Admin";
   const useremail = `${username.toLowerCase().replace(' ', '.')}@eduquest.com`;
 
   return (

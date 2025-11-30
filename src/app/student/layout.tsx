@@ -40,7 +40,7 @@ function StudentLayoutInternal({
 }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const username = searchParams.get('username') || "Lakshan S";
+  const username = searchParams.get('username') || "Student";
   const useremail = `${username.toLowerCase().replace(' ', '.')}@example.com`
 
   const background = PlaceHolderImages.find(p => p.id === 'student-background');
@@ -65,7 +65,7 @@ function StudentLayoutInternal({
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.href}>
-                <Link href={item.href}>
+                <Link href={`${item.href}?username=${encodeURIComponent(username)}`}>
                   <SidebarMenuButton
                     isActive={pathname.startsWith(item.href)}
                     tooltip={item.label}

@@ -46,7 +46,7 @@ const otherStudents = leaderboardData.slice(3);
 
 function LeaderboardPageInternal() {
     const searchParams = useSearchParams();
-    const username = searchParams.get('username') || "Lakshan S";
+    const username = searchParams.get('username') || "Student";
 
     // Find the current user in the leaderboard, or default to the first entry if not found.
     const currentUser = leaderboardData.find(u => u.name === username) || leaderboardData.find(u => u.name === "Lakshan S") || leaderboardData[0];

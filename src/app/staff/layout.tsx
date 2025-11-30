@@ -48,7 +48,7 @@ function StaffLayoutInternal({
 }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const username = searchParams.get('username') || "Admin User";
+  const username = searchParams.get('username') || "Admin";
   const useremail = `${username.toLowerCase().replace(' ', '.')}@eduquest.com`;
 
   return (
@@ -62,7 +62,7 @@ function StaffLayoutInternal({
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.href}>
-                <Link href={item.href}>
+                <Link href={`${item.href}?username=${encodeURIComponent(username)}`}>
                   <SidebarMenuButton
                     isActive={pathname.startsWith(item.href)}
                     tooltip={item.label}
