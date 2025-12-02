@@ -1,5 +1,5 @@
 
-"use client";
+'use client';
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -261,8 +261,14 @@ export default function AchievementsPage() {
                             </CardHeader>
                             <CardContent className="space-y-4">
                                 {achievementsData.competitionBadges.map((badge, index) => (
-                                    <motion.div variants={itemVariants} key={index} className="flex items-center gap-4">
-                                        <div className={`flex h-10 w-10 items-center justify-center rounded-full ${
+                                    <motion.div 
+                                        variants={itemVariants}
+                                        key={index}
+                                        className="flex items-center gap-4 p-2 rounded-lg cursor-pointer"
+                                        whileHover={{ scale: 1.05, backgroundColor: 'hsl(var(--muted)/0.5)' }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        <div className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full ${
                                             index === 0 ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-500' : 'bg-purple-100 dark:bg-purple-900/50 text-purple-500'
                                         }`}>
                                             {badge.icon}
@@ -283,9 +289,15 @@ export default function AchievementsPage() {
                                 <CardDescription>Your top performances.</CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <ul className="space-y-3">
+                                <ul className="space-y-1">
                                     {achievementsData.bestQuizzes.map((quiz, index) => (
-                                        <motion.li variants={itemVariants} key={index} className="flex justify-between items-center text-sm">
+                                        <motion.li 
+                                            variants={itemVariants}
+                                            key={index}
+                                            className="flex justify-between items-center text-sm p-2 rounded-lg cursor-pointer"
+                                            whileHover={{ scale: 1.05, backgroundColor: 'hsl(var(--muted)/0.5)' }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
                                             <div className="flex items-center gap-2">
                                                 <Target className="h-4 w-4 text-primary" />
                                                 <span>{quiz.title}</span>
@@ -311,7 +323,7 @@ export default function AchievementsPage() {
 
                                     const content = (
                                         <div className="flex items-center gap-3">
-                                            <div className={`flex h-8 w-8 items-center justify-center rounded-full ${challengeIconColor}`}>
+                                            <div className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full ${challengeIconColor}`}>
                                                 {challenge.icon}
                                             </div>
                                             <p className="font-medium text-sm flex-1">{challenge.title}</p>
@@ -319,7 +331,13 @@ export default function AchievementsPage() {
                                     );
 
                                     return (
-                                         <motion.div variants={itemVariants} key={index} className="p-2">
+                                         <motion.div 
+                                            variants={itemVariants}
+                                            key={index}
+                                            className="p-2 rounded-lg cursor-pointer"
+                                            whileHover={{ scale: 1.05, backgroundColor: 'hsl(var(--muted)/0.5)' }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
                                             {content}
                                         </motion.div>
                                     )
@@ -327,7 +345,7 @@ export default function AchievementsPage() {
                                 {achievementsData.learningQuests.map((quest, index) => {
                                     const content = (
                                         <div className="flex items-center gap-3">
-                                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-100 dark:bg-teal-900/50 text-teal-500">
+                                            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-teal-100 dark:bg-teal-900/50 text-teal-500">
                                                 <BookHeart className="h-5 w-5" />
                                             </div>
                                             <p className="font-medium text-sm flex-1">{quest.title}</p>
@@ -337,7 +355,11 @@ export default function AchievementsPage() {
                                     
                                     return (
                                         <Link href={`/student/learning-quest/${quest.id}`} key={quest.id} className="block rounded-lg -m-2 p-2 transition-colors hover:bg-muted/50">
-                                             <motion.div variants={itemVariants}>
+                                             <motion.div 
+                                                variants={itemVariants}
+                                                whileHover={{ scale: 1.05, x: 2 }}
+                                                whileTap={{ scale: 0.95 }}
+                                            >
                                                 {content}
                                              </motion.div>
                                         </Link>
@@ -351,6 +373,8 @@ export default function AchievementsPage() {
         </motion.div>
     );
 }
+
+    
 
     
 
