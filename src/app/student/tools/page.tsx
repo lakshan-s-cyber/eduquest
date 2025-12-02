@@ -106,7 +106,7 @@ function ToolsPageInternal() {
                 <CardDescription>{tool.description}</CardDescription>
               </CardHeader>
               <CardContent className="flex-grow" />
-              <CardFooter className="flex justify-end gap-2">
+              <CardFooter className={cn("flex gap-2", tool.embeddable ? "justify-end" : "justify-center")}>
                 <Button asChild>
                   <a href={tool.url} target="_blank" rel="noopener noreferrer">
                     Open Tool <ArrowRight className="ml-2 h-4 w-4" />
@@ -135,4 +135,5 @@ export default function ToolsPage() {
         </React.Suspense>
     );
 }
+
 
