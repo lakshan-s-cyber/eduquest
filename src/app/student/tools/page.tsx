@@ -106,14 +106,14 @@ function ToolsPageInternal() {
                 <CardDescription>{tool.description}</CardDescription>
               </CardHeader>
               <CardContent className="flex-grow" />
-              <CardFooter className="flex gap-2">
-                <Button asChild className="w-full">
+              <CardFooter className="flex justify-end gap-2">
+                <Button asChild>
                   <a href={tool.url} target="_blank" rel="noopener noreferrer">
                     Open Tool <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
                 {tool.embeddable && (
-                  <Button asChild variant="secondary" className="w-full">
+                  <Button asChild variant="secondary">
                     <Link href={`/student/tools/${tool.id}?username=${encodeURIComponent(username)}`}>
                       Open Inside App <Box className="ml-2 h-4 w-4" />
                     </Link>
