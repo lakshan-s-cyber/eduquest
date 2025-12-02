@@ -8,6 +8,7 @@ import {
   Bell,
   BookOpen,
   Calendar,
+  FlaskConical,
   LayoutDashboard,
   LogOut,
   MessageSquare,
@@ -48,6 +49,7 @@ function StudentLayoutInternal({
   const navItems = [
     { href: "/student/dashboard", icon: LayoutDashboard, label: "Timetable" },
     { href: "/student/lessons", icon: BookOpen, label: "Lessons" },
+    { href: "/student/tools", icon: FlaskConical, label: "Tools & Simulations" },
     { href: "/student/notifications", icon: Bell, label: "Notifications" },
     { href: "/student/achievements", icon: Trophy, label: "Achievements" },
     { href: "/student/leaderboard", icon: Users, label: "Leaderboard" },
