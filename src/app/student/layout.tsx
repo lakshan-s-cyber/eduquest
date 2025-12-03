@@ -32,6 +32,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import React from "react";
+import { cn } from "@/lib/utils";
 
 
 function StudentLayoutInternal({
@@ -47,10 +48,9 @@ function StudentLayoutInternal({
   const background = PlaceHolderImages.find(p => p.id === 'student-background');
 
   const navItems = [
-    { href: "/student/dashboard", icon: LayoutDashboard, label: "Timetable" },
+    { href: "/student/dashboard", icon: LayoutDashboard, label: "Dashboard" },
     { href: "/student/lessons", icon: BookOpen, label: "Lessons" },
-    { href: "/student/tools", icon: FlaskConical, label: "Tools & Simulations" },
-    { href: "/student/notifications", icon: Bell, label: "Notifications" },
+    { href: "/student/tools", icon: FlaskConical, label: "Tools" },
     { href: "/student/achievements", icon: Trophy, label: "Achievements" },
     { href: "/student/leaderboard", icon: Users, label: "Leaderboard" },
     { href: "/student/forum", icon: MessageSquare, label: "Forum" },
@@ -99,21 +99,21 @@ function StudentLayoutInternal({
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
-        <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-6 backdrop-blur-sm sticky top-0 z-30">
-          <SidebarTrigger />
-          <h1 className="text-xl font-semibold font-headline">Student Dashboard</h1>
-        </header>
-        <main className="relative flex-1 p-4 md:p-6 overflow-hidden">
-          {background && (
+        <main className={cn(
+            "relative flex-1 bg-secondary",
+             // Don't show background image on the main dashboard
+            pathname !== "/student/dashboard" && "p-4 md:p-6 overflow-hidden"
+          )}>
+          {background && pathname !== "/student/dashboard" && (
              <Image
               src={background.imageUrl}
               alt={background.description}
               fill
-              className="object-cover -z-10 opacity-20"
+              className="object-cover -z-10 opacity-5"
               data-ai-hint={background.imageHint}
             />
           )}
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
+          {pathname !== "/student/dashboard" && <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />}
           {children}
         </main>
       </SidebarInset>
