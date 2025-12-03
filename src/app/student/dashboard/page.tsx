@@ -196,7 +196,7 @@ function StudentDashboardInternal() {
                                 <span className="text-sm text-muted-foreground">{item.subject}</span>
                             </div>
                             <Button variant="ghost" size="sm" asChild>
-                                <Link href="/student/dashboard">View</Link>
+                                <Link href={`/student/timetable?username=${username}`}>View</Link>
                             </Button>
                         </div>
                     ))}

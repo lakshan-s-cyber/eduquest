@@ -50,6 +50,7 @@ function StudentLayoutInternal({
   const navItems = [
     { href: "/student/dashboard", icon: LayoutDashboard, label: "Dashboard" },
     { href: "/student/lessons", icon: BookOpen, label: "Lessons" },
+    { href: "/student/timetable", icon: Calendar, label: "Timetable" },
     { href: "/student/tools", icon: FlaskConical, label: "Tools" },
     { href: "/student/achievements", icon: Trophy, label: "Achievements" },
     { href: "/student/leaderboard", icon: Users, label: "Leaderboard" },
@@ -102,9 +103,9 @@ function StudentLayoutInternal({
         <main className={cn(
             "relative flex-1 bg-secondary",
              // Don't show background image on the main dashboard
-            pathname !== "/student/dashboard" && "p-4 md:p-6 overflow-hidden"
+            !["/student/dashboard", "/student/timetable"].includes(pathname) && "p-4 md:p-6 overflow-hidden"
           )}>
-          {background && pathname !== "/student/dashboard" && (
+          {background && !["/student/dashboard", "/student/timetable"].includes(pathname) && (
              <Image
               src={background.imageUrl}
               alt={background.description}
@@ -113,7 +114,7 @@ function StudentLayoutInternal({
               data-ai-hint={background.imageHint}
             />
           )}
-          {pathname !== "/student/dashboard" && <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />}
+          {!["/student/dashboard", "/student/timetable"].includes(pathname) && <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />}
           {children}
         </main>
       </SidebarInset>
