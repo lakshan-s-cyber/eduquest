@@ -1,5 +1,4 @@
 
-
 'use client';
 import {
     Card,
@@ -48,8 +47,15 @@ function LeaderboardPageInternal() {
     const searchParams = useSearchParams();
     const username = searchParams.get('username') || "Student";
 
-    // Find the current user in the leaderboard, or default to the first entry if not found.
-    const currentUser = leaderboardData.find(u => u.name === username) || leaderboardData.find(u => u.name === "Lakshan S") || leaderboardData[0];
+    const currentUserData = leaderboardData.find(u => u.name === username);
+
+    const currentUser = currentUserData || {
+        rank: 15, // Placeholder rank if user not in top 10
+        name: username,
+        points: 650,
+        avatar: "",
+        progress: 30,
+    };
 
     const [rank1, rank2, rank3] = topStudentImages;
 
@@ -141,7 +147,7 @@ function LeaderboardPageInternal() {
                                     <p className="font-bold text-lg text-card-foreground">{currentUser.name} (You)</p>
                                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                         <ShieldCheck className="h-4 w-4 text-green-400" />
-                                        <span>Top 1%</span>
+                                        <span>Top 10%</span>
                                     </div>
                                 </div>
                             </div>
@@ -254,3 +260,5 @@ const PodiumCard = ({ student, rank }: { student: any; rank: number }) => {
         </div>
     )
 }
+
+    
