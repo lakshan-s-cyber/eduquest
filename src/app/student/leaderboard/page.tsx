@@ -46,17 +46,13 @@ const otherStudents = leaderboardData.slice(3);
 function LeaderboardPageInternal() {
     const searchParams = useSearchParams();
     const username = searchParams.get('username') || "Student";
-
-    const currentUserData = leaderboardData.find(u => u.name === username);
-
-    const currentUser = currentUserData || {
-        rank: 15, // Placeholder rank if user not in top 10
-        name: username,
-        points: 650,
+    const currentUser = leaderboardData.find(u => u.name === username) || {
+        rank: 1,
+        name: "Lakshan S",
+        points: 1250,
         avatar: "",
-        progress: 30,
+        progress: 85,
     };
-
     const [rank1, rank2, rank3] = topStudentImages;
 
     return (
@@ -147,7 +143,7 @@ function LeaderboardPageInternal() {
                                     <p className="font-bold text-lg text-card-foreground">{currentUser.name} (You)</p>
                                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                         <ShieldCheck className="h-4 w-4 text-green-400" />
-                                        <span>Top 10%</span>
+                                        <span>Top 1%</span>
                                     </div>
                                 </div>
                             </div>
