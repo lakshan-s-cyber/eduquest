@@ -26,8 +26,8 @@ import {
     BookHeart
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
-import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { ExternalResourcesSheet } from '@/components/student/external-resources-sheet';
 
 
 const achievementsData = {
@@ -67,13 +67,6 @@ const achievementsData = {
         { title: "30-Day Learning Streak", icon: <Zap className="h-5 w-5" />, type: "badge" },
         { title: "Mind Marathon: 5 Extra-Credit Puzzles", icon: <BrainCircuit className="h-5 w-5" />, type: "badge" },
     ],
-    learningQuests: [
-         {
-            id: "c-programming",
-            title: "Advanced C Programming Quest",
-            status: "Published",
-        },
-    ]
 };
 
 const summaryCards = [
@@ -312,8 +305,8 @@ export default function AchievementsPage() {
                     <motion.div variants={itemVariants}>
                         <Card>
                             <CardHeader>
-                                <CardTitle>Special Challenges</CardTitle>
-                                <CardDescription>Unique milestones and quests.</CardDescription>
+                                <CardTitle>Special Challenges & Resources</CardTitle>
+                                <CardDescription>Unique milestones and helpful links.</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-1">
                                 {achievementsData.specialChallenges.map((challenge, index) => {
@@ -342,29 +335,22 @@ export default function AchievementsPage() {
                                         </motion.div>
                                     )
                                 })}
-                                {achievementsData.learningQuests.map((quest, index) => {
-                                    const content = (
+                                <ExternalResourcesSheet>
+                                     <motion.div 
+                                        variants={itemVariants}
+                                        className="p-2 rounded-lg cursor-pointer transition-colors hover:bg-muted/50"
+                                        whileHover={{ scale: 1.05, x: 2 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
                                         <div className="flex items-center gap-3">
                                             <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-teal-100 dark:bg-teal-900/50 text-teal-500">
                                                 <BookHeart className="h-5 w-5" />
                                             </div>
-                                            <p className="font-medium text-sm flex-1">{quest.title}</p>
+                                            <p className="font-medium text-sm flex-1">Extra Learning Materials</p>
                                             <ChevronRight className="h-5 w-5 text-muted-foreground" />
                                         </div>
-                                    );
-                                    
-                                    return (
-                                        <Link href={`/student/learning-quest/${quest.id}`} key={quest.id} className="block rounded-lg -m-2 p-2 transition-colors hover:bg-muted/50">
-                                             <motion.div 
-                                                variants={itemVariants}
-                                                whileHover={{ scale: 1.05, x: 2 }}
-                                                whileTap={{ scale: 0.95 }}
-                                            >
-                                                {content}
-                                             </motion.div>
-                                        </Link>
-                                    )
-                                })}
+                                     </motion.div>
+                                </ExternalResourcesSheet>
                             </CardContent>
                         </Card>
                     </motion.div>
@@ -373,6 +359,8 @@ export default function AchievementsPage() {
         </motion.div>
     );
 }
+
+    
 
     
 
