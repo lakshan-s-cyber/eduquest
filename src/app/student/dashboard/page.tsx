@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import {
   CircularProgress,
 } from "@/components/ui/circular-progress";
@@ -75,6 +75,16 @@ function StudentDashboardInternal() {
   const searchParams = useSearchParams();
   const username = searchParams.get('username') || 'Student';
 
+  const [performanceGlow, setPerformanceGlow] = useState(false);
+  const [announcementGlow, setAnnouncementGlow] = useState(false);
+  const [timetableGlow, setTimetableGlow] = useState(false);
+
+  const handleClick = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
+    setter(true);
+    setTimeout(() => setter(false), 700);
+  };
+
+
   return (
     <div className="grid gap-8 p-4 md:p-6 bg-secondary">
       {/* Header */}
@@ -101,7 +111,13 @@ function StudentDashboardInternal() {
         {/* Left Column */}
         <div className="lg:col-span-2 space-y-8">
             {/* Performance Card */}
-            <Card>
+            <Card 
+                onClick={() => handleClick(setPerformanceGlow)}
+                className={cn(
+                    "cursor-pointer transition-all duration-700",
+                    performanceGlow && "shadow-2xl shadow-blue-500/50"
+                )}
+            >
                 <CardHeader>
                     <CardTitle>My Performance</CardTitle>
                     <CardDescription>An overview of your academic progress.</CardDescription>
@@ -126,7 +142,13 @@ function StudentDashboardInternal() {
             </Card>
 
             {/* Announcements Card */}
-            <Card>
+            <Card
+                onClick={() => handleClick(setAnnouncementGlow)}
+                className={cn(
+                    "cursor-pointer transition-all duration-700",
+                    announcementGlow && "shadow-2xl shadow-purple-500/50"
+                )}
+            >
                 <CardHeader>
                     <CardTitle>Announcements</CardTitle>
                      <CardDescription>Updates from your teachers and the institution.</CardDescription>
@@ -154,7 +176,13 @@ function StudentDashboardInternal() {
         {/* Right Column */}
         <div className="space-y-8">
             {/* Timetable Card */}
-            <Card>
+            <Card
+                onClick={() => handleClick(setTimetableGlow)}
+                className={cn(
+                    "cursor-pointer transition-all duration-700",
+                    timetableGlow && "shadow-2xl shadow-green-500/50"
+                )}
+            >
                 <CardHeader>
                     <CardTitle>My Timetable</CardTitle>
                     <CardDescription>Your schedule for this week.</CardDescription>
