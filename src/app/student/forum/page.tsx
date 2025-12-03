@@ -41,6 +41,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { useSearchParams } from 'next/navigation';
 
 
 const initialForumPosts = [
@@ -146,10 +147,13 @@ const ThreadCard = ({ post }: { post: ForumPost }) => {
     );
 };
 
-export default function ForumPage() {
+function ForumPageInternal() {
     const [activeTab, setActiveTab] = useState("All");
+    const [forumPosts, setForumPosts] = useState(initialForumPosts);
     const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
     const { toast } = useToast();
+    const searchParams = useSearchParams();
+    const username = searchParams.get('username') || 'Student';
 
     const handleCreateThread = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -158,7 +162,20 @@ export default function ForumPage() {
         const description = formData.get('description') as string;
         const tag = formData.get('tag') as string;
 
-        console.log({ title, description, tag });
+        const newPost: ForumPost = {
+            id: `POST-${(forumPosts.length + 1).toString().padStart(3, '0')}`,
+            title,
+            author: username,
+            authorAvatar: "",
+            role: "Student", // Defaulting to student for now
+            timestamp: "Just now",
+            preview: description.substring(0, 150) + (description.length > 150 ? '...' : ''),
+            tags: [tag],
+            votes: 0,
+            comments: 0,
+        };
+
+        setForumPosts(prevPosts => [newPost, ...prevPosts]);
 
         toast({
             title: "Thread Created!",
@@ -194,7 +211,7 @@ export default function ForumPage() {
 
             {/* Thread Feed */}
             <div className="space-y-4">
-                {initialForumPosts.map(post => (
+                {forumPosts.map(post => (
                     <ThreadCard key={post.id} post={post} />
                 ))}
             </div>
@@ -251,4 +268,10 @@ export default function ForumPage() {
     );
 }
 
-    
+export default function ForumPage() {
+    return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+            <ForumPageInternal />
+        </React.Suspense>
+    );
+}
