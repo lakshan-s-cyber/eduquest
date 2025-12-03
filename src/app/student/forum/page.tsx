@@ -1,138 +1,254 @@
+
 "use client";
 
+import React, { useState } from 'react';
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
 } from "@/components/ui/card";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MessageSquare, PlusCircle } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose
+} from "@/components/ui/dialog";
+import {
+  ArrowUp,
+  ArrowDown,
+  MessageSquare,
+  Share2,
+  Bookmark,
+  Search,
+  Plus,
+  Tag,
+} from "lucide-react";
+import { cn } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast';
+import { Label } from '@/components/ui/label';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 
-const forumPosts = [
+
+const initialForumPosts = [
     {
         id: "POST-001",
-        title: "Differential Calculus",
+        title: "Struggling with pointer arithmetic in C. Any tips?",
         author: "Madhumitha S",
         authorAvatar: "",
-        category: "Calculus",
-        replies: 5,
-        lastActivity: "2 hours ago",
+        role: "Student",
+        timestamp: "2 hours ago",
+        preview: "Hey everyone, I'm having a hard time understanding how pointer arithmetic works, especially with arrays. Can someone explain it in simple terms?",
+        tags: ["Coding", "C Programming", "Doubt"],
+        votes: 12,
+        comments: 5,
     },
     {
         id: "POST-002",
-        title: "Pointers",
-        author: "Kabin S",
+        title: "Announcement: Mid-Term Exam Schedule",
+        author: "Dr. Sathya Balaji",
         authorAvatar: "",
-        category: "C Programming",
-        replies: 12,
-        lastActivity: "5 hours ago",
+        role: "Teacher",
+        timestamp: "1 day ago",
+        preview: "Please find the attached schedule for the upcoming mid-term examinations. All the best for your preparations!",
+        tags: ["Announcements", "Exams"],
+        votes: 45,
+        comments: 3,
     },
     {
         id: "POST-003",
-        title: "Letter Writing Format",
-        author: "Keerthana",
+        title: "Recommended resources for learning Calculus?",
+        author: "Kabin S",
         authorAvatar: "",
-        category: "English",
-        replies: 8,
-        lastActivity: "1 day ago",
+        role: "Student",
+        timestamp: "3 days ago",
+        preview: "I'm looking for some good online resources (videos, articles, practice problems) to supplement our calculus lectures. What do you guys recommend?",
+        tags: ["Maths", "Calculus", "Resources"],
+        votes: 28,
+        comments: 15,
     },
     {
         id: "POST-004",
-        title: "Sangam Ports",
-        author: "Manuvarsha E",
+        title: "Tip: Use version control for your coding projects!",
+        author: "Admin",
         authorAvatar: "",
-        category: "Tamil",
-        replies: 3,
-        lastActivity: "3 days ago",
+        role: "Teacher",
+        timestamp: "5 days ago",
+        preview: "A quick tip for all aspiring programmers: start using Git and GitHub for your projects. It's a lifesaver for tracking changes and collaborating. Happy to help anyone get started.",
+        tags: ["Tips", "Coding", "Best Practices"],
+        votes: 52,
+        comments: 8,
     },
 ];
 
-const categoryColors: { [key: string]: string } = {
-    "Calculus": "bg-blue-100 text-blue-800 border-blue-200",
-    "C Programming": "bg-sky-100 text-sky-800 border-sky-200",
-    "English": "bg-purple-100 text-purple-800 border-purple-200",
-    "Tamil": "bg-pink-100 text-pink-800 border-pink-200",
-    "General": "bg-gray-100 text-gray-800 border-gray-200",
-};
+const filterTabs = ["All", "Doubts", "Subject Discussions", "Announcements", "Tips"];
+const allTags = ["Maths", "Coding", "Doubt", "Notes", "Announcement", "C Programming", "Calculus", "Resources", "Exams", "Best Practices", "English", "Tamil"];
 
+type ForumPost = typeof initialForumPosts[0];
 
-export default function ForumPage() {
+const ThreadCard = ({ post }: { post: ForumPost }) => {
     return (
-        <div className="grid gap-6">
-            <div className="flex items-center justify-between">
-                <div>
-                    <h1 className="font-headline text-3xl font-bold tracking-tight">
-                        Study Community Forum
-                    </h1>
-                    <p className="text-muted-foreground">
-                        Connect with peers, ask questions, and share knowledge.
-                    </p>
-                </div>
-                <Button>
-                    <PlusCircle className="mr-2 h-4 w-4" />
-                    Create New Post
+        <Card className="flex gap-4 p-4 transition-all hover:shadow-md">
+            <div className="flex flex-col items-center gap-1 text-muted-foreground w-12">
+                <Button variant="ghost" size="icon" className="h-8 w-8 hover:text-green-500 hover:bg-green-100">
+                    <ArrowUp className="h-5 w-5" />
+                </Button>
+                <span className="font-bold text-lg text-foreground">{post.votes}</span>
+                <Button variant="ghost" size="icon" className="h-8 w-8 hover:text-red-500 hover:bg-red-100">
+                    <ArrowDown className="h-5 w-5" />
                 </Button>
             </div>
-            <Card>
-                <CardHeader>
-                    <CardTitle>Active Discussions</CardTitle>
-                    <CardDescription>
-                        Join a conversation or start a new one.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead className="w-[60%]">Topic</TableHead>
-                                <TableHead className="text-center">Category</TableHead>
-                                <TableHead className="text-center">Replies</TableHead>
-                                <TableHead className="text-right">Last Activity</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {forumPosts.map((post) => (
-                                <TableRow key={post.id} className="cursor-pointer hover:bg-muted/50">
-                                    <TableCell>
-                                        <div className="flex items-center gap-3">
-                                            <Avatar>
-                                                <AvatarImage src={post.authorAvatar} alt={post.author} />
-                                                <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>
-                                            </Avatar>
-                                            <div>
-                                                <p className="font-medium">{post.title}</p>
-                                                <p className="text-sm text-muted-foreground">by {post.author}</p>
-                                            </div>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell className="text-center">
-                                        <Badge variant="outline" className={`${categoryColors[post.category] || ''}`}>{post.category}</Badge>
-                                    </TableCell>
-                                    <TableCell className="text-center">
-                                        <div className="flex items-center justify-center gap-1 font-medium text-muted-foreground">
-                                            <MessageSquare className="h-4 w-4" />
-                                            <span>{post.replies}</span>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell className="text-right text-muted-foreground">{post.lastActivity}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </CardContent>
-            </Card>
+            <div className="flex-1">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                    <Avatar className="h-6 w-6">
+                        <AvatarImage src={post.authorAvatar} alt={post.author} />
+                        <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <span className="font-semibold text-foreground">{post.author}</span>
+                    {post.role === "Teacher" && (
+                         <Badge variant="secondary" className="bg-blue-100 text-blue-800 border-blue-200">Teacher</Badge>
+                    )}
+                    <span>·</span>
+                    <span>{post.timestamp}</span>
+                </div>
+                <h3 className="font-bold text-lg mb-1">{post.title}</h3>
+                <p className="text-sm text-muted-foreground mb-3">{post.preview}</p>
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                        {post.tags.map(tag => (
+                            <Badge key={tag} variant="outline">{tag}</Badge>
+                        ))}
+                    </div>
+                     <div className="flex items-center gap-2 text-muted-foreground">
+                        <Button variant="ghost" size="sm" className="flex items-center gap-1">
+                            <MessageSquare className="h-4 w-4" />
+                            <span>{post.comments} Comments</span>
+                        </Button>
+                         <Button variant="ghost" size="icon" className="h-8 w-8"><Share2 className="h-4 w-4" /></Button>
+                         <Button variant="ghost" size="icon" className="h-8 w-8"><Bookmark className="h-4 w-4" /></Button>
+                    </div>
+                </div>
+            </div>
+        </Card>
+    );
+};
+
+export default function ForumPage() {
+    const [activeTab, setActiveTab] = useState("All");
+    const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+    const { toast } = useToast();
+
+    const handleCreateThread = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const title = formData.get('title') as string;
+        const description = formData.get('description') as string;
+        const tag = formData.get('tag') as string;
+
+        console.log({ title, description, tag });
+
+        toast({
+            title: "Thread Created!",
+            description: `Your new thread "${title}" has been posted.`,
+        });
+        setIsCreateDialogOpen(false);
+    };
+
+    return (
+        <div className="grid gap-6 relative">
+            {/* Top Navigation */}
+            <div className="space-y-4">
+                <h1 className="font-headline text-3xl font-bold tracking-tight">Forum</h1>
+                <div className="flex flex-col md:flex-row gap-4">
+                    <div className="relative flex-1">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                        <Input placeholder="Search threads, doubts, or topics…" className="pl-10" />
+                    </div>
+                    <div className="flex items-center gap-2 overflow-x-auto pb-2">
+                        {filterTabs.map(tab => (
+                            <Button
+                                key={tab}
+                                variant={activeTab === tab ? "default" : "ghost"}
+                                onClick={() => setActiveTab(tab)}
+                                className="shrink-0"
+                            >
+                                {tab}
+                            </Button>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Thread Feed */}
+            <div className="space-y-4">
+                {initialForumPosts.map(post => (
+                    <ThreadCard key={post.id} post={post} />
+                ))}
+            </div>
+
+            {/* Create Thread FAB */}
+             <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+                <DialogTrigger asChild>
+                    <Button className="fixed bottom-8 right-8 h-14 w-14 rounded-full shadow-lg z-50">
+                        <Plus className="h-6 w-6" />
+                        <span className="sr-only">Create Thread</span>
+                    </Button>
+                </DialogTrigger>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Create a New Thread</DialogTitle>
+                        <DialogDescription>
+                            Share your thoughts, ask a question, or start a discussion.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleCreateThread}>
+                        <div className="grid gap-4 py-4">
+                            <div className="grid gap-2">
+                                <Label htmlFor="title">Title</Label>
+                                <Input id="title" name="title" placeholder="Enter a clear and concise title" required />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="description">Description</Label>
+                                <Textarea id="description" name="description" placeholder="Explain your topic in more detail..." required rows={5}/>
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="tag">Tag</Label>
+                                <Select name="tag" required>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select a tag for your post" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {allTags.map(tag => (
+                                            <SelectItem key={tag} value={tag}>{tag}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+                        <DialogFooter>
+                            <DialogClose asChild>
+                                <Button type="button" variant="secondary">Cancel</Button>
+                            </DialogClose>
+                            <Button type="submit">Post Thread</Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }
+
+    
