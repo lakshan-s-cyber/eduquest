@@ -1,0 +1,138 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Represents a user of the application.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The user's unique ID." },
+        "name": { "type": "string", "description": "The user's display name." },
+        "email": { "type": "string", "format": "email", "description": "The user's email address." },
+        "role": { "type": "string", "enum": ["student", "teacher"], "description": "The user's role." },
+        "dept": { "type": "string", "description": "The user's department." },
+        "year": { "type": "number", "description": "The user's year of study." },
+        "profilePhotoUrl": { "type": "string", "format": "uri", "description": "URL of the user's profile photo." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of when the user was created." }
+      },
+      "required": ["uid", "name", "email", "role", "createdAt"]
+    },
+    "Thread": {
+      "title": "Thread",
+      "description": "A forum thread created by a user.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorRole": { "type": "string", "enum": ["student", "teacher"] },
+        "category": { "type": "string", "enum": ["Doubt", "SubjectDiscussion", "Announcement", "Tips"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "voteCount": { "type": "number" },
+        "commentCount": { "type": "number" },
+        "isPinned": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "body", "authorId", "authorName", "authorRole", "category", "voteCount", "commentCount", "isPinned", "createdAt", "updatedAt"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "A reply to a forum thread.",
+      "type": "object",
+      "properties": {
+        "threadId": { "type": "string" },
+        "body": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorRole": { "type": "string", "enum": ["student", "teacher"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["threadId", "body", "authorId", "authorName", "authorRole", "createdAt", "updatedAt"]
+    },
+    "ThreadVote": {
+      "title": "Thread Vote",
+      "description": "A user's vote on a thread.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "threadId": { "type": "string" },
+        "vote": { "type": "string", "enum": ["up", "down"] }
+      },
+      "required": ["userId", "threadId", "vote"]
+    },
+    "UserStats": {
+      "title": "User Stats",
+      "description": "Gamification and progress data for a user.",
+      "type": "object",
+      "properties": {
+        "points": { "type": "number" },
+        "streak": { "type": "number" },
+        "overallProgress": { "type": "number" }
+      },
+      "required": ["points", "streak", "overallProgress"]
+    },
+    "Tool": {
+      "title": "Tool",
+      "description": "A tool or resource for students.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "iconName": { "type": "string" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["name", "description", "url", "isActive"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "A notification for a user.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "type": { "type": "string", "enum": ["announcement", "mention", "reply"] },
+        "threadId": { "type": "string" },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "body", "type", "read", "createdAt"]
+    }
+  },
+  "auth": {
+    "providers": ["password", "google.com"]
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Stores public information about each user."
+    },
+    "/threads/{threadId}": {
+      "schema": { "$ref": "#/entities/Thread" },
+      "description": "Stores all forum threads."
+    },
+    "/threads/{threadId}/comments/{commentId}": {
+        "schema": { "$ref": "#/entities/Comment"},
+        "description": "A subcollection for comments on each thread."
+    },
+    "/threadVotes/{voteId}": {
+        "schema": { "$ref": "#/entities/ThreadVote"},
+        "description": "A flattened collection to manage votes efficiently and prevent duplicates."
+    },
+    "/userStats/{userId}": {
+        "schema": { "$ref": "#/entities/UserStats"},
+        "description": "Stores gamification and progress data for each user."
+    },
+    "/tools/{toolId}": {
+        "schema": { "$ref": "#/entities/Tool"},
+        "description": "A read-only collection for the tools and resources."
+    },
+    "/notifications/{userId}/userNotifications/{notificationId}": {
+        "schema": { "$ref": "#/entities/Notification"},
+        "description": "A subcollection under each user to store their personal notifications."
+    }
+  }
+}

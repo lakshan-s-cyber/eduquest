@@ -1,0 +1,78 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isTeacher() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'teacher';
+    }
+
+    function isOwner(resourceId) {
+      return request.auth.uid == resourceId;
+    }
+
+    // Users: Can read anyone's profile, but only write to their own.
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && isOwner(userId);
+    }
+
+    // Threads: Authenticated users can read all.
+    // Create/update rules are more specific.
+    match /threads/{threadId} {
+      allow read: if isAuthenticated();
+
+      // Create: Any authenticated user can create a thread.
+      // Only teachers can create announcements.
+      allow create: if isAuthenticated()
+                    && (request.resource.data.category != 'Announcement' || isTeacher());
+
+      // Update: Only the owner can update their own thread.
+      // Teachers can also pin/unpin any thread.
+      allow update: if isAuthenticated() && (
+                      (isOwner(resource.data.authorId) && request.resource.data.authorId == resource.data.authorId) ||
+                      (isTeacher() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isPinned']))
+                    );
+
+      // Delete: Only the owner can delete their own thread.
+      allow delete: if isAuthenticated() && isOwner(resource.data.authorId);
+
+      // Comments: Authenticated users can read/write comments.
+      match /comments/{commentId} {
+        allow read: if isAuthenticated();
+        allow create: if isAuthenticated();
+        allow update, delete: if isAuthenticated() && isOwner(resource.data.authorId);
+      }
+    }
+
+    // Thread Votes:
+    // A user can only create/update their own vote document.
+    // The document ID format prevents duplicate votes.
+    match /threadVotes/{voteId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && voteId == request.auth.uid + '_' + request.resource.data.threadId;
+    }
+
+    // User Stats: A user can only read and update their own stats.
+    match /userStats/{userId} {
+      allow read, update: if isAuthenticated() && isOwner(userId);
+      allow create: if isAuthenticated() && isOwner(userId);
+    }
+
+    // Tools: Read-only for all authenticated users.
+    match /tools/{toolId} {
+      allow read: if isAuthenticated();
+      allow write: if false; // No one can write
+    }
+
+    // Notifications: A user can only access their own notifications.
+    match /notifications/{userId}/userNotifications/{notificationId} {
+        allow read, write: if isAuthenticated() && isOwner(userId);
+    }
+  }
+}
