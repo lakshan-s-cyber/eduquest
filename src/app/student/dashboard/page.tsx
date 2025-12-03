@@ -9,30 +9,22 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import {
   Bell,
-  BookOpen,
-  CalendarDays,
-  CheckCircle,
   Code2,
   Crown,
   FileText,
-  FlaskConical,
   PlaySquare,
-  Users,
 } from "lucide-react";
 import Link from "next/link";
-import {
-  ChartContainer
-} from "@/components/ui/chart"
 import { useSearchParams } from "next/navigation";
 import React from "react";
 import {
   CircularProgress,
 } from "@/components/ui/circular-progress";
+import { cn } from "@/lib/utils";
 
 
 const announcements = [
