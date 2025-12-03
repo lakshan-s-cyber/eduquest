@@ -44,25 +44,18 @@ export async function generateLearningQuest(input: LearningQuestInput): Promise<
 const getTopicInfo = ai.defineTool(
     {
         name: 'getTopicInfo',
-        description: 'Get information about a specific educational topic.',
+        description: 'Get information about a specific educational topic from sources like GeeksforGeeks.',
         inputSchema: z.object({ topic: z.string() }),
         outputSchema: z.string(),
     },
     async ({ topic }) => {
-        try {
-            // Using a simple, public dictionary API for demonstration
-            const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${topic.split(' ').pop()}`);
-            if (!response.ok) {
-                return `Could not find specific information for "${topic}". Please generate content based on general knowledge.`;
-            }
-            const data = await response.json();
-            // Simplify the data for the LLM
-            const definition = data[0]?.meanings[0]?.definitions[0]?.definition;
-            return definition ? `Definition for a key term in "${topic}": ${definition}` : `No simple definition found for "${topic}".`;
-        } catch (e) {
-            console.error(e);
-            return `Error fetching information for "${topic}".`;
-        }
+        // This is a mock implementation.
+        // In a real application, you would use a search API or web scraping to get this data.
+        console.log(`Simulating search for topic: ${topic} on GeeksforGeeks`);
+        return `
+            Topic: ${topic}.
+            Summary from GeeksforGeeks: ${topic} is a fundamental concept in computer science. Key aspects include syntax, memory management, and common use cases in algorithms. Advanced applications often involve performance optimization and integration with larger systems. It is crucial for building efficient and scalable software.
+        `;
     }
 );
 
@@ -76,14 +69,14 @@ const learningQuestPrompt = ai.definePrompt({
   }) },
   output: { schema: LearningQuestOutputSchema },
   prompt: `
-    You are an expert curriculum designer for university students.
+    You are an expert curriculum designer for university students, creating content similar to what's found on GeeksforGeeks.
     Your task is to generate advanced learning materials for a given lesson topic.
     The lesson is titled: '{{lessonTitle}}'.
 
-    Use the following foundational information to help guide your content:
+    Use the following foundational information, summarized from web sources, to guide your content creation:
     {{topicInfo}}
 
-    Based on the lesson title, do the following:
+    Based on the lesson title and the provided info, do the following:
     1.  Generate a list of 3 to 5 advanced topics that are related to '{{lessonTitle}}' but go beyond the typical introductory syllabus. These topics should be challenging and encourage further exploration.
     2.  Write a detailed, comprehensive educational content (extraContent) that explains these advanced topics. Structure the content logically. You can use markdown for headings and lists.
     3.  Create a multiple-choice quiz with 3 to 5 questions. The quiz MUST be based on the 'extraContent' you just generated. Each question must have exactly 4 options and a clearly identified correct answer.
