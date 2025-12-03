@@ -1,4 +1,5 @@
 
+
 'use client';
 import {
     Card,
@@ -47,11 +48,11 @@ function LeaderboardPageInternal() {
     const searchParams = useSearchParams();
     const username = searchParams.get('username') || "Student";
     const currentUser = leaderboardData.find(u => u.name === username) || {
-        rank: 1,
-        name: "Lakshan S",
-        points: 1250,
+        rank: 12,
+        name: username,
+        points: 750,
         avatar: "",
-        progress: 85,
+        progress: 15,
     };
     const [rank1, rank2, rank3] = topStudentImages;
 
@@ -262,3 +263,4 @@ const PodiumCard = ({ student, rank }: { student: any; rank: number }) => {
     
 
     
+
